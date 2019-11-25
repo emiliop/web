@@ -1,0 +1,11 @@
+version: '3.7'
+services:
+  prod:
+    image: ${AUTHOR}/${PROJECT}:prod
+    container_name: ${PROJECT}-prod
+    build:
+      context: .
+      dockerfile: prod.dockerfile
+    ports:
+      - "${PORT}:80"
+    command: nginx -g 'daemon off;'
