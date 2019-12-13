@@ -13,7 +13,8 @@ import Work from 'scenes/Work';
 import Services from 'scenes/Services';
 import Metodologies from 'scenes/Metodologies';
 import Activities from 'scenes/Activities';
-import Togheter from 'scenes/Togheter';
+import Together from 'scenes/Together';
+import Detail from 'scenes/Detail';
 
 ReactDOM.render(
   <Router>
@@ -21,12 +22,13 @@ ReactDOM.render(
       <Navbar />
 
       <Switch>
-        <Route exact path="/" component={Home} />
+        <Route exact path="/new" component={Home} />
         <Route exact path="/work" component={Work} />
         <Route exact path="/services" component={Services} />
         <Route exact path="/metodologies" component={Metodologies} />
         <Route exact path="/activities" component={Activities} />
-        <Route exact path="/togheter" component={Togheter} />
+        <Route exact path="/together" component={Together} />
+        <Route exact path="/detail" component={Detail} />
       </Switch>
 
       <Footer />

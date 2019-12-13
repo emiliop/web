@@ -11,7 +11,7 @@ const Navbar = (props) => {
       <div className="columns is-multiline">
 
         <div className="column is-one-fifth">
-          <Link to="/">
+          <Link to="/new">
           <img className="is-hidden-mobile" src={logo} /> 
            {/* <h2 className="title is-hidden-mobile">LAB101</h2> */}
            </Link>
@@ -41,11 +41,13 @@ const checkActive = (match, location) => {
 const StyledNavbar = styled.div`
   
   z-index: 1000;
-  height: 5vh;
+  height: 10vh;
 
   .is-one-fifth{
     img{
       margin-left: 5vw;
+      height: 100%;
+    width: auto;
     }
   }
 
@@ -59,7 +61,7 @@ const StyledNavbar = styled.div`
     z-index: 1000;
     margin-right: 2.5vw;
   }
-  a:hover, a.active {
+  a:nth-child(n+2):hover, a.active {
     background: #18144D;
     color: white;
   }

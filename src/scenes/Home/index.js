@@ -349,7 +349,10 @@ const StyledHome = styled.div`
   .banner{
     width: 90%;
     display: flex;
-    padding-top: 15vh;
+    padding-top: 0vh;
+    margin-top: 0vh;
+    height: 30vh;
+    align-items: center;
 
     .is-one-fifth{
       margin-left:auto;

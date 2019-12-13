@@ -1,5 +1,6 @@
 {
-  "name": "analytics",
+  "name": "web",
+  "homepage": "http://vivelabbogota.com/new",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
