@@ -17,12 +17,12 @@ const Navbar = (props) => {
            </Link>
         </div>
                 
-        <div className="column is-four-fifths">
+        <div className="column is-three-fifths">
             {/* <ButtonLink to="/" isActive={checkActive}>Inicio</ButtonLink> */}
             <ButtonLink to="/work">Nuestro trabajo</ButtonLink>
             <ButtonLink to="/services">Servicios</ButtonLink>
             <ButtonLink to="/metodologies">Metodologías</ButtonLink>
-            <ButtonLink to="/activities">Actividades</ButtonLink>
+            {/* <ButtonLink to="/activities">Actividades</ButtonLink> */}
             <ButtonLink to="/togheter">Trabajemos juntos</ButtonLink>
         </div>
          
@@ -51,19 +51,19 @@ const StyledNavbar = styled.div`
     }
   }
 
-  .is-four-fifths{
+  .is-three-fifths{
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    margin-left: auto;
+    padding-right: 7.5vw;
   }  
 
   a{
     z-index: 1000;
-    margin-right: 2.5vw;
   }
   a:nth-child(n+2):hover, a.active {
-    background: #18144D;
-    color: white;
+    border-bottom: 2px solid #18144D;
   }
   
 `;

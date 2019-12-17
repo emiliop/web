@@ -1,12 +1,67 @@
 import React from 'react';
 import styled from 'styled-components';
+import logo from 'assets/logo_org.png';
 
 const Footer = () => {
   return (
     <StyledFooter>
-      Copyright © Todos los derechos reservados
+      <div className="columns">
+        <div className="column is-half">
+          <div className="columns">
+            <div className="column is-half">
+                <img className="is-hidden-mobile" src={logo} /> 
+                <p>
+                  Laboratorio de innovación, creatividad y nuevas tecnologías
+                </p>
+            </div>
+            <div className="column is-half">
+                <p>
+                CONTÁCTANOS
+                </p>
+                <p>
+                Avenida El Dorado Carrera 45 # 26 - 33 Bogotá, Colombia Celular (+57) 300 568-7569 vivelab_bog@unal.edu.co
+                </p>
+            </div>
+          </div>
+          
+        </div>
+
+       
+        <div className="column is-half">
+          <div className="columns">
+            <div className="column is-half">
+                <p>
+                SECCIONES DE LA WEB
+                </p>
+                <p>
+                  Nuestro trabajo
+                </p>
+                <p>
+                  Servicios
+                </p>
+                <p>
+                  Metodologías
+                </p>
+                <p>
+                  Trabajemos juntos
+                </p>
+                
+            </div>
+            <div className="column is-half">
+                <p>
+                SÍGUENOS
+                </p>
+                <p>
+                Avenida El Dorado Carrera 45 # 26 - 33 Bogotá, Colombia Celular (+57) 300 568-7569 vivelab_bog@unal.edu.co
+                </p>
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
     </StyledFooter>
-  );
+  );          
 }
 
 const StyledFooter = styled.div`
@@ -16,8 +71,8 @@ const StyledFooter = styled.div`
   text-align: center;
   display: flex;
   align-items: center;
-  height: 3.5vh;
-  background-color: #0D0D0D;
+  height: 25vh;
+  background-color: #18144D;
   color: white;
 
   position: relative;

@@ -8,6 +8,8 @@ import map from 'assets/Map.png';
 
 import green_squares from 'assets/green_squares.png';
 
+import backslides from 'assets/backgroundsliders.png';
+
 import puede_ser from 'assets/puede_ser.png';
 import blockch from 'assets/blockch.png';
 import blockch2 from 'assets/blockch2.png';
@@ -38,17 +40,17 @@ class Home extends Component {
       desktop: {
         breakpoint: { max: 3000, min: 1024 },
         items: 3,
-        partialVisibilityGutter: 30 // this is needed to tell the amount of px that should be visible.
+        partialVisibilityGutter: 20 // this is needed to tell the amount of px that should be visible.
       },
       tablet: {
         breakpoint: { max: 1024, min: 464 },
         items: 2,
-        partialVisibilityGutter: 20 // this is needed to tell the amount of px that should be visible.
+        partialVisibilityGutter: 5 // this is needed to tell the amount of px that should be visible.
       },
       mobile: {
         breakpoint: { max: 464, min: 0 },
         items: 1,
-        partialVisibilityGutter: 10 // this is needed to tell the amount of px that should be visible.
+        partialVisibilityGutter: 3 // this is needed to tell the amount of px that should be visible.
       }
     };
   }
@@ -169,9 +171,16 @@ class Home extends Component {
                   </div>
 
                   <div className="columns metodologias">
+                    <div className="column is-two-thirds">
+                            <p className="title titulo">Metodologías del Laboratorio</p>
+                            <figure className="image">
+                                <img className="is-centered" src={innovation} alt="imagen de bogota"/>
+                            </figure>
+                            
+                        </div>
                      <div className="column is-one-third">
 
-                        <p className="title titulo">Metodologías del Laboratorio</p>
+                       
                         <p className="subtitle">Esta herramienta es de carácter informativo y constituye un aporte desde el Observatorio Distrital de Víctimas del Conflicto Armado a la gestión de conocimiento para el fortalecimiento de la implementación de la Política Pública Distrital de Víctimas. Proporciona información derivada de un ejercicio de analítica descriptiva, realizado en alianza con la Alta Consejería Distrital de TIC y el ViveLab de la Universidad Nacional de Colombia, sobre los datos históricos recolectados desde el año 2010 hasta el año 2019, en el marco de la atención a víctimas.</p> 
                     </div>
                   </div> 
@@ -342,7 +351,7 @@ const StyledHome = styled.div`
   justify-content: center;
   flex-direction: column;
 
-  .banner, .react-multi-carousel-list.columns, .metodologias, .contact, .partners, .sections {
+  .banner, .metodologias, .contact, .partners, .sections {
     margin-left: 5vw;
   }
 
@@ -353,6 +362,12 @@ const StyledHome = styled.div`
     margin-top: 0vh;
     height: 30vh;
     align-items: center;
+
+    .is-two-thirds{
+      .columns{
+        padding-right: 3%;
+      }
+    }
 
     .is-one-fifth{
       margin-left:auto;
@@ -377,10 +392,10 @@ const StyledHome = styled.div`
     }
 
     .text{
-      line-height: 2.8vh;
+      padding-left: 0%;
+      font-size: 1.1em;
+      line-height: 1.6em;
       letter-spacing: 0.01em;
-      padding-left: 4%;
-      padding-right: 4%;
       b{
         border-bottom: 2px solid #86F26B;
       }
@@ -398,9 +413,15 @@ const StyledHome = styled.div`
 
   .react-multi-carousel-list{
     padding-top: 5vh;
+    margin-right: 41px;
+    margin-left: calc(5vw - 12px);
     figure{
-      height: 35vh;
-      width: auto;
+      height: auto;
+      width: 100%;
+      img{
+        height: auto;
+        width: 100%;
+      }
     }
     .title{
       padding-right: 10vw;
@@ -508,6 +529,7 @@ const StyledHome = styled.div`
   }
 
   .metodologias {
+    margin-right: 5vw;
    padding-top: 6vh;
     .title{
       font-size: 2em;
@@ -557,6 +579,12 @@ const StyledHome = styled.div`
       padding-top: 4vh;
       .control{
         width: 100%;
+        input{
+            box-shadow: none;
+            border-radius: 7px;
+            border: 0;
+            border-bottom: 3px solid #18144D
+        }
       }
         
         .label{

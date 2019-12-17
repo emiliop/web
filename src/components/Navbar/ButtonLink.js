@@ -24,8 +24,7 @@ const StyledButtonLink = styled(NavLink)`
   font-size: 1em;
 
   &:hover, &.active {
-    background: #18144D;
-    color: white;
+    border-bottom: 2px solid #18144D;
   }
   &:focus {
     outline: none;
