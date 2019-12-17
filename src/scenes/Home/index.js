@@ -8,7 +8,8 @@ import map from 'assets/Map.png';
 
 import green_squares from 'assets/green_squares.png';
 
-import backslides from 'assets/backgroundsliders.png';
+import slides from 'assets/slides.png';
+import mapback from 'assets/mapback.png';
 
 import puede_ser from 'assets/puede_ser.png';
 import blockch from 'assets/blockch.png';
@@ -40,7 +41,7 @@ class Home extends Component {
       desktop: {
         breakpoint: { max: 3000, min: 1024 },
         items: 3,
-        partialVisibilityGutter: 20 // this is needed to tell the amount of px that should be visible.
+        partialVisibilityGutter: 35 // this is needed to tell the amount of px that should be visible.
       },
       tablet: {
         breakpoint: { max: 1024, min: 464 },
@@ -58,6 +59,16 @@ class Home extends Component {
   
 
   render() {
+
+    const CustomRightArrow = ({ onClick }) => {
+      return <i className="custom-right-arrow" onClick={() => onClick()} />;
+    };
+
+    const CustomLeftArrow = ({ onClick }) => (
+      <i onClick={() => onClick()} className="custom-left-arrow" />
+    );
+   
+
     return (
             <StyledHome>
               
@@ -87,7 +98,12 @@ class Home extends Component {
 
                   </div>
 
-                  <Carousel className="columns" partialVisible={true} responsive={this.responsive}>
+                  <Carousel className="columns" additionalTransfrom={0}
+                      arrows
+                      className=""
+                      customLeftArrow={<CustomLeftArrow />}
+                      customRightArrow={<CustomRightArrow />}
+                      partialVisible={true} responsive={this.responsive}>
 
                       <div className="column logo">
                         <Link to="/statistics">
@@ -126,8 +142,11 @@ class Home extends Component {
                           </Link>
                       </div>
 
+                      
+
                   </Carousel>
               
+                  <Link to="/contrareference"><button class="button ver-mas is-normal">Ver más proyectos</button></Link>
                             
                   <div className="columns sections is-multiline is-hidden-mobile">
 
@@ -324,7 +343,7 @@ class Home extends Component {
 
                         </div>
 
-                        <div className="column map is-full">
+                        <div className="column map is-half">
 
                             <figure className="image">
                                 <img className="" src={map} alt="imagen de bogota"/>
@@ -412,9 +431,47 @@ const StyledHome = styled.div`
   }
 
   .react-multi-carousel-list{
-    padding-top: 5vh;
+    background-image: url(${slides});
     margin-right: 41px;
-    margin-left: calc(5vw - 12px);
+    width: 96.7vw;
+    padding-bottom: 9vh;
+    margin-left: 0.5vw;
+    padding-top: 4vh;
+    padding-right: 41px;
+    padding-left: calc(5vw - 20px);
+    background-size: 100% 70%;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+
+    .custom-right-arrow{
+      position: absolute !important;
+      bottom: 30px;
+    right: 6vw;
+    z-index: 1;
+    border: 1px solid #18144D;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 6px;
+    opacity: 0.8;
+    cursor: pointer;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    }
+
+    .custom-left-arrow{
+      position: absolute !important;
+      bottom: 30px;
+    left: 30px;
+    z-index: 1;
+    border: 1px solid #18144D;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 6px;
+    opacity: 0.8;
+    cursor: pointer;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    }
     figure{
       height: auto;
       width: 100%;
@@ -426,6 +483,25 @@ const StyledHome = styled.div`
     .title{
       padding-right: 10vw;
     }
+  }
+
+  .ver-mas{
+    width: 11vw;
+    height: 5vh;
+    margin-left: 5vw;
+    margin-top: -4vw;
+    letter-spacing: 0.02em;
+    color: #18144D;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 0.82em;
+    background-color: transparent;
+    border-color: #18144D;
+    border-width: 1px;
+    border-radius: 3px;
+    font-family: 'Source Sans Pro', sans-serif;
+      font-style: normal;
+      font-weight: normal;
   }
 
   .sections{
@@ -632,6 +708,21 @@ const StyledHome = styled.div`
     }
     .map{
       padding-top: 3vh;
+      position: relative;
+      width: 37vw;
+      figure{
+        background-image: url(${mapback});
+        padding-left: 1vw;
+        background-size: 90% 90%;
+        background-repeat: no-repeat;
+        background-position: right bottom;
+        padding-bottom: 3vh;
+        padding-right: 2vw;
+        img{
+          height: 100%;
+          width: 100%;
+        }
+      }
     }
   }
 }
