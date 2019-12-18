@@ -7,6 +7,7 @@ import 'react-multi-carousel/lib/styles.css';
 import map from 'assets/Map.png';
 
 import green_squares from 'assets/green_squares.png';
+import dots from 'assets/dots.png';
 
 import slides from 'assets/slides.png';
 import mapback from 'assets/mapback.png';
@@ -146,7 +147,7 @@ class Home extends Component {
 
                   </Carousel>
               
-                  <Link to="/contrareference"><button class="button ver-mas is-normal">Ver más proyectos</button></Link>
+                  <Link to="/contrareference"><button className="button ver-mas is-normal">Ver más proyectos</button></Link>
                             
                   <div className="columns sections is-multiline is-hidden-mobile">
 
@@ -161,7 +162,7 @@ class Home extends Component {
                             <figure className="image">
                                 <img className="" src={user} alt="imagen de grafica de barras"/>
                             </figure>
-                            <p className="title">1 – Experiencia de usuario</p>
+                            <p className="title"><span>1 –</span> Experiencia de usuario</p>
                             <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
                         </Link>  
                         </div>
@@ -172,7 +173,7 @@ class Home extends Component {
                             <figure className="image">
                                 <img className="" src={technology} alt="imagen de bogota"/>
                             </figure>
-                            <p className="title">2 – Tecnologías emergentes</p>
+                            <p className="title"><span>2 –</span> Tecnologías emergentes</p>
                             <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
                             </Link>
                         </div>
@@ -182,7 +183,7 @@ class Home extends Component {
                             <figure className="image">
                                 <img className="is-centered" src={innovation} alt="imagen de bogota"/>
                             </figure>
-                            <p className="title">3 – Procesos de innovación</p>
+                            <p className="title"><span>3 –</span> Procesos de innovación</p>
                             <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
                             </Link>
                         </div>
@@ -326,9 +327,11 @@ class Home extends Component {
 
                   <div className="column data is-half">
                       
-                      <div className="columns is-multiline"> 
+                      <div className="columns"> 
 
-                        <div className="column data is-full">
+                         
+
+                        <div className="column">
                              
                               <p className="subtitle "><span className="icon">
                                         <FontAwesomeIcon icon={faMapMarkerAlt} />
@@ -343,19 +346,27 @@ class Home extends Component {
 
                         </div>
 
-                        <div className="column map is-half">
+                        <div className="column dots">
+                              <img className="" src={dots} alt="imagen de bogota"/>
+                        </div> 
+
+                        </div>  
+
+                        <div className="columns">
+                       
+                          <div className="column map is-half">
 
                             <figure className="image">
                                 <img className="" src={map} alt="imagen de bogota"/>
                             </figure>
 
-                        </div>    
+                          </div>    
 
                         </div> 
                     
-                  </div>
+                  
 
-                
+                </div>
 
               </div>    
                
@@ -377,10 +388,10 @@ const StyledHome = styled.div`
   .banner{
     width: 90%;
     display: flex;
-    padding-top: 0vh;
-    margin-top: 0vh;
-    height: 30vh;
+    margin-top: 3vh;
+    height: 27vh;
     align-items: center;
+    
 
     .is-two-thirds{
       .columns{
@@ -402,16 +413,18 @@ const StyledHome = styled.div`
       font-family: 'Staatliches', cursive;
       color: #18144D;
       text-transform: uppercase;
-      font-size: 3em;
+      font-size: 4em;
       padding-left: 0;
       padding-right: 5%;
-      line-height: 5.5vh;
+      line-height: 7.5vh;
 
       
     }
 
     .text{
       padding-left: 0%;
+      padding-top: 0.75%;
+      height: 100%;
       font-size: 1.1em;
       line-height: 1.6em;
       letter-spacing: 0.01em;
@@ -436,7 +449,7 @@ const StyledHome = styled.div`
     width: 96.7vw;
     padding-bottom: 9vh;
     margin-left: 0.5vw;
-    padding-top: 4vh;
+    padding-top: 3vh;
     padding-right: 41px;
     padding-left: calc(5vw - 20px);
     background-size: 100% 70%;
@@ -445,7 +458,7 @@ const StyledHome = styled.div`
 
     .custom-right-arrow{
       position: absolute !important;
-      bottom: 30px;
+      bottom: 6vh;
     right: 6vw;
     z-index: 1;
     border: 1px solid #18144D;
@@ -460,7 +473,7 @@ const StyledHome = styled.div`
 
     .custom-left-arrow{
       position: absolute !important;
-      bottom: 30px;
+      bottom: 6vh;
     left: 30px;
     z-index: 1;
     border: 1px solid #18144D;
@@ -489,7 +502,7 @@ const StyledHome = styled.div`
     width: 11vw;
     height: 5vh;
     margin-left: 5vw;
-    margin-top: -4vw;
+    margin-top: -5.5vw;
     letter-spacing: 0.02em;
     color: #18144D;
     padding-left: 1em;
@@ -509,7 +522,7 @@ const StyledHome = styled.div`
     height: 45%;
     display: flex;
     justify-content: space-evenly;
-    margin-top: 10vh;
+    margin-top: 3vh;
     margin-right: 5vw;
 
    .logo{
@@ -526,7 +539,7 @@ const StyledHome = styled.div`
       font-family: 'Staatliches', cursive;
       color: #18144D;
       text-transform: uppercase;
-      font-size: 2em;
+      font-size: 2.5em;
       font-style: normal;
       font-weight: normal;
     }
@@ -565,6 +578,9 @@ const StyledHome = styled.div`
       position: relative;
       height: 100%;
     }
+    span{
+      color: #FF4668;
+    }
     p{
       padding-top: 2vh;
       color: black;
@@ -601,14 +617,14 @@ const StyledHome = styled.div`
     font-family: 'Staatliches', cursive;
     color: #18144D;
     text-transform: uppercase;
-    font-size: 1.8em;
+    font-size: 2.5em;
   }
 
   .metodologias {
     margin-right: 5vw;
    padding-top: 6vh;
     .title{
-      font-size: 2em;
+      font-size: 2.5em;
     font-style: normal;
     font-weight: normal;
     }
@@ -623,6 +639,9 @@ const StyledHome = styled.div`
     letter-spacing: 0.01em;
     color: black;
   }
+  .is-one-third{
+    margin-top: 6vh;
+  }
 }
 
 .partners{
@@ -633,7 +652,7 @@ const StyledHome = styled.div`
       justify-content: center;
     }
   .title{
-    font-size: 1.6em;
+    font-size: 2.5em;
     font-style: normal;
     font-weight: normal;
   }
@@ -642,11 +661,12 @@ const StyledHome = styled.div`
 
 .contact{
   padding-top: 6vh;
+  margin-bottom: 4vh;
   .form{
     
     padding-right: 15vw;
     .title{
-      font-size: 2em;
+      font-size: 2.5em;
       font-style: normal;
       font-weight: normal;
     }
@@ -689,7 +709,7 @@ const StyledHome = styled.div`
 
 
   .data{
-    padding-top: 5vh;
+    padding-top: 1.55vh;
     padding-bottom: 5vh;
     .subtitle{
       padding:0;
@@ -706,10 +726,17 @@ const StyledHome = styled.div`
         color:#B04BFF;
       }
     }
+
+   .dots{ 
+    display: flex;
+    justify-content: center;
+   }
+
+
     .map{
       padding-top: 3vh;
       position: relative;
-      width: 37vw;
+      width: 38.5vw;
       figure{
         background-image: url(${mapback});
         padding-left: 1vw;
