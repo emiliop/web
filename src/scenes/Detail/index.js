@@ -11,15 +11,19 @@ import green_squares from 'assets/green_squares.png';
 import puede_ser from 'assets/puede_ser.png';
 import blockch from 'assets/blockch.png';
 import blockch2 from 'assets/blockch2.png';
+import detail from 'assets/detail.png';
+import biblioteca from 'assets/biblioteca.png';
+import biblioteca0 from 'assets/biblioteca0.png';
+import biblioteca2 from 'assets/biblioteca2.png';
 
 import user from 'assets/user.png';
 import technology from 'assets/technology.png';
 import innovation from 'assets/innovation.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
-import { faPhoneVolume } from '@fortawesome/free-solid-svg-icons'
-import { faAt } from '@fortawesome/free-solid-svg-icons'
+import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
+import { faTwitter } from '@fortawesome/free-brands-svg-icons'
+import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
 require('dotenv').config()
 
@@ -31,8 +35,26 @@ class Detail extends Component {
         this.responsive = {
           desktop: {
             breakpoint: { max: 3000, min: 1024 },
+            items: 1,
+            partialVisibilityGutter: 10 // this is needed to tell the amount of px that should be visible.
+          },
+          tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1,
+            partialVisibilityGutter: 20 // this is needed to tell the amount of px that should be visible.
+          },
+          mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            partialVisibilityGutter: 10 // this is needed to tell the amount of px that should be visible.
+          }
+        };  
+        
+        this.responsiveStatic = {
+          desktop: {
+            breakpoint: { max: 3000, min: 1024 },
             items: 3,
-            partialVisibilityGutter: 30 // this is needed to tell the amount of px that should be visible.
+            partialVisibilityGutter: 0 // this is needed to tell the amount of px that should be visible.
           },
           tablet: {
             breakpoint: { max: 1024, min: 464 },
@@ -44,7 +66,7 @@ class Detail extends Component {
             items: 1,
             partialVisibilityGutter: 10 // this is needed to tell the amount of px that should be visible.
           }
-        };                     
+        };
       
   } 
 
@@ -56,94 +78,128 @@ class Detail extends Component {
 
 
                 
-<div className="banner columns is-centered">
+                    <div className="banner columns is-centered">
 
-                    <div className="column is-two-thirds">
+                        <div className=" columns">
 
-                        
+                            <div className="column is-two-third text">
+                              <p className="lema">Sitio web para villas del progreso</p>
+                              </div>
 
-                            <div className="column is-two-thirds ">
-                            <img className="" src={blockch2} alt="imagen de bogota"/>
+                            <div className="column is-one-fifth">
+                                      <figure className="image">
+                                          <img className="squares" src={green_squares} alt=""/>
+                                      </figure>  
                             </div>
 
-                            
-                          
-                      
+                        </div>
 
-                    </div>
+                        <div className="column is-half">
 
-                    <div className=" columns">
+                                <div className="column is-two-thirds ">
+                                    <img className="is-centered" src={detail} alt="imagen de bogota"/>
+                                </div>
 
-                    <div className="column is-two-third text">
-                      <p className="lema">Innovación, diseño y tecnología para las personas</p>
-                      <p>Somos un laboratorio de innovación de la Universidad Nacional de Colombia, con experiencia en la <b>construcción de soluciones tecnológicas</b> que permiten transformar de manera positiva la realidad de las personas y las organizaciones.</p>
-                    </div>
-
-                    <div className="column is-one-fifth">
-                              <figure className="image">
-                                  <img className="squares" src={green_squares} alt=""/>
-                              </figure>  
-                            </div>
-
-                            </div> 
+                        </div> 
 
                   </div>
 
 
         
-                  <div className="columns contact">
+                  <div className="columns contenido">
 
-<div className="column form is-half">
+                    <div className="column form is-one-fifth">
 
-    <div>
-      <p className="title titulo">¿Quieres iniciar un proyecto con nosotros? ¡Conversemos!</p>
-    </div>
+                        <div className="columns redes">
 
-    <div className="fields">
+                            <div className="column is-narrow vertical">
+                              <p className="">COMPARTIR EN REDES</p>
+                            </div>
 
-        <div className="column ">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
-                <p>Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                            <div className="column is-narrow icons">
+                                <FontAwesomeIcon icon={faFacebookF} />
+                                <FontAwesomeIcon icon={faTwitter} />
+                                <FontAwesomeIcon icon={faWhatsapp} />
+                            </div>
 
-         </div>
+                        </div>    
 
-  </div>  
+                    </div>
 
-</div>
+                    <div className="column texto is-three-fifths">
 
-<div className="column data is-half">
-  
-  <div className="columns is-multiline"> 
+                        <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
+                      
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
+                                      <p>Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                                      <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
+                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
+                                      <p>Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                                      
+                    </div>
 
-    <div className="column data is-full">
-         
-          <p className="subtitle "><span className="icon">
-                    <FontAwesomeIcon icon={faMapMarkerAlt} />
-                    </span>
-                    Avenida El Dorado Carrera 45 # 26 - 33</p> 
-          <p className="subtitle "><span className="icon">
-                    <FontAwesomeIcon icon={faPhoneVolume} />
-                    </span>(+57) 300 568-7569</p> 
-          <p className="subtitle "><span className="icon">
-                    <FontAwesomeIcon icon={faAt} />
-                    </span>vivelab_bog@unal.edu.co</p> 
+                  </div> 
 
-    </div>
+                  <div className="gallery">
 
-       
+                     <div>
+                          <p className="column titulo is-offset-one-fifth">Galería</p>
+                      </div>
 
-    </div> 
+                      <Carousel className="columns" additionalTransfrom={0}
+                                                    arrows
+                                                    autoPlaySpeed={3000}
+                                                    centerMode
+                                                    infinite
+                                                    itemClass=""
+                                                    keyBoardControl
+                                                    renderButtonGroupOutside={false}
+                                                    renderDotsOutside={false}
+                                                    showDots={false}
+                                                    slidesToSlide={1}
+                                                    responsive={this.responsive}>
 
-</div>
+                        <div className="column logo">
+                          <Link to="/statistics">
+                              <figure className="image">
+                                  <img className="" src={biblioteca0} alt="imagen de grafica de barras"/>
+                              </figure>
+                              <p className="title">App: se puede ser</p>
+                          </Link>  
+                        </div>
+                      
+                        
+                        <div className="column logo">
+                        <Link to="/contrareference"> 
+                            <figure className="image">
+                                <img className="" src={biblioteca} alt="imagen de bogota"/>
+                            </figure>
+                            <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>
+                        </div>
 
+                        <div className="column logo">
+                        <Link to="/contrareference"> 
+                            <figure className="image">
+                                <img className="" src={biblioteca2} alt="imagen de bogota"/>
+                            </figure>
+                            <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>
+                        </div>
+                     
 
+                    </Carousel>
 
-</div> 
+                  </div>
 
+                  <div className="proyects">
+                  
+                  
+                      <div>
+                          <p className="titulo column is-offset-one-fifth">Proyectos relacionados</p>
+                    </div>
 
-
-
-<Carousel className="columns" partialVisible={true} responsive={this.responsive}>
+                      <Carousel className="columns" responsive={this.responsiveStatic}>
 
                       <div className="column logo">
                         <Link to="/statistics">
@@ -172,23 +228,11 @@ class Detail extends Component {
                           <p className="title">Blockchain para restitucion de tierras</p>
                           </Link>
                       </div>
-
-                      <div className="column logo">
-                      <Link to="/contrareference"> 
-                          <figure className="image">
-                              <img className="" src={puede_ser} alt="imagen de bogota"/>
-                          </figure>
-                          <p className="title">Contrareferencias</p>
-                          </Link>
-                      </div>
+                    
 
                   </Carousel>
 
-
-
-
-
-
+                  </div>
 
             </StyledDetail>  
     );
@@ -201,14 +245,14 @@ display: flex;
 justify-content: center;
 flex-direction: column;
 
-.react-multi-carousel-list.columns, .contact, .partners, .sections {
+.contact, .partners, .sections {
   margin-left: 5vw;
 }
 
 .banner{
-    width: 100%;
+    width: 97.15vw;
     display: flex;
-    padding-top: 0vh;
+    margin-left: 0vw;
     margin-top: 0vh;
     height: 40vh;
     align-items: center;
@@ -228,10 +272,10 @@ flex-direction: column;
     font-family: 'Staatliches', cursive;
     color: #18144D;
     text-transform: uppercase;
-    font-size: 3em;
-    padding-left: 0;
-    padding-right: 5%;
-    line-height: 5.5vh;
+    font-size: 4em;
+    margin-left: 4vw;
+    padding-right: 10%;
+    line-height: 7.5vh;
 
     
   }
@@ -248,6 +292,52 @@ flex-direction: column;
   }
 }  
 
+.contenido{
+  margin-top: 1vh;
+}
+
+.vertical{
+  font-family: 'Source Sans Pro', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 0.9em;
+    font-weight: 600;
+    letter-spacing: 0.035em;
+    color: #18144D;
+    height: 3vw;
+    transform: rotate(-90deg) translate(-4vw, 5vw);
+}
+
+.icons{
+  display: flex;
+    flex-direction: column;
+}
+
+.svg-inline--fa{
+  color: white;
+  padding: 20%;
+  border-radius: 50%;
+  display: block;
+  width: 2.5vw;
+  height: 2.5vw;
+  margin-bottom: 1vw;
+}
+
+.fa-facebook-f{
+  background-color: #3D599C;
+}
+
+.fa-twitter{
+  background-color: #1EB2EA;
+}
+
+.fa-whatsapp{
+  background-color: #1BD741;
+}
+
+
+ 
+
 .info{
   position: relative;
   height: 55%;
@@ -258,13 +348,30 @@ flex-direction: column;
 
 .react-multi-carousel-list{
   padding-top: 5vh;
+    width: 97.15vw;
+    margin-left: 0vw;
   figure{
     height: 35vh;
-    width: auto;
+    width: 100%;
   }
-  .title{
-    padding-right: 10vw;
+  .image img {
+    height: auto;
+    width: 100%;
   }
+}
+
+.titulo{
+  font-family: 'Staatliches', cursive;
+  color: #18144D;
+  text-transform: uppercase;
+  font-size: 2.5em;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.proyects{
+margin-top: 8vh;
+margin-bottom: 6vh;
 }
 
 .sections{
@@ -286,13 +393,7 @@ flex-direction: column;
  }
 
   .titulo{
-    font-family: 'Staatliches', cursive;
-    color: #18144D;
-    text-transform: uppercase;
-    font-size: 2em;
-    font-style: normal;
-    font-weight: normal;
-    text-align: center;
+    
   }
 
   figure{
@@ -306,10 +407,7 @@ flex-direction: column;
 .title{
   color: #0A4B73;
 }
-p.title {
-  font-size: 1.5em;
-  text-align: center;
-}
+
 
 .subtitle{
   padding: 1% 5%;
@@ -363,12 +461,7 @@ figure{
   width: auto;
 }
 
-.titulo{
-  font-family: 'Staatliches', cursive;
-  color: #18144D;
-  text-transform: uppercase;
-  font-size: 1.8em;
-}
+
 
 .metodologias {
  padding-top: 6vh;

@@ -12,6 +12,8 @@ import dots from 'assets/dots.png';
 import slides from 'assets/slides.png';
 import mapback from 'assets/mapback.png';
 
+import gray from 'assets/gray.png';
+
 import puede_ser from 'assets/puede_ser.png';
 import blockch from 'assets/blockch.png';
 import blockch2 from 'assets/blockch2.png';
@@ -194,7 +196,7 @@ class Home extends Component {
                     <div className="column is-two-thirds">
                             <p className="title titulo">Metodologías del Laboratorio</p>
                             <figure className="image">
-                                <img className="is-centered" src={innovation} alt="imagen de bogota"/>
+                                <img className="is-centered" src={gray} alt="imagen de bogota"/>
                             </figure>
                             
                         </div>
@@ -640,7 +642,7 @@ const StyledHome = styled.div`
     color: black;
   }
   .is-one-third{
-    margin-top: 6vh;
+    margin-top: 8vh;
   }
 }
 
