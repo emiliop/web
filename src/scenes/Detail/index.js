@@ -83,7 +83,17 @@ class Detail extends Component {
                         <div className=" columns">
 
                             <div className="column is-two-third text">
-                              <p className="lema">Sitio web para villas del progreso</p>
+                              <div className=" columns is-multiline">
+                                    <p className="column lema is-full">Sitio web para villas del progreso</p>
+                                    <div className="column is-half">
+                                      <p>PRODUCTO</p>
+                                      <p>Tipo de producto</p>
+                                    </div>
+                                    <div className="column is-half">
+                                      <p>CLIENTE</p>
+                                      <p>Nombre del cliente</p>
+                                    </div>
+                                </div>
                               </div>
 
                             <div className="column is-one-fifth">
@@ -129,7 +139,9 @@ class Detail extends Component {
                     <div className="column texto is-three-fifths">
 
                         <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
-                      
+                      <p className="servicios">
+                        Servicios:  <FontAwesomeIcon icon={faFacebookF} />Experiencia de usuario <FontAwesomeIcon icon={faTwitter} /> tecnologias emergentes <FontAwesomeIcon icon={faWhatsapp} /> Procesos de innovación
+                      </p>
                                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
                                       <p>Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
                                       <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
@@ -232,6 +244,8 @@ class Detail extends Component {
 
                   </Carousel>
 
+                  <Link to="/contrareference"><button className="button ver-mas is-normal">Ver más proyectos</button></Link>
+
                   </div>
 
             </StyledDetail>  
@@ -240,7 +254,7 @@ class Detail extends Component {
 }
 
 const StyledDetail = styled.div`
-width: 100vw;
+width: 100%;
 display: flex;
 justify-content: center;
 flex-direction: column;
@@ -258,6 +272,11 @@ flex-direction: column;
     align-items: center;
     background-color: #02CAF4;
 
+    .is-multiline{
+      
+    margin-left: 4vw;
+    }
+
   .is-one-fifth{
     margin-left:auto;
   }
@@ -273,7 +292,6 @@ flex-direction: column;
     color: #18144D;
     text-transform: uppercase;
     font-size: 4em;
-    margin-left: 4vw;
     padding-right: 10%;
     line-height: 7.5vh;
 
@@ -293,7 +311,21 @@ flex-direction: column;
 }  
 
 .contenido{
+  width: 100%;
   margin-top: 1vh;
+  .subtitle{
+    padding: 0;
+    text-align: left;
+  }
+  .texto{
+    display: flex;
+    flex-direction: column;
+    img{
+      align-self: center;
+      margin-top: 2vh;
+      margin-bottom: 2vh;
+    }
+  }
 }
 
 .vertical{
@@ -335,7 +367,16 @@ flex-direction: column;
   background-color: #1BD741;
 }
 
+.servicios{
+  display: flex;
+  align-items: center;
+  margin-bottom: 2vh;
+  .svg-inline--fa{
+    padding: 1%;
+    margin-bottom: 0;
+  }
 
+}
  
 
 .info{
@@ -346,17 +387,19 @@ flex-direction: column;
   justify-content: center;
 }
 
-.react-multi-carousel-list{
-  padding-top: 5vh;
-    width: 97.15vw;
-    margin-left: 0vw;
-  figure{
-    height: 35vh;
-    width: 100%;
-  }
-  .image img {
-    height: auto;
-    width: 100%;
+.gallery{
+  .react-multi-carousel-list{
+    padding-top: 5vh;
+      width: 100%;
+      margin-left: 0vw;
+    figure{
+      height: 35vh;
+      width: 100%;
+    }
+    .image img {
+      height: auto;
+      width: 100%;
+    }
   }
 }
 
@@ -372,47 +415,44 @@ flex-direction: column;
 .proyects{
 margin-top: 8vh;
 margin-bottom: 6vh;
+display: flex;
+flex-direction: column;
+    .react-multi-carousel-list{
+      width: 80%;
+      align-self: center;
+    }
+
+    a{
+
+      align-self: center;
+
+      .ver-mas{
+        width: 11vw;
+        height: 5vh;
+        align-self: center;
+        letter-spacing: 0.02em;
+        color: #18144D;
+        padding-left: 1em;
+        padding-right: 1em;
+        font-size: 0.82em;
+        background-color: transparent;
+        border-color: #18144D;
+        border-width: 1px;
+        border-radius: 3px;
+        font-family: 'Source Sans Pro', sans-serif;
+          font-style: normal;
+          font-weight: normal;
+      }
+    }  
 }
 
-.sections{
-  position: relative;
-  height: 45%;
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 10vh;
-  margin-right: 5vw;
-
- .logo{
-  padding-top: 4vh
-  .title{
-    padding-top: 5vh;
-  }
-  .texto{
-    padding-top: 0vh;
-  }
- }
-
-  .titulo{
-    
-  }
-
-  figure{
-    display: flex;
-  height: 20vh;
-  width: auto;
-  justify-content: center;
-  }
-}
 
 .title{
   color: #0A4B73;
 }
 
 
-.subtitle{
-  padding: 1% 5%;
-  text-align: center;
-}
+
 
 p.subtitle {
   font-size: 1.1em;
