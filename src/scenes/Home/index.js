@@ -75,11 +75,11 @@ class Home extends Component {
     return (
             <StyledHome>
               
-                  <div className="banner columns is-centered">
+                  <div className="banner columns">
 
                     <div className="column is-two-thirds">
 
-                        <div className=" columns">
+                        <div className=" columns left">
 
                             <div className="column is-two-thirds lema">
                               <p>Innovación, diseño y tecnología para las personas</p>
@@ -96,7 +96,7 @@ class Home extends Component {
                     </div>
 
                     <div className="column is-one-third text">
-                      <p>Somos un laboratorio de innovación de la Universidad Nacional de Colombia, con experiencia en la <b>construcción de soluciones tecnológicas</b> que permiten transformar de manera positiva la realidad de las personas y las organizaciones.</p>
+                      <p>Somos un laboratorio de innovación de la Universidad Nacional de Colombia, con experiencia en la construcción de soluciones tecnológicas que permiten transformar de manera positiva la realidad de las personas y las organizaciones.</p>
                     </div>
 
                   </div>
@@ -285,7 +285,7 @@ class Home extends Component {
                             <div className="field">
                               <label className="label">Correo</label>
                               <div className="control has-icons-left has-icons-right">
-                                <input className="input is-danger" type="email" placeholder="Ej: Carlos Sanchez"/>
+                                <input className="input is-danger" type="email" placeholder="Ej: ejemplo@unal.edu.co"/>
                                 <span className="icon is-small is-left">
                                   <i className="fas fa-envelope"></i>
                                 </span>
@@ -299,7 +299,7 @@ class Home extends Component {
                             <div className="field">
                               <label className="label">Número de teléfono</label>
                               <div className="control has-icons-left has-icons-right">
-                                <input className="input is-danger" type="text" placeholder="Ej: Carlos Sanchez" />
+                                <input className="input is-danger" type="text" placeholder="Ej: 3308695879" />
                                 <span className="icon is-small is-left">
                                   <i className="fas fa-user"></i>
                                 </span>
@@ -378,10 +378,11 @@ class Home extends Component {
 }
 
 const StyledHome = styled.div`
-  width: 100vw;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
+  color: #18144D;
 
   .banner, .metodologias, .contact, .partners, .sections {
     margin-left: 5vw;
@@ -390,19 +391,22 @@ const StyledHome = styled.div`
   .banner{
     width: 90%;
     display: flex;
-    margin-top: 3vh;
+    margin-top: 10vh;
     height: 27vh;
-    align-items: center;
     
 
     .is-two-thirds{
+      padding-top: 0;
       .columns{
-        padding-right: 3%;
+        padding-right: 0;
+        margin: 0;
       }
     }
 
     .is-one-fifth{
       margin-left:auto;
+      padding-top: 0;
+      margin-top: 1vh;
     }
 
     .squares{
@@ -418,17 +422,18 @@ const StyledHome = styled.div`
       font-size: 4em;
       padding-left: 0;
       padding-right: 5%;
-      line-height: 7.5vh;
+      line-height:  1.1em;
+      max-width: 620px;
+      padding-top: 0;
 
       
     }
 
     .text{
-      padding-left: 0%;
-      padding-top: 0.75%;
-      height: 100%;
-      font-size: 1.1em;
-      line-height: 1.6em;
+      padding-left: 2%;
+      padding-top: 0;
+      font-size: 1.2em;
+    line-height: 1.7em;
       letter-spacing: 0.01em;
       b{
         border-bottom: 2px solid #86F26B;
@@ -437,13 +442,6 @@ const StyledHome = styled.div`
     }
   }  
 
-  .info{
-    position: relative;
-    height: 55%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
 
   .react-multi-carousel-list{
     background-image: url(${slides});
@@ -476,7 +474,7 @@ const StyledHome = styled.div`
     .custom-left-arrow{
       position: absolute !important;
       bottom: 6vh;
-    left: 30px;
+    right: 8vw;
     z-index: 1;
     border: 1px solid #18144D;
     border-width: 0 3px 3px 0;
@@ -585,11 +583,11 @@ const StyledHome = styled.div`
     }
     p{
       padding-top: 2vh;
-      color: black;
+      color: #18144D;
       font-family: 'Raleway', sans-serif;
       font-weight: 800;
-      font-size: 1.2em;
-      line-height: 2.5vh;
+      font-size: 1.3em;
+      line-height: 1.2em;
       letter-spacing: 0.01em;
     }
     .texto, .metodologias subtitle {
@@ -597,7 +595,7 @@ const StyledHome = styled.div`
       font-style: normal;
       font-weight: normal;
       font-size: 1em;
-      line-height: 2.5vh;
+      line-height: 1.8em;
       letter-spacing: 0.01em;
 
     }
@@ -637,9 +635,9 @@ const StyledHome = styled.div`
     font-style: normal;
     font-weight: normal;
     font-size: 1em;
-    line-height: 2.5vh;
+    line-height: 1.5em;
     letter-spacing: 0.01em;
-    color: black;
+    color: #18144D;
   }
   .is-one-third{
     margin-top: 8vh;
@@ -675,18 +673,39 @@ const StyledHome = styled.div`
 
     .fields{
       padding-top: 4vh;
+      .help{
+        padding-left: 3em;
+      }
       .control{
         width: 100%;
         input{
             box-shadow: none;
-            border-radius: 7px;
+            border-radius: 0;
             border: 0;
-            border-bottom: 3px solid #18144D
+            border-bottom: 3px solid #18144D;
+            padding-left: 2.25em;
+            color: black;
+            font-size: 1em;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-style: normal;
+            font-weight: normal;
         }
+        input::placeholder {
+          color: #7F7E91;
+          font-size: 1em;
+          font-family: 'Source Sans Pro', sans-serif;
+          font-style: normal;
+          font-weight: normal;
+        }
+        
       }
         
         .label{
           font-size: 0.8rem;
+          color: #7F7E91;
+          font-family: 'Source Sans Pro', sans-serif;
+      font-style: normal;
+      font-weight: normal;
         }
         button{
           padding-top: 1vh;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import logo from 'assets/lab101.png';
+import escudo from 'assets/escudo.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram } from '@fortawesome/free-brands-svg-icons'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
@@ -11,15 +12,14 @@ const Footer = () => {
   return (
     <StyledFooter>
       <div className="columns contenido">
-        <div className="column is-half">
-          <div className="columns">
-            <div className="column is-half logo">
+          
+            <div className="column logo">
                 <img className="is-hidden-mobile" src={logo} /> 
                 <p>
-                  Laboratorio de innovación, creatividad y nuevas tecnologías
+                  Laboratorio<br/> de innovación, creatividad y nuevas tecnologías
                 </p>
             </div>
-            <div className="column is-half contact">
+            <div className="column contact">
                 <p className="titulo">
                 CONTÁCTANOS
                 </p>
@@ -27,14 +27,10 @@ const Footer = () => {
                 Avenida El Dorado Carrera 45 # 26 - 33 <br/>Bogotá, Colombia Celular<br/>(+57) 300 568-7569<br/>vivelab_bog@unal.edu.co
                 </p>
             </div>
-          </div>
           
-        </div>
+              
 
-       
-        <div className="column is-half">
-          <div className="columns right">
-            <div className="column is-half sections">
+            <div className="column sections">
                 <p className="titulo">
                 SECCIONES DE LA WEB
                 </p>
@@ -52,7 +48,7 @@ const Footer = () => {
                 </p>
                 
             </div>
-            <div className="column is-half follow">
+            <div className="column follow">
                 <p className="titulo">
                 SÍGUENOS
                 </p>
@@ -65,10 +61,10 @@ const Footer = () => {
                 
                 
             </div>
-            
-          </div>
+            <div className="column shield">
+               <img className="is-hidden-mobile" src={escudo} /> 
+            </div>
           
-        </div>
       </div>
     </StyledFooter>
   );          
@@ -92,7 +88,7 @@ const StyledFooter = styled.div`
   }
 
   .contact, .sections, .follow{
-    margin-top: 2vh;
+    margin-top: 0vh;
   }
 
   position: relative;
@@ -112,10 +108,12 @@ const StyledFooter = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
+    justify-content: center;
+    margin-left: 3vw;
     p{
       margin-top: 2vh;
       text-align: left;
-      padding-right: 10vw;
+      padding-right: 2vw;
       color: #8F8EA6;
     }
   }
@@ -142,6 +140,15 @@ const StyledFooter = styled.div`
   .right{
     margin-left: 5vw;
   }
+
+  .shield{
+    display: flex;
+    align-items: center;
+    img{
+      border-left: 1px solid white;
+      padding-left: 3vw;
+    }
+   }
 
   @media (max-width: 1150px) {
   

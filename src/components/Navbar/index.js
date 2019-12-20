@@ -41,7 +41,8 @@ const checkActive = (match, location) => {
 const StyledNavbar = styled.div`
   
   z-index: 1000;
-  height: 10vh;
+  height: 15vh;
+  color: #18144D;
 
   .is-one-fifth{
     img{

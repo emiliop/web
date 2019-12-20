@@ -20,7 +20,7 @@ const StyledButtonLink = styled(NavLink)`
   text-decoration: none;
   border-radius: 3px;
   padding: 0.5em 1em;
-  color: black;
+  color:#18144D;
   font-size: 1em;
 
   &:hover, &.active {
