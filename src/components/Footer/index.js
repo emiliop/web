@@ -14,11 +14,27 @@ const Footer = () => {
       <div className="columns contenido">
           
             <div className="column logo">
-                <img className="is-hidden-mobile" src={logo} /> 
-                <p>
-                  Laboratorio<br/> de innovación, creatividad y nuevas tecnologías
-                </p>
+
+              <div className="columns is-multiline">
+
+                <div className="column is-full is-half-mobile">
+                
+                   <img src={logo} /> 
+                  
+                </div>
+
+                <div className="column is-full is-half-mobile">
+                    <p>
+                      Laboratorio<br/> de innovación, creatividad y nuevas tecnologías
+                    </p>
+                    
+                </div>
+
+              </div>
+
             </div>
+
+
             <div className="column contact">
                 <p className="titulo">
                 CONTÁCTANOS
@@ -62,7 +78,7 @@ const Footer = () => {
                 
             </div>
             <div className="column shield">
-               <img className="is-hidden-mobile" src={escudo} /> 
+               <img src={escudo} /> 
             </div>
           
       </div>
@@ -108,10 +124,18 @@ const StyledFooter = styled.div`
     display: flex;
     flex-direction: column;
     align-items: start;
-    justify-content: center;
+    justify-content: start;
     margin-left: 3vw;
+    .columns{
+      display: flex;
+      .column{
+        display: flex;
+    justify-content: flex-start;
+    align-items: center;
+      }
+    }
     p{
-      margin-top: 2vh;
+      margin-top: 0vh;
       text-align: left;
       padding-right: 2vw;
       color: #8F8EA6;
@@ -158,6 +182,41 @@ const StyledFooter = styled.div`
 @media screen and (max-width: 415px) {
   
     font-size: 0.8rem;
+    height: auto;
+
+    .titulo{
+      
+      margin-bottom: 1vh;
+    }
+  
+    .logo{
+      margin-left: 0;
+      p{
+        padding-right: 0;
+        margin-top: 2vh;
+      }
+    }
+  
+   
+  
+    .svg-inline--fa{
+      width: 4vh;
+      height: 4vh;
+      margin-right: 2.5vh;
+      padding: 2%;
+    }
+       
+    .right{
+      margin-left: 5vh;
+    }
+  
+    .shield{
+      img{
+        padding-left: 0vh;
+        margin-left: 0vh
+        border-left: 0;
+      }
+     }
  
 }
 

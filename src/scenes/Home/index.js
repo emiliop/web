@@ -96,7 +96,7 @@ class Home extends Component {
                     </div>
 
                     <div className="column is-one-third text">
-                      <p>Somos un laboratorio de innovación de la Universidad Nacional de Colombia, con experiencia en la construcción de soluciones tecnológicas que permiten transformar de manera positiva la realidad de las personas y las organizaciones.</p>
+                      <p>Somos un laboratorio de innovación de la Universidad Nacional de Colombia, con experiencia en la <b>construcción de soluciones tecnológicas</b> que permiten transformar de manera positiva la realidad de las personas y las organizaciones.</p>
                     </div>
 
                   </div>
@@ -192,9 +192,10 @@ class Home extends Component {
                        
                   </div>
 
-                  <div className="columns metodologias">
+                  <div className="columns is-multiline metodologias">
+                  <p className="title titulo column is-full ">Metodologías del Laboratorio</p>
                     <div className="column is-two-thirds">
-                            <p className="title titulo">Metodologías del Laboratorio</p>
+                            
                             <figure className="image">
                                 <img className="is-centered" src={gray} alt="imagen de bogota"/>
                             </figure>
@@ -203,65 +204,86 @@ class Home extends Component {
                      <div className="column is-one-third">
 
                        
-                        <p className="subtitle">Esta herramienta es de carácter informativo y constituye un aporte desde el Observatorio Distrital de Víctimas del Conflicto Armado a la gestión de conocimiento para el fortalecimiento de la implementación de la Política Pública Distrital de Víctimas. Proporciona información derivada de un ejercicio de analítica descriptiva, realizado en alianza con la Alta Consejería Distrital de TIC y el ViveLab de la Universidad Nacional de Colombia, sobre los datos históricos recolectados desde el año 2010 hasta el año 2019, en el marco de la atención a víctimas.</p> 
+                        <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p> 
+                        <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
                     </div>
                   </div> 
 
                   <div className="columns partners is-multiline">
 
-                    <div className="column is-full">
+                     <div className="column is-full">
 
                          <p className="title titulo">Quiénes confiaron en nosotros</p>
 
                      </div>
 
-                      <div className="column is-one-third partner">
+                     <div className="column is-full">
 
-                            <figure className="image">
-                                <img className="" src={alcaldia} alt="imagen de bogota"/>
-                            </figure>
+                      <div  className="columns clients">
 
-                      </div>
+                          <div className="column is-narrow">
 
-                      <div className="column is-one-third partner">
+                              <figure className="image">
+                                  <img className="" src={alcaldia} alt="imagen de bogota"/>
+                              </figure>
 
-                            <figure className="image">
-                                <img className="" src={espectador} alt="imagen de bogota"/>
-                            </figure>
+                          </div>
 
-                      </div>
+                          <div className="column is-narrow">
 
-                      <div className="column is-one-third partner">
+                              <figure className="image">
+                                  <img className="" src={espectador} alt="imagen de bogota"/>
+                              </figure>
 
-                            <figure className="image">
-                                <img className="" src={mintic} alt="imagen de bogota"/>
-                            </figure>
+                          </div>
 
-                      </div>
+                          <div className="column is-narrow">
 
-                      <div className="column is-one-third partner">
+                              <figure className="image">
+                                  <img className="" src={mintic} alt="imagen de bogota"/>
+                              </figure>
 
-                            <figure className="image">
-                                <img className="" src={javeriana} alt="imagen de bogota"/>
-                            </figure>
+                          </div>
 
-                      </div>
+                        </div>
 
-                      <div className="column is-one-third partner">
+                     </div>
 
-                            <figure className="image">
-                                <img className="" src={dane} alt="imagen de bogota"/>
-                            </figure>
+                     <div className="column is-full">
 
-                      </div>
+                       <div  className="columns clients">
 
-                      <div className="column is-one-third partner">
+                            <div className="column is-narrow">
 
-                            <figure className="image">
-                                <img className="" src={sanitas} alt="imagen de bogota"/>
-                            </figure>
+                              <figure className="image">
+                                  <img className="" src={javeriana} alt="imagen de bogota"/>
+                              </figure>
 
-                      </div>
+                            </div>
+
+                            <div className="column is-narrow">
+
+                              <figure className="image">
+                                  <img className="" src={dane} alt="imagen de bogota"/>
+                              </figure>
+
+                            </div>
+
+                            <div className="column is-narrow">
+
+                              <figure className="image">
+                                  <img className="" src={sanitas} alt="imagen de bogota"/>
+                              </figure>
+
+                            </div>
+
+                        </div>
+
+                     </div>
+
+                      
+
+                      
 
                   </div>
 
@@ -293,7 +315,7 @@ class Home extends Component {
                                   <i className="fas fa-exclamation-triangle"></i>
                                 </span>
                               </div>
-                              <p className="help is-danger">El correo es inválido</p>
+                              {/* <p className="help is-danger">El correo es inválido</p> */}
                             </div>
 
                             <div className="field">
@@ -307,7 +329,7 @@ class Home extends Component {
                                   <i className="fas fa-check"></i>
                                 </span>
                               </div>
-                              <p className="help is-danger">Formato incorrecto</p>
+                              {/* <p className="help is-danger">Formato incorrecto</p> */}
                             </div>
 
                             <div className="field">
@@ -317,11 +339,9 @@ class Home extends Component {
                               </div>
                             </div>
 
-                            <div className="field is-grouped">
-                              <div className="control">
+                            
                                 <button className="button is-link">Enviar</button>
-                              </div>
-                            </div>
+                            
 
                       </div>  
 
@@ -437,6 +457,7 @@ const StyledHome = styled.div`
       letter-spacing: 0.01em;
       b{
         border-bottom: 2px solid #86F26B;
+        font-weight: normal;
       }
       
     }
@@ -445,13 +466,12 @@ const StyledHome = styled.div`
 
   .react-multi-carousel-list{
     background-image: url(${slides});
-    margin-right: 41px;
-    width: 96.7vw;
+    margin-right: 0;
+    padding-left: 5vw;
+    padding-right: 5vw;
     padding-bottom: 9vh;
-    margin-left: 0.5vw;
-    padding-top: 3vh;
-    padding-right: 41px;
-    padding-left: calc(5vw - 20px);
+    margin-left: 0px;
+    /* padding-left: calc(5vw - 20px); */
     background-size: 100% 70%;
     background-repeat: no-repeat;
     background-position: left bottom;
@@ -635,12 +655,13 @@ const StyledHome = styled.div`
     font-style: normal;
     font-weight: normal;
     font-size: 1em;
-    line-height: 1.5em;
+    line-height: 2em;
     letter-spacing: 0.01em;
     color: #18144D;
   }
   .is-one-third{
-    margin-top: 8vh;
+    margin-top: 0vh;
+    padding-top: 0;
   }
 }
 
@@ -655,6 +676,11 @@ const StyledHome = styled.div`
     font-size: 2.5em;
     font-style: normal;
     font-weight: normal;
+  }
+
+  .clients{
+    display: flex;
+    justify-content: center;
   }
 }
 
@@ -673,8 +699,11 @@ const StyledHome = styled.div`
 
     .fields{
       padding-top: 4vh;
+      .field{
+        margin-bottom: 1.3rem;
+      }
       .help{
-        padding-left: 3em;
+        padding-left: 0;
       }
       .control{
         width: 100%;
@@ -682,13 +711,14 @@ const StyledHome = styled.div`
             box-shadow: none;
             border-radius: 0;
             border: 0;
-            border-bottom: 3px solid #18144D;
-            padding-left: 2.25em;
+            border-bottom: 1.5px solid #18144D;
+            padding-left: 0;
             color: black;
             font-size: 1em;
             font-family: 'Source Sans Pro', sans-serif;
             font-style: normal;
             font-weight: normal;
+            height: 2em;
         }
         input::placeholder {
           color: #7F7E91;
@@ -697,6 +727,16 @@ const StyledHome = styled.div`
           font-style: normal;
           font-weight: normal;
         }
+
+        .textarea {
+          font-family: 'Source Sans Pro', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+          background-color: #fff;
+          border-color: #18144D;
+          border-radius: 0px;
+          color: black;
+      }
         
       }
         
@@ -706,23 +746,32 @@ const StyledHome = styled.div`
           font-family: 'Source Sans Pro', sans-serif;
       font-style: normal;
       font-weight: normal;
+      margin-bottom: 0;
         }
         button{
-          padding-top: 1vh;
-          padding-bottom: 4vh;
+          padding-top: 0;
+          padding-bottom: 0;
+          height: 4vh;
           width: 100%;
           background: #18144D;
-          border: 2px solid #18144D;
+          border: 0px solid #18144D;
           box-sizing: border-box;
           font-family: Raleway;
           font-style: normal;
           font-weight: bold;
           line-height: 168%;
           font-size: 0.8em;
-
+          border-radius: 0px;
           text-align: center;
           letter-spacing: 0.035em;
           text-transform: uppercase;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          align-self: center;
+          text-align: center;
+          vertical-align: middle;
         }
     }    
 
