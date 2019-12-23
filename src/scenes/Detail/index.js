@@ -4,8 +4,6 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-import map from 'assets/Map.png';
-
 import green_squares from 'assets/green_squares.png';
 
 import puede_ser from 'assets/puede_ser.png';
@@ -15,10 +13,7 @@ import detail from 'assets/detail.png';
 import biblioteca from 'assets/biblioteca.png';
 import biblioteca0 from 'assets/biblioteca0.png';
 import biblioteca2 from 'assets/biblioteca2.png';
-
-import user from 'assets/user.png';
-import technology from 'assets/technology.png';
-import innovation from 'assets/innovation.png';
+import galleryback from 'assets/galleryback.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
@@ -71,6 +66,14 @@ class Detail extends Component {
   } 
 
   render() {
+
+    const CustomRightArrow = ({ onClick }) => {
+      return <i className="custom-right-arrow" onClick={() => onClick()} />;
+    };
+
+    const CustomLeftArrow = ({ onClick }) => (
+      <i onClick={() => onClick()} className="custom-left-arrow" />
+    );
 
     return (
 
@@ -160,6 +163,8 @@ class Detail extends Component {
 
                       <Carousel className="columns" additionalTransfrom={0}
                                                     arrows
+                                                    customLeftArrow={<CustomLeftArrow />}
+                                                    customRightArrow={<CustomRightArrow />}
                                                     autoPlaySpeed={3000}
                                                     centerMode
                                                     infinite
@@ -392,12 +397,46 @@ flex-direction: column;
     padding-top: 5vh;
       width: 100%;
       margin-left: 0vw;
+      padding-bottom: 9vh;
+      background-image: url(${galleryback});
+    background-size: 100% 70%;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    .custom-right-arrow{
+      position: absolute !important;
+      bottom: 6vh;
+    right: 6vw;
+    z-index: 1;
+    border: 1px solid #18144D;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 6px;
+    opacity: 0.8;
+    cursor: pointer;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    }
+
+    .custom-left-arrow{
+      position: absolute !important;
+      bottom: 6vh;
+    right: 8vw;
+    z-index: 1;
+    border: 1px solid #18144D;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 6px;
+    opacity: 0.8;
+    cursor: pointer;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    }
     figure{
-      height: 35vh;
+      height: auto;
       width: 100%;
     }
     .image img {
-      height: auto;
+      height: 50vh;
       width: 100%;
     }
   }
@@ -471,7 +510,7 @@ p.subtitle {
   }
   p{
     padding-top: 2vh;
-    color: black;
+    color: #18144D;
     font-family: 'Raleway', sans-serif;
     font-weight: 800;
     font-size: 1.2em;
