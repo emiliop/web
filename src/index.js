@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './index.css';
 import 'c3/c3.css';
+
+import styled from 'styled-components';
 import "react-datepicker/dist/react-datepicker.css";
 
 import Navbar from 'components/Navbar';
@@ -15,12 +17,13 @@ import Metodologies from 'scenes/Metodologies';
 import Activities from 'scenes/Activities';
 import Together from 'scenes/Together';
 import Detail from 'scenes/Detail';
+ 
 
 ReactDOM.render(
+  
   <Router>
     <div>
       <Navbar />
-
       <Switch>
         <Route exact path="/new" component={Home} />
         <Route exact path="/work" component={Work} />

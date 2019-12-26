@@ -4,12 +4,13 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-import green_squares from 'assets/green_squares.png';
+import green_squares2 from 'assets/green_squares2.png';
 
 import puede_ser from 'assets/puede_ser.png';
 import blockch from 'assets/blockch.png';
 import blockch2 from 'assets/blockch2.png';
 import detail from 'assets/detail.png';
+import detailback from 'assets/detailback.png';
 import biblioteca from 'assets/biblioteca.png';
 import biblioteca0 from 'assets/biblioteca0.png';
 import biblioteca2 from 'assets/biblioteca2.png';
@@ -36,12 +37,12 @@ class Detail extends Component {
           tablet: {
             breakpoint: { max: 1024, min: 464 },
             items: 1,
-            partialVisibilityGutter: 20 // this is needed to tell the amount of px that should be visible.
+            partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
           },
           mobile: {
             breakpoint: { max: 464, min: 0 },
             items: 1,
-            partialVisibilityGutter: 10 // this is needed to tell the amount of px that should be visible.
+            partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
           }
         };  
         
@@ -49,22 +50,23 @@ class Detail extends Component {
           desktop: {
             breakpoint: { max: 3000, min: 1024 },
             items: 3,
-            partialVisibilityGutter: 0 // this is needed to tell the amount of px that should be visible.
+            partialVisibilityGutter: 1// this is needed to tell the amount of px that should be visible.
           },
           tablet: {
             breakpoint: { max: 1024, min: 464 },
-            items: 2,
-            partialVisibilityGutter: 20 // this is needed to tell the amount of px that should be visible.
+            items: 3,
+            partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
           },
           mobile: {
             breakpoint: { max: 464, min: 0 },
-            items: 1,
-            partialVisibilityGutter: 10 // this is needed to tell the amount of px that should be visible.
+            items: 3,
+            partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
           }
         };
       
-  } 
+  }
 
+  
   render() {
 
     const CustomRightArrow = ({ onClick }) => {
@@ -75,45 +77,64 @@ class Detail extends Component {
       <i onClick={() => onClick()} className="custom-left-arrow" />
     );
 
+    const CustomDot = ({ onClick, active, index, carouselState }) => {
+      const { currentSlide } = carouselState;
+      return (
+        <li style={{ background: active ? "grey" : "initial" }}>
+          <button
+            style={{ background: active ? "grey" : "initial" }}
+            onClick={() => onClick()}
+          />
+        </li>
+      );
+    };
+
     return (
 
               <StyledDetail>
 
-
                 
                     <div className="banner columns is-centered">
 
-                        <div className=" columns">
+                        <div className=" columns is-multiline">
 
-                            <div className="column is-two-third text">
-                              <div className=" columns is-multiline">
-                                    <p className="column lema is-full">Sitio web para villas del progreso</p>
+                            <div className="column is-5 is-half-mobile text">
+                              
+                                <div className=" columns is-multiline">
+                                
+                                    <p className="column lema">Sitio web villas del progreso</p>
+                                    
                                     <div className="column is-half">
                                       <p>PRODUCTO</p>
                                       <p>Tipo de producto</p>
                                     </div>
+                                    
                                     <div className="column is-half">
                                       <p>CLIENTE</p>
                                       <p>Nombre del cliente</p>
                                     </div>
+                                
                                 </div>
+
                               </div>
 
-                            <div className="column is-one-fifth">
+                            <div className="column is-1 is-half-mobile">
                                       <figure className="image">
-                                          <img className="squares" src={green_squares} alt=""/>
+                                          <img className="squares" src={green_squares2} alt=""/>
                                       </figure>  
                             </div>
 
-                        </div>
-
-                        <div className="column is-half">
+                            <div className="column is-half is-full-mobile">
 
                                 <div className="column is-two-thirds ">
                                     <img className="is-centered" src={detail} alt="imagen de bogota"/>
                                 </div>
 
-                        </div> 
+                            </div>
+
+                        </div>
+
+                         
 
                   </div>
 
@@ -121,7 +142,7 @@ class Detail extends Component {
         
                   <div className="columns contenido">
 
-                    <div className="column form is-one-fifth">
+                    <div className="column form is-one-fifth is-hidden-mobile">
 
                         <div className="columns redes">
 
@@ -141,16 +162,34 @@ class Detail extends Component {
 
                     <div className="column texto is-three-fifths">
 
-                        <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
-                      <p className="servicios">
-                        Servicios:  <FontAwesomeIcon icon={faFacebookF} />Experiencia de usuario <FontAwesomeIcon icon={faTwitter} /> tecnologias emergentes <FontAwesomeIcon icon={faWhatsapp} /> Procesos de innovación
-                      </p>
-                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
-                                      <p>Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-                                      <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
-                                      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
-                                      <p>Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-                                      
+                        <div className="subtitle">Propuesta de valor del proyecto. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero.</div>
+                        
+                        <div className="servicio">
+                            <p>Servicios:</p> 
+                          <div className="servicios">
+                              <FontAwesomeIcon icon={faFacebookF} />Experiencia de usuario
+                          </div> 
+                          <div className="servicios">
+                              <FontAwesomeIcon icon={faTwitter} /> tecnologias emergentes  
+                          </div>     
+                          <div className="servicios">
+                              <FontAwesomeIcon icon={faWhatsapp} /> Procesos de innovación
+                          </div>
+                              
+                        </div>
+                        
+                        <div className="contenidoUno">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
+                            <p>Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                        </div>
+                        
+                        <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
+                        
+                        <div className="contenidoDos">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
+                            <p>Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                        </div>
+                             
                     </div>
 
                   </div> 
@@ -165,14 +204,15 @@ class Detail extends Component {
                                                     arrows
                                                     customLeftArrow={<CustomLeftArrow />}
                                                     customRightArrow={<CustomRightArrow />}
+                                                    customDot={<CustomDot />}
                                                     autoPlaySpeed={3000}
                                                     centerMode
                                                     infinite
                                                     itemClass=""
                                                     keyBoardControl
                                                     renderButtonGroupOutside={false}
-                                                    renderDotsOutside={false}
-                                                    showDots={false}
+                                                    showDots={true}
+                                                    renderDotsOutside
                                                     slidesToSlide={1}
                                                     responsive={this.responsive}>
 
@@ -216,7 +256,18 @@ class Detail extends Component {
                           <p className="titulo column is-offset-one-fifth">Proyectos relacionados</p>
                     </div>
 
-                      <Carousel className="columns" responsive={this.responsiveStatic}>
+                      <Carousel className="columns" additionalTransfrom={0}
+                                                    arrows={false}
+                                                    autoPlaySpeed={3000}
+                                                    centerMode={false}
+                                                    infinite={false}
+                                                    itemClass=""
+                                                    keyBoardControl
+                                                    renderButtonGroupOutside={false}
+                                                    showDots={false}
+                                                    renderDotsOutside={false}
+                                                    slidesToSlide={1}
+                                                    responsive={this.responsiveStatic}>
 
                       <div className="column logo">
                         <Link to="/statistics">
@@ -269,27 +320,62 @@ flex-direction: column;
 }
 
 .banner{
-    width: 97.15vw;
     display: flex;
     margin-left: 0vw;
+    margin-right: 0vw
     margin-top: 0vh;
     height: 40vh;
     align-items: center;
+    background-image: url(${detailback});
     background-color: #02CAF4;
+    background-blend-mode: multiply;
+    background-position:
+    bottom left,
+    top right;
+    background-size: 100% 33%,100% 50%; 
+    background-repeat: no-repeat; 
 
-    .is-multiline{
-      
-    margin-left: 4vw;
+    .columns{
+      height: 100%;
+      padding-bottom: 0;
+      padding-top: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      display: flex;
+    
+    .text{
+      height: 100%;
+      padding-bottom: 0;
+      padding-top: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+
+      .is-multiline{
+        margin-left: 4vw;
+        height: 100%;
+        padding-bottom: 0;
+        padding-top: 0;
+        margin-top: 0;
+        margin-bottom: 0;
+
+        .is-half{
+          padding-bottom: 0;
+          padding-top: 0;
+          margin-top: 0;
+          margin-bottom: 0;
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+      }
     }
+  }
 
   .is-one-fifth{
-    margin-left:auto;
   }
 
   .squares{
-    height: auto;
-    width: 30%;
-    margin-right:auto;
   }
 
   .lema{
@@ -316,6 +402,7 @@ flex-direction: column;
 }  
 
 .contenido{
+  padding-left: 1.5rem;
   width: 100%;
   margin-top: 1vh;
   .subtitle{
@@ -325,6 +412,16 @@ flex-direction: column;
   .texto{
     display: flex;
     flex-direction: column;
+    
+    .contenidoDos, .contenidoUno{
+      font-family: Source Sans Pro;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 1.2em;
+      line-height: 4vh;
+      color: #18144D;
+    }
+
     img{
       align-self: center;
       margin-top: 2vh;
@@ -372,17 +469,47 @@ flex-direction: column;
   background-color: #1BD741;
 }
 
-.servicios{
+.subtitle{
+  font-family: Source Sans Pro;
+font-style: normal;
+font-weight: 600;
+font-size: 1.5em !important;
+line-height: 4vh;
+
+letter-spacing: 0.05em;
+
+color: #18144D;
+}
+
+.servicio{
+  margin-bottom: 4vh;
   display: flex;
   align-items: center;
-  margin-bottom: 2vh;
-  .svg-inline--fa{
-    padding: 1%;
-    margin-bottom: 0;
-  }
 
+  .servicios{
+    padding-left: 1vw;
+    padding-right: 1vw;
+    border-right: 1px solid #D5D5D5;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
+    font-family: Source Sans Pro;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1em;
+    line-height: 1vh;
+    letter-spacing: 0.01em;
+    color: #18144D;
+    text-decoration: underline;
+
+    .svg-inline--fa{
+      padding: 1%;
+      margin-bottom: 0;
+      margin-right: 1vw;
+    }
+
+  }
 }
- 
 
 .info{
   position: relative;
@@ -393,51 +520,107 @@ flex-direction: column;
 }
 
 .gallery{
+  
   .react-multi-carousel-list{
-    padding-top: 5vh;
+      padding-top: 5vh;
       width: 100%;
       margin-left: 0vw;
-      padding-bottom: 9vh;
+      padding-bottom: 3vh;
       background-image: url(${galleryback});
-    background-size: 100% 70%;
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    .custom-right-arrow{
-      position: absolute !important;
-      bottom: 6vh;
-    right: 6vw;
-    z-index: 1;
-    border: 1px solid #18144D;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 6px;
-    opacity: 0.8;
-    cursor: pointer;
-    -webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+      background-size: 100% 50%;
+      background-repeat: no-repeat;
+      background-position: left bottom;
+
+      .logo{
+        p{
+          padding-top: 4.5vh;
+          color: #18144D;
+          font-family: 'Raleway', sans-serif;
+          font-style: italic;
+          font-weight: 600;
+          font-size: 1.2em;
+          line-height: 2.5vh;
+          letter-spacing: 0.01em;
+        }
+      }
+    
+      .custom-right-arrow{
+        position: absolute !important;
+        bottom: 4.5vh;
+        right: 28%;
+        z-index: 1;
+        border: 1px solid #18144D;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 6px;
+        opacity: 0.8;
+        cursor: pointer;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+
+      .custom-left-arrow{
+        position: absolute !important;
+        bottom: 4.5vh;
+        right: 30%;
+        z-index: 1;
+        border: 1px solid #18144D;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 6px;
+        opacity: 0.8;
+        cursor: pointer;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+      }
+
+      figure{
+        height: auto;
+        width: 100%;
+      }
+
+      .image img {
+        height: 50vh;
+        width: 100%;
+      }
+  }
+
+  .react-multi-carousel-dot-list {
+    position: relative;
+    bottom: 9vh;
+    display: flex;
+    width: 76%;
+    left: 26%;
+    right: 0;
+    justify-content: center;
+    margin: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+
+    li{
+      background: transparent !important;
     }
 
-    .custom-left-arrow{
-      position: absolute !important;
-      bottom: 6vh;
-    right: 8vw;
-    z-index: 1;
-    border: 1px solid #18144D;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: 6px;
-    opacity: 0.8;
-    cursor: pointer;
-    -webkit-transform: rotate(135deg);
-    transform: rotate(135deg);
-    }
-    figure{
-      height: auto;
-      width: 100%;
-    }
-    .image img {
-      height: 50vh;
-      width: 100%;
+    button {
+      background: rgba(24, 20, 77, 0.7);
+      display: inline-block;
+      width: 0.6em;
+      height: 0.6em;
+      border-radius: 50%;
+      opacity: 1;
+      padding: 5px 5px 5px 5px;
+      box-shadow: none;
+      transition: background .5s;
+      border-width: 2px;
+      border-style: solid;
+      border-color: grey;
+      padding: 0;
+      margin: 0;
+      margin-right: 6px;
+      outline: 0;
+      cursor: pointer;
     }
   }
 }
@@ -509,7 +692,7 @@ p.subtitle {
     height: 100%;
   }
   p{
-    padding-top: 2vh;
+    padding-top: 3vh;
     color: #18144D;
     font-family: 'Raleway', sans-serif;
     font-weight: 800;
@@ -698,7 +881,61 @@ padding-top: 6vh;
 }
 
 @media screen and (max-width: 799px) {
-    p.title {
+  .banner{
+    height: auto;
+  }
+
+  .squares{
+    margin-left: auto;
+  }
+
+  .servicio{
+    align-items: self-start;
+    flex-direction: column;
+  }
+
+  .servicios{
+    border-right: 0px !important;
+  }
+
+  .svg-inline--fa {
+    padding: 20%;
+    width: 3.5vh;
+    height: 3.5vh;
+    margin-bottom: 1vh !important;
+}
+
+li.react-multi-carousel-item {
+  max-width: 45.5vw !important;
+}
+
+li.react-multi-carousel-item.react-multi-carousel-item--active {
+  min-width: 75.5vw !important;
+}
+
+i.custom-right-arrow {
+  right: 13% !important;
+}
+
+i.custom-left-arrow {
+  right: 16% !important;
+}
+
+ul.react-multi-carousel-dot-list {
+  left: -20% !important;
+}
+
+.proyects{
+  ul.react-multi-carousel-track {
+    flex-direction: column;
+  }
+}
+
+  .ver-mas{
+    width: 75vw !important;
+  }
+
+  p.title {
       font-size: 0.78em;
   }
   p.subtitle {

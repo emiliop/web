@@ -6,8 +6,11 @@ import logo from 'assets/logo_org.png';
 
 
 const Navbar = (props) => {
+
+  const { background } = props;
+
   return (
-    <StyledNavbar>
+    <StyledNavbar background={background}>
       <div className="columns is-multiline">
 
         <div className="column is-one-fifth">
@@ -39,6 +42,8 @@ const checkActive = (match, location) => {
 
 
 const StyledNavbar = styled.div`
+
+  background: ${props => props.background ? "#02CAF4" : "white"};
   
   z-index: 1000;
   height: 15vh;
@@ -48,7 +53,7 @@ const StyledNavbar = styled.div`
     img{
       margin-left: 5vw;
       height: 100%;
-    width: auto;
+      width: auto;
     }
   }
 
@@ -62,9 +67,6 @@ const StyledNavbar = styled.div`
 
   a{
     z-index: 1000;
-  }
-  a:nth-child(n+2):hover, a.active {
-    border-bottom: 2px solid #18144D;
   }
   
 `;

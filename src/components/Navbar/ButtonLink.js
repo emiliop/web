@@ -4,9 +4,9 @@ import { NavLink } from 'react-router-dom';
 
 
 const ButtonLink = (props) => {
-  const { children, to, isActive } = props;
+  const { children, to, isActive, primary } = props;
   return (
-    <StyledButtonLink to={to} isActive={isActive} activeClassName="active">
+    <StyledButtonLink primary={primary} to={to} isActive={isActive} activeClassName="active">
       {children}
     </StyledButtonLink>
   );
@@ -15,13 +15,13 @@ const ButtonLink = (props) => {
 
 const StyledButtonLink = styled(NavLink)`
   background: white;
-  border: 1px solid white;
   cursor: pointer;
   text-decoration: none;
-  border-radius: 3px;
+  border-radius: 0px;
   padding: 0.5em 1em;
   color:#18144D;
   font-size: 1em;
+  border-bottom: 2px solid transparent;
 
   &:hover, &.active {
     border-bottom: 2px solid #18144D;
