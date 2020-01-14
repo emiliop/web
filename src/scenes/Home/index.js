@@ -34,6 +34,9 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { faPhoneVolume } from '@fortawesome/free-solid-svg-icons'
 import { faAt } from '@fortawesome/free-solid-svg-icons'
 
+import Icon from 'components/Icon';
+import 'fonts/icomoon.svg';
+
 
 class Home extends Component {
 
@@ -82,7 +85,9 @@ class Home extends Component {
                         <div className=" columns left">
 
                             <div className="column is-two-thirds lema">
-                              <p>Innovación, diseño y tecnología para las personas</p>
+                              
+                              <p className="icon-adn"><Icon name="adn"/>Innovación, diseño y tecnología para las personas</p>
+                              
                             </div>
 
                             <div className="column is-one-fifth">

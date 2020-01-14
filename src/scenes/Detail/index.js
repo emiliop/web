@@ -21,12 +21,17 @@ import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
+
 require('dotenv').config()
 
  
 class Detail extends Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+          background: ''
+        }
 
         this.responsive = {
           desktop: {
@@ -91,7 +96,8 @@ class Detail extends Component {
 
     return (
 
-              <StyledDetail>
+      
+            <StyledDetail>
 
                 
                     <div className="banner columns is-centered">
@@ -304,7 +310,10 @@ class Detail extends Component {
 
                   </div>
 
-            </StyledDetail>  
+            </StyledDetail>
+         
+      
+                
     );
   }
 }
