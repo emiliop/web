@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 
-import Filters from './components/Filters';
-import Graph from './components/Graph';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartPie } from '@fortawesome/free-solid-svg-icons';
+import map from 'assets/Map.png';
 
-import background from '../../assets/background.png';
-import demographics from './components/demographics';
-const minDate = new Date("09/13/2010");
+import green_squares from 'assets/green_squares.png';
+import dots from 'assets/dots.png';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPhoneVolume } from '@fortawesome/free-solid-svg-icons'
+import { faAt } from '@fortawesome/free-solid-svg-icons'
+
+
 
 require('dotenv').config()
 
@@ -17,98 +19,135 @@ class Together extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
-      loading: true,
-      initialData: {},
-      filters: {
-        startDate: minDate,
-        endDate: new Date()
-      }
-    };
-
-    this.handleFilterChange = this.handleFilterChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+      background: 'white'
+    }
+   
   }
 
-  componentWillMount() {
-
-    console.log(process.env.REACT_APP_API_URL)
-    axios({
-      method: 'get',
-      url:`${process.env.REACT_APP_API_URL}`+`/api/getInitialData`,
-      responseType: 'json'
-    })
-    .then(response => this.setState((prevState) => {
-      return {
-        initialData: { ...response.data, demographics },
-        loading: false,
-        filters: {
-          ...prevState.filters,
-          demographic: Object.keys(response.data.demographicList)[0],
-          fact: Object.keys(response.data.facts)[4],
-          aid: Object.keys(response.data.aids)[0],
-        }
-      }
-    }))
-    .then(() => this.handleClick());
-  }
-
-  handleFilterChange({ target }) {
-    const { name, value } = target;
-    const { filters } = this.state;
-    
-    this.setState(prevState => {
-      return { ...prevState, filters: { ...filters, [name]: value } }
-    });
-  }
-
-  handleClick(e) {
-    if(e) e.preventDefault();
-    const { filters } = this.state;
-    this.setState({ loadingChart: true });
-
-    axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}`+`/api/getAHICounters`,
-      data: filters
-    })
-    .then(({ data }) => this.setState({ data, loadingChart: false }));
+  componentDidMount(){
+    this.props.updateNavColor(this.state.background);
   }
 
   render() {
-    const { filters, data, initialData, loading, loadingChart } = this.state;
-    const { facts, aids, demographics } = initialData;
+    
 
     return (
-      <StyledTogether>
-        <div className="content box">
-          {loading ? "Cargando" :
-          <form id="filters" onSubmit={this.handleClick}>
-            <Filters onChange={this.handleFilterChange} data={initialData}
-              {...{ filters, minDate }} />
-            <center>
-              <button className={`button is-primary is-medium is-centered ${loadingChart? 'is-loading':''}`}
-                type="submit" form="filters">
-                <FontAwesomeIcon icon={faChartPie} />
-                Visualizar
-              </button>
-            </center>
-          </form>}
 
-          {
-            data && initialData &&
-            <center>
-              <Graph id="graph" {...{ initialData, filters, data, loading: loadingChart }} />
-            </center>
-          }
-        </div>
+      <StyledTogether>
+
+          <div className="columns contact">
+
+          <div className="column form is-half">
+
+              <div>
+                <p className="title titulo">¿Quieres iniciar un proyecto con nosotros? ¡Conversemos!</p>
+              </div>
+
+              <div className="fields">
+
+                  <div className="field">
+                      <label className="label">Nombre completo</label>
+                      <div className="control">
+                        <input className="input" type="text" placeholder="Ej: Carlos Sanchez"/>
+                      </div>
+                  </div>
+
+                  <div className="field">
+                    <label className="label">Correo</label>
+                    <div className="control has-icons-left has-icons-right">
+                      <input className="input is-danger" type="email" placeholder="Ej: ejemplo@unal.edu.co"/>
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-envelope"></i>
+                      </span>
+                      <span className="icon is-small is-right">
+                        <i className="fas fa-exclamation-triangle"></i>
+                      </span>
+                    </div>
+                    {/* <p className="help is-danger">El correo es inválido</p> */}
+                  </div>
+
+                  <div className="field">
+                    <label className="label">Número de teléfono</label>
+                    <div className="control has-icons-left has-icons-right">
+                      <input className="input is-danger" type="text" placeholder="Ej: 3308695879" />
+                      <span className="icon is-small is-left">
+                        <i className="fas fa-user"></i>
+                      </span>
+                      <span className="icon is-small is-right">
+                        <i className="fas fa-check"></i>
+                      </span>
+                    </div>
+                    {/* <p className="help is-danger">Formato incorrecto</p> */}
+                  </div>
+
+                  <div className="field">
+                    <label className="label">Breve descripción de lo que te gustaría discutir con nosotros</label>
+                    <div className="control">
+                      <textarea className="textarea" placeholder="Escriba aquí"></textarea>
+                    </div>
+                  </div>
+
+                  
+                      <button className="button is-link">Enviar</button>
+                  
+
+            </div>  
+
+          </div>
+
+          <div className="column data is-half">
+            
+            <div className="columns"> 
+
+              
+
+              <div className="column">
+                  
+                    <p className="subtitle "><span className="icon">
+                              <FontAwesomeIcon icon={faMapMarkerAlt} />
+                              </span>
+                              Avenida El Dorado Carrera 45 # 26 - 33</p> 
+                    <p className="subtitle "><span className="icon">
+                              <FontAwesomeIcon icon={faPhoneVolume} />
+                              </span>(+57) 300 568-7569</p> 
+                    <p className="subtitle "><span className="icon">
+                              <FontAwesomeIcon icon={faAt} />
+                              </span>vivelab_bog@unal.edu.co</p> 
+
+              </div>
+
+              <div className="column dots">
+                    <img className="" src={dots} alt="imagen de bogota"/>
+              </div> 
+
+              </div>  
+
+              <div className="columns">
+            
+                <div className="column map is-half">
+
+                  <figure className="image">
+                      <img className="" src={map} alt="imagen de bogota"/>
+                  </figure>
+
+                </div>    
+
+              </div> 
+
+
+
+          </div>
+
+          </div>    
+       
       </StyledTogether>
     );
   }
 }
 
 const StyledTogether = styled.div`
-  background-image: url(${background});
   padding: 20px;
   min-height: 100vh;
 

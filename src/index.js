@@ -48,9 +48,9 @@ class App extends Component {
                       <Route exact path="/new" render={(props) => <Home {...props} background={this.state.background} updateNavColor={this.updateNavColor}/>} />
                       <Route exact path="/work" render={(props) => <Work {...props} background={this.state.background} updateNavColor={this.updateNavColor}/>} />
                       <Route exact path="/services"render={(props) => <Services {...props} background={this.state.background} updateNavColor={this.updateNavColor}/>}/>
-                      <Route exact path="/metodologies" render={Metodologies} />
+                      <Route exact path="/metodologies" render={(props) => <Metodologies {...props} background={this.state.background} updateNavColor={this.updateNavColor}/>}/>
                       <Route exact path="/activities" render={Activities} />
-                      <Route exact path="/together" render={Together} />
+                      <Route exact path="/together" render={(props) => <Together {...props} background={this.state.background} updateNavColor={this.updateNavColor}/>}/>
                       <Route exact path="/detail" render={(props) => <Detail {...props} background={this.state.background} updateNavColor={this.updateNavColor} />}/>
                     </Switch>
 

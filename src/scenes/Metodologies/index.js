@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 
-import Filters from './components/Filters';
-import Graph from './components/Graph';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartPie } from '@fortawesome/free-solid-svg-icons';
 
-import background from '../../assets/background.png';
-import demographics from './components/demographics';
-const minDate = new Date("09/13/2010");
+
+import gray from 'assets/gray.png';
 
 require('dotenv').config()
 
@@ -18,97 +13,80 @@ class Metodologies extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
-      initialData: {},
-      filters: {
-        startDate: minDate,
-        endDate: new Date()
-      }
-    };
-
-    this.handleFilterChange = this.handleFilterChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  componentWillMount() {
-
-    console.log(process.env.REACT_APP_API_URL)
-    axios({
-      method: 'get',
-      url:`${process.env.REACT_APP_API_URL}`+`/api/getInitialData`,
-      responseType: 'json'
-    })
-    .then(response => this.setState((prevState) => {
-      return {
-        initialData: { ...response.data, demographics },
-        loading: false,
-        filters: {
-          ...prevState.filters,
-          demographic: Object.keys(response.data.demographicList)[0],
-          fact: Object.keys(response.data.facts)[4],
-          aid: Object.keys(response.data.aids)[0],
-        }
-      }
-    }))
-    .then(() => this.handleClick());
-  }
-
-  handleFilterChange({ target }) {
-    const { name, value } = target;
-    const { filters } = this.state;
+      background: 'white'
+    }
     
-    this.setState(prevState => {
-      return { ...prevState, filters: { ...filters, [name]: value } }
-    });
   }
 
-  handleClick(e) {
-    if(e) e.preventDefault();
-    const { filters } = this.state;
-    this.setState({ loadingChart: true });
-
-    axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}`+`/api/getAHICounters`,
-      data: filters
-    })
-    .then(({ data }) => this.setState({ data, loadingChart: false }));
+  componentDidMount(){
+    this.props.updateNavColor(this.state.background);
   }
 
   render() {
-    const { filters, data, initialData, loading, loadingChart } = this.state;
-    const { facts, aids, demographics } = initialData;
+    
 
     return (
       <StyledMetodologies>
-        <div className="content box">
-          {loading ? "Cargando" :
-          <form id="filters" onSubmit={this.handleClick}>
-            <Filters onChange={this.handleFilterChange} data={initialData}
-              {...{ filters, minDate }} />
-            <center>
-              <button className={`button is-primary is-medium is-centered ${loadingChart? 'is-loading':''}`}
-                type="submit" form="filters">
-                <FontAwesomeIcon icon={faChartPie} />
-                Visualizar
-              </button>
-            </center>
-          </form>}
+        <div className="banner columns is-centered">
 
-          {
-            data && initialData &&
-            <center>
-              <Graph id="graph" {...{ initialData, filters, data, loading: loadingChart }} />
-            </center>
-          }
+            <div className="column is-one-quarter lema">
+                      <p>Frase amigable servicios</p>
+            </div>
+
+            <div className="column is-one-fifth">
+                      <p>Frase amigable servicios</p>
+            </div>
+
+            <div className="column is-half">
+                      <p>Ayudamos a tu organización, a partir del conocimiento experto e interdisciplinar de la Universidad Nacional de Colombia, a encontrar soluciones innovadoras que transformen el entorno organizacional y/o social en las siguientes líneas: Experiencia de usuario, tecnologías emergentes, procesos de innovación y capacitación/formación.</p>
+            </div>
+              
+
+
         </div>
+
+        <div className="columns is-multiline metodologias">
+                  <p className="title titulo column is-full ">Metodologías del Laboratorio</p>
+                    <div className="column is-two-thirds">
+                            
+                            <figure className="image">
+                                <img className="is-centered" src={gray} alt="imagen de bogota"/>
+                            </figure>
+                            
+                        </div>
+                     <div className="column is-one-third">
+
+                       
+                        <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p> 
+                        <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                    </div>
+         </div> 
+
+
+         <div className="columns is-multiline metodologias">
+                  <p className="title titulo column is-full ">Metodologías del Laboratorio</p>
+                    <div className="column is-two-thirds">
+                            
+                            <figure className="image">
+                                <img className="is-centered" src={gray} alt="imagen de bogota"/>
+                            </figure>
+                            
+                        </div>
+                     <div className="column is-one-third">
+
+                       
+                        <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p> 
+                        <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                    </div>
+          </div>  
+
+            
       </StyledMetodologies>
     );
   }
 }
 
 const StyledMetodologies = styled.div`
-  background-image: url(${background});
   padding: 20px;
   min-height: 100vh;
 

@@ -27,7 +27,7 @@ class Navbar extends Component {
                       <ButtonLink style={{background: this.props.background}} to="/services">Servicios</ButtonLink>
                       <ButtonLink style={{background: this.props.background}} to="/metodologies">Metodologías</ButtonLink>
                       {/* <ButtonLink to="/activities">Actividades</ButtonLink> */}
-                      <ButtonLink style={{background: this.props.background}} to="/togheter">Trabajemos juntos</ButtonLink>
+                      <ButtonLink style={{background: this.props.background}} to="/together">Trabajemos juntos</ButtonLink>
                   </div>
                   
                 </div>
