@@ -22,27 +22,36 @@ import Detail from 'scenes/Detail';
 
 
 class App extends Component {
-
   
-  
+  constructor(props){
+    super(props);
+    this.state={
+      background:'white'
+    }
+    this.updateNavColor = this.updateNavColor.bind(this);
+  }
 
-  render() {
+  updateNavColor(backgroundColor) {
+        this.setState({background: backgroundColor})
+  }
+
+  render() { 
 
     return (
 
   
                 <Router>
                   <div>
-                    <Navbar />
-                    <Icon name="adn" color="#FFFFFF" size={35}/>
+                    <Navbar background={this.state.background}/>
+                    {/* <Icon name="adn" color="#FFFFFF" size={35}/> */}
                     <Switch>
-                      <Route exact path="/new" component={Home} />
-                      <Route exact path="/work" component={Work} />
-                      <Route exact path="/services" component={Services} />
-                      <Route exact path="/metodologies" component={Metodologies} />
-                      <Route exact path="/activities" component={Activities} />
-                      <Route exact path="/together" component={Together} />
-                      <Route exact path="/detail" component={Detail} />
+                      <Route exact path="/new" render={(props) => <Home {...props} background={this.state.background} updateNavColor={this.updateNavColor}/>} />
+                      <Route exact path="/work" render={(props) => <Work {...props} background={this.state.background} updateNavColor={this.updateNavColor}/>} />
+                      <Route exact path="/services"render={(props) => <Services {...props} background={this.state.background} updateNavColor={this.updateNavColor}/>}/>
+                      <Route exact path="/metodologies" render={Metodologies} />
+                      <Route exact path="/activities" render={Activities} />
+                      <Route exact path="/together" render={Together} />
+                      <Route exact path="/detail" render={(props) => <Detail {...props} background={this.state.background} updateNavColor={this.updateNavColor} />}/>
                     </Switch>
 
                     <Footer />

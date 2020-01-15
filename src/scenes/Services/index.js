@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
+import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-
-import map from 'assets/Map.png';
 
 import user from 'assets/user.png';
 import technology from 'assets/technology.png';
@@ -18,11 +17,55 @@ class Services extends Component {
     constructor(props) {
         super(props);
 
-       
+        this.state = {
+          background: 'white'
+        }
+
+        this.responsive = {
+          desktop: {
+            breakpoint: { max: 3000, min: 1024 },
+            items: 3,
+            partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
+          },
+          tablet: {
+            breakpoint: { max: 1024, min: 464 },
+            items: 1,
+            partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
+          },
+          mobile: {
+            breakpoint: { max: 464, min: 0 },
+            items: 1,
+            partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
+          }
+        }; 
       
   } 
 
+  componentDidMount(){
+    this.props.updateNavColor(this.state.background);
+  }
+
   render() {
+
+    const CustomRightArrow = ({ onClick }) => {
+      return <i className="custom-right-arrow" onClick={() => onClick()} />;
+    };
+
+    const CustomLeftArrow = ({ onClick }) => (
+      <i onClick={() => onClick()} className="custom-left-arrow" />
+    );
+
+    const CustomDot = ({ onClick, active, index, carouselState }) => {
+      const { currentSlide } = carouselState;
+      return (
+        <li style={{ background: active ? "grey" : "initial" }}>
+          <button
+            style={{ background: active ? "grey" : "initial" }}
+            onClick={() => onClick()}
+          />
+        </li>
+      );
+    };
 
     return (
 
@@ -30,223 +73,187 @@ class Services extends Component {
 
 
                 
-<div className="banner columns is-centered">
-
-    <div className="column is-two-thirds">
-
-        <div className=" columns">
-
-            <div className="column is-two-thirds lema">
-            <p>Frase amigable servicios</p>
-            </div>
-
-            
-        
-        </div> 
-
-    </div>
-
-
-
-</div>
-
-
-        
-<div className="columns sections is-multiline is-hidden-mobile">
-
-    <div className="column is-full">
-
-        <p className="title titulo">Tipos de servicios</p>
-
-    </div>
-  
-    <div className="column logo is-one-third">
-    <Link to="/detail">
-    <p className="title">Analítica de datos</p>
-        <figure className="image">
-            <img className="" src={user} alt="imagen de grafica de barras"/>
-        </figure>
-        
-        <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-    </Link>  
-    </div>
-  
-    
-    <div className="column logo is-one-third">
-     <Link to="/detail">
-        <p className="title">Diseño de experiencia</p>  
-        <figure className="image">
-            <img className="" src={innovation} alt="imagen de bogota"/>
-        </figure>
-        
-        <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-        </Link>
-    </div>
-
-    <div className="column logo is-one-third">
-     <Link to="/detail"> 
-     <p className="title">Industrias creativas</p>
-        <figure className="image">
-            <img className="is-centered" src={technology} alt="imagen de bogota"/>
-        </figure>
-        
-        <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-        </Link>
-    </div>
-
-    <div className="column logo is-one-third">
-     <Link to="/detail"> 
-     <p className="title">Industrias creativas</p>
-        <figure className="image">
-            <img className="is-centered" src={user} alt="imagen de bogota"/>
-        </figure>
-        
-        <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-        </Link>
-    </div>
-
-    <div className="column logo is-one-third">
-     <Link to="/detail"> 
-     <p className="title">Industrias creativas</p>
-        <figure className="image">
-            <img className="is-centered" src={innovation} alt="imagen de bogota"/>
-        </figure>
-        
-        <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-        </Link>
-    </div>
-   
-</div>
-
-<div className="columns metodologias">
- <div className="column is-full">
-
-    <p className="title titulo">Capacidades</p>
-    <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. fermentum, nulla luctus pharetra.</p> 
-</div>
-</div> 
-
-
-
-<div className="columns contact">
-
-    <div className="column form is-half">
-
-        <div>
-        <p className="title titulo">Creación</p>
-        </div>
-
-        <div className="fields">
-
-        <div className="column ">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
-                </div>
-
-    </div>  
-
-    </div>
-
-    <div className="column data is-half">
-    
-    <div className="columns is-multiline"> 
-
-    
-        <div className="column map is-full">
-
-            <figure className="image">
-                <img className="" src={map} alt="imagen de bogota"/>
-            </figure>
-
-        </div>    
-
-        </div> 
-
-    </div>
-
-
-
-</div>
-
-<div className="columns contact">
-
-    
-    <div className="column data is-half">
-    
-    <div className="columns is-multiline"> 
-
-    
-        <div className="column map is-full">
-
-            <figure className="image">
-                <img className="" src={map} alt="imagen de bogota"/>
-            </figure>
-
-        </div>    
-
-        </div> 
-
-    </div>
-
-    <div className="column form is-half">
-
-        <div>
-        <p className="title titulo">Experimentación</p>
-        </div>
-
-        <div className="fields">
-
-        <div className="column ">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
-                </div>
-
-    </div>  
-
-    </div>
-
-
-
-</div>
-
-<div className="columns contact">
-
-    <div className="column form is-half">
-
-        <div>
-        <p className="title titulo">Investigación centrada en las personas</p>
-        </div>
-
-        <div className="fields">
-
-        <div className="column ">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
-                        <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. fermentum, nulla luctus pharetra.</p> 
-        </div>
-
-    </div>  
-
-    </div>
-
-    <div className="column data is-half">
-    
-    <div className="columns is-multiline"> 
-
-    
-        <div className="column map is-full">
-
-            <figure className="image">
-                <img className="" src={map} alt="imagen de bogota"/>
-            </figure>
-
-        </div>    
-
-        </div> 
-
-    </div>
-
-
-
-</div>
-
+                    <div className="banner columns is-centered">
+
+                       
+
+                          <div className="column is-one-quarter lema">
+                                    <p>Frase amigable servicios</p>
+                          </div>
+
+                          <div className="column is-one-fifth">
+                                    <p>Frase amigable servicios</p>
+                          </div>
+
+                          <div className="column is-half">
+                                    <p>Ayudamos a tu organización, a partir del conocimiento experto e interdisciplinar de la Universidad Nacional de Colombia, a encontrar soluciones innovadoras que transformen el entorno organizacional y/o social en las siguientes líneas: Experiencia de usuario, tecnologías emergentes, procesos de innovación y capacitación/formación.</p>
+                          </div>
+                            
+                          
+
+                    </div>
+
+                    <div className="gallery">
+
+                     <div>
+                          <p className="titulo">Galería</p>
+                      </div>
+
+                      <Carousel className="columns" additionalTransfrom={0}
+                                                    arrows
+                                                    customLeftArrow={<CustomLeftArrow />}
+                                                    customRightArrow={<CustomRightArrow />}
+                                                    customDot={<CustomDot />}
+                                                    autoPlaySpeed={3000}
+                                                    centerMode={false}
+                                                    infinite={true}
+                                                    itemClass=""
+                                                    keyBoardControl
+                                                    renderButtonGroupOutside={false}
+                                                    showDots={true}
+                                                    renderDotsOutside
+                                                    slidesToSlide={1}
+                                                    responsive={this.responsive}>
+
+                        <div className="column box infoCard">
+                          <Link to="/statistics">
+                                    <p>Queremos darle la posibilidad a los ciudadanos de acceder a nuestros servicios desde por medio electrónico</p>
+                                    <p>Cliente: Catastro Distrital</p>
+                                    <p>Servicio: Diseño y desarrollo de sitio web</p>
+                                    <p>Duración: 1 año</p>
+                                    <button>
+                                      Area
+                                    </button>
+                          </Link>  
+                        </div>
+                        
+                        <div className="column box infoCard">
+                          <Link to="/statistics">
+                                    <p>Buscamos incentivar la participación ciudadana mediante...</p>
+                                    <p>Cliente:</p>
+                                    <p>Servicio:</p>
+                                    <p>Duración:</p>
+                                    <button>
+                                      Area
+                                    </button>
+                          </Link>  
+                        </div>
+                      
+                        <div className="column box infoCard">
+                          <Link to="/statistics">
+                                    <p>Nuestro objetivo es mejorar nuestros productos obteniendo información de los usuarios</p>
+                                    <p>Cliente:</p>
+                                    <p>Servicio:</p>
+                                    <p>Duración:</p>
+                                    <button>
+                                      Area
+                                    </button>
+                          </Link>  
+                        </div>
+
+                        <div className="column box infoCard">
+                          <Link to="/statistics">
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <button>
+                                      Area
+                                    </button>
+                          </Link>  
+                        </div>
+
+                        <div className="column box infoCard">
+                          <Link to="/statistics">
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <p></p>
+                                    <button>
+                                      Area
+                                    </button>
+                          </Link>  
+                        </div>
+                     
+
+                    </Carousel>
+
+                  </div>
+                            
+                    <div className="columns sections is-multiline is-hidden-mobile">
+
+                        <div className="column is-full">
+
+                            <p className="title titulo">Tipos de servicios</p>
+
+                        </div>
+                      
+                        <div className="column logo is-half">
+                        <Link to="/detail">
+                        <p className="title">Analítica de datos</p>
+                            <figure className="image">
+                                <img className="" src={user} alt="imagen de grafica de barras"/>
+                            </figure>
+                            
+                            <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                        </Link>  
+                        </div>
+                      
+                        
+                        <div className="column logo is-half">
+                        <Link to="/detail">
+                            <p className="title">Diseño de experiencia</p>  
+                            <figure className="image">
+                                <img className="" src={innovation} alt="imagen de bogota"/>
+                            </figure>
+                            
+                            <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                            </Link>
+                        </div>
+
+                        <div className="column logo is-half">
+                        <Link to="/detail"> 
+                        <p className="title">Industrias creativas</p>
+                            <figure className="image">
+                                <img className="is-centered" src={technology} alt="imagen de bogota"/>
+                            </figure>
+                            
+                            <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                            </Link>
+                        </div>
+
+                        <div className="column logo is-half">
+                        <Link to="/detail"> 
+                        <p className="title">Industrias creativas</p>
+                            <figure className="image">
+                                <img className="is-centered" src={user} alt="imagen de bogota"/>
+                            </figure>
+                            
+                            <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                            </Link>
+                        </div>
+
+                        
+                      
+                    </div>
+
+                    <div className="columns contact">
+
+                      <div className="column is-one-quarter titulo">
+                        <p>Contáctanos</p>
+                      </div>
+
+                      <div className="column is-one-third">
+                        <p>Cuéntanos qué necesitas, nosotros te asesoraremos para que obtengas la solución que tu empresa necesita</p>
+                      </div>
+
+                      <div className="column is-one-quarter">
+                          <button>
+                            Area
+                          </button>
+                      </div>
+
+                    </div>
 
 
             </StyledServices>  
@@ -255,10 +262,11 @@ class Services extends Component {
 }
 
 const StyledServices = styled.div`
-width: 100vw;
+width: 100%;
 display: flex;
 justify-content: center;
 flex-direction: column;
+align-items: center;
 
 .react-multi-carousel-list.columns, .contact, .partners, .sections {
   margin-left: 5vw;
@@ -271,40 +279,40 @@ flex-direction: column;
     margin-top: 0vh;
     height: 40vh;
     align-items: center;
-    background-color: aquamarine;
+    background-color: white;
 
-  .is-one-fifth{
-    margin-left:auto;
-  }
-
-  .squares{
-    height: auto;
-    width: 30%;
-    margin-left:auto;
-  }
-
-  .lema{
-    font-family: 'Staatliches', cursive;
-    color: #18144D;
-    text-transform: uppercase;
-    font-size: 3em;
-    padding-left: 0;
-    padding-right: 5%;
-    line-height: 5.5vh;
-
-    
-  }
-
-  .text{
-    line-height: 2.8vh;
-    letter-spacing: 0.01em;
-    padding-left: 4%;
-    padding-right: 4%;
-    b{
-      border-bottom: 2px solid #86F26B;
+    .is-one-fifth{
+      margin-left:auto;
     }
+
+    .squares{
+      height: auto;
+      width: 30%;
+      margin-left:auto;
+    }
+
+    .lema{
+      font-family: 'Staatliches', cursive;
+      color: #18144D;
+      text-transform: uppercase;
+      font-size: 3em;
+      padding-left: 0;
+      padding-right: 5%;
+      line-height: 5.5vh;
+
+      
+    }
+
+    .text{
+      line-height: 2.8vh;
+      letter-spacing: 0.01em;
+      padding-left: 4%;
+      padding-right: 4%;
+      b{
+        border-bottom: 2px solid #86F26B;
+      }
     
-  }
+    }
 }  
 
 .info{
@@ -315,14 +323,98 @@ flex-direction: column;
   justify-content: center;
 }
 
-.react-multi-carousel-list{
-  padding-top: 5vh;
-  figure{
-    height: 35vh;
-    width: auto;
+.gallery{
+
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+
+    li.react-multi-carousel-item {
+      padding: 0 0.3%;
   }
-  .title{
-    padding-right: 10vw;
+
+  .column.box.infoCard {
+    height: 30vh;
+  }
+  
+  .react-multi-carousel-list{
+        padding: 0.1% 0 10vh 0;
+        width: 95%;
+        margin: 0;
+      }
+
+      .custom-right-arrow{
+        position: absolute !important;
+        bottom: 4.5vh;
+        right: 2.5%;
+        z-index: 1;
+        border: 1px solid #18144D;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 6px;
+        opacity: 0.8;
+        cursor: pointer;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+
+      .custom-left-arrow{
+        position: absolute !important;
+        bottom: 4.5vh;
+        right: 5%;
+        z-index: 1;
+        border: 1px solid #18144D;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 6px;
+        opacity: 0.8;
+        cursor: pointer;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+      }
+      
+  }
+
+  .react-multi-carousel-dot-list {
+    position: relative;
+    bottom: 8vh;
+    display: flex;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    margin: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+
+    li{
+      background: transparent !important;
+    }
+
+    button {
+      background: rgba(24, 20, 77, 0.7);
+      display: inline-block;
+      width: 0.6em;
+      height: 0.6em;
+      border-radius: 50%;
+      opacity: 1;
+      padding: 5px 5px 5px 5px;
+      box-shadow: none;
+      transition: background .5s;
+      border-width: 2px;
+      border-style: solid;
+      border-color: grey;
+      padding: 0;
+      margin: 0;
+      margin-right: 6px;
+      outline: 0;
+      cursor: pointer;
+    }
   }
 }
 
@@ -413,9 +505,7 @@ p.subtitle {
 figure{
   position: relative;
   margin: 0 !important;
-  
-
-}
+ }
 
 .image img{
   height: 100%;
@@ -429,109 +519,7 @@ figure{
   font-size: 1.8em;
 }
 
-.metodologias {
- padding-top: 6vh;
-  .title{
-    font-size: 2em;
-  font-style: normal;
-  font-weight: normal;
-  }
-.subtitle {
-  margin: 0;
-  padding: 0;
-  font-family: 'Source Sans Pro', sans-serif;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 1em;
-  line-height: 2.5vh;
-  letter-spacing: 0.01em;
-  color: black;
-}
-}
 
-.partners{
-padding-top: 10vh;
-margin-right: 5vw;
-.partner {
-    display: flex;
-    justify-content: center;
-  }
-.title{
-  font-size: 1.6em;
-  font-style: normal;
-  font-weight: normal;
-}
-}
-
-
-.contact{
-padding-top: 6vh;
-.form{
-  
-  padding-right: 15vw;
-  display: flex;
-    flex-direction: column;
-    justify-content: center;
-
-  .title{
-    font-size: 2em;
-    font-style: normal;
-    font-weight: normal;
-  }
-
-  .fields{
-    padding-top: 4vh;
-    .control{
-      width: 100%;
-    }
-      
-      .label{
-        font-size: 0.8rem;
-      }
-      button{
-        padding-top: 1vh;
-        padding-bottom: 4vh;
-        width: 100%;
-        background: #18144D;
-        border: 2px solid #18144D;
-        box-sizing: border-box;
-        font-family: Raleway;
-        font-style: normal;
-        font-weight: bold;
-        line-height: 168%;
-        font-size: 0.8em;
-
-        text-align: center;
-        letter-spacing: 0.035em;
-        text-transform: uppercase;
-      }
-  }    
-
-}
-
-
-.data{
-  padding-top: 5vh;
-  padding-bottom: 5vh;
-  .subtitle{
-    padding:0;
-    margin:0;
-    font-family: 'Raleway', sans-serif;
-    font-weight: 600;
-    font-size: 0.85em;
-    font-style: normal;
-    line-height: 2.5vh;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    letter-spacing: 0.01em;
-    color: #18144D;
-    .icon{
-      color:#B04BFF;
-    }
-  }
-  .map{
-    padding-top: 3vh;
-  }
-}
 }
 
 

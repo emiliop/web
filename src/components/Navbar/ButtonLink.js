@@ -14,7 +14,7 @@ const ButtonLink = (props) => {
 
 
 const StyledButtonLink = styled(NavLink)`
-  background: white;
+  
   cursor: pointer;
   text-decoration: none;
   border-radius: 0px;

@@ -11,9 +11,7 @@ class Navbar extends Component {
   
   return (
 
-    
-         
-            <StyledNavbar style={{background: 'green'}}>
+            <StyledNavbar style={{background: this.props.background}}>
                 <div className="columns is-multiline">
 
                   <div className="column is-one-fifth">
@@ -25,19 +23,16 @@ class Navbar extends Component {
                           
                   <div className="column is-three-fifths">
                       {/* <ButtonLink to="/" isActive={checkActive}>Inicio</ButtonLink> */}
-                      <ButtonLink to="/work">Nuestro trabajo</ButtonLink>
-                      <ButtonLink to="/services">Servicios</ButtonLink>
-                      <ButtonLink to="/metodologies">Metodologías</ButtonLink>
+                      <ButtonLink style={{background: this.props.background}} to="/work">Nuestro trabajo</ButtonLink>
+                      <ButtonLink style={{background: this.props.background}} to="/services">Servicios</ButtonLink>
+                      <ButtonLink style={{background: this.props.background}} to="/metodologies">Metodologías</ButtonLink>
                       {/* <ButtonLink to="/activities">Actividades</ButtonLink> */}
-                      <ButtonLink to="/togheter">Trabajemos juntos</ButtonLink>
+                      <ButtonLink style={{background: this.props.background}} to="/togheter">Trabajemos juntos</ButtonLink>
                   </div>
                   
                 </div>
               </StyledNavbar>
-         
-      
-     
-    
+       
     );
   }
 }

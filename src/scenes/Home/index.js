@@ -42,6 +42,10 @@ class Home extends Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      background: 'white'
+    }
  
     this.responsive = {
       desktop: {
@@ -62,7 +66,9 @@ class Home extends Component {
     };
   }
 
-  
+  componentDidMount(){
+    this.props.updateNavColor(this.state.background);
+  }
 
   render() {
 
@@ -86,7 +92,7 @@ class Home extends Component {
 
                             <div className="column is-two-thirds lema">
                               
-                              <p className="icon-adn"><Icon name="adn"/>Innovación, diseño y tecnología para las personas</p>
+                            <p className="icon-adn"><Icon name="adn"/>{this.props.background}Innovación, diseño y tecnología para las personas</p>
                               
                             </div>
 

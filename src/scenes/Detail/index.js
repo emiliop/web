@@ -30,7 +30,7 @@ class Detail extends Component {
         super(props);
 
         this.state = {
-          background: ''
+          background: '#02CAF4'
         }
 
         this.responsive = {
@@ -71,6 +71,10 @@ class Detail extends Component {
       
   }
 
+  componentDidMount(){
+    this.props.updateNavColor(this.state.background);
+  }
+
   
   render() {
 
@@ -107,8 +111,12 @@ class Detail extends Component {
                             <div className="column is-5 is-half-mobile text">
                               
                                 <div className=" columns is-multiline">
+
+                                    {/* <button onClick={() => this.props.updateNavColor(this.state.background)}>
+                                      Area
+                                    </button> */}
                                 
-                                    <p className="column lema">Sitio web villas del progreso</p>
+                                    <p className="column lema">{this.props.background}Sitio web villas del progreso</p>
                                     
                                     <div className="column is-half">
                                       <p>PRODUCTO</p>

@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
+import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 
-import Filters from './components/Filters';
-import Graph from './components/Graph';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChartPie } from '@fortawesome/free-solid-svg-icons';
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
-import background from '../../assets/background.png';
-import demographics from './components/demographics';
-const minDate = new Date("09/13/2010");
+import blockch2 from 'assets/blockch2.png';
 
 require('dotenv').config()
 
@@ -18,121 +14,424 @@ class Work extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: true,
-      initialData: {},
-      filters: {
-        startDate: minDate,
-        endDate: new Date()
+      background: 'white'
+    }
+
+    this.responsive = {
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 1,
+        partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 1,
+        partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+        partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
       }
-    };
+    }; 
 
-    this.handleFilterChange = this.handleFilterChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  componentWillMount() {
-
-    console.log(process.env.REACT_APP_API_URL)
-    axios({
-      method: 'get',
-      url:`${process.env.REACT_APP_API_URL}`+`/api/getInitialData`,
-      responseType: 'json'
-    })
-    .then(response => this.setState((prevState) => {
-      return {
-        initialData: { ...response.data, demographics },
-        loading: false,
-        filters: {
-          ...prevState.filters,
-          demographic: Object.keys(response.data.demographicList)[0],
-          fact: Object.keys(response.data.facts)[4],
-          aid: Object.keys(response.data.aids)[0],
-        }
-      }
-    }))
-    .then(() => this.handleClick());
-  }
-
-  handleFilterChange({ target }) {
-    const { name, value } = target;
-    const { filters } = this.state;
+   
     
-    this.setState(prevState => {
-      return { ...prevState, filters: { ...filters, [name]: value } }
-    });
   }
 
-  handleClick(e) {
-    if(e) e.preventDefault();
-    const { filters } = this.state;
-    this.setState({ loadingChart: true });
-
-    axios({
-      method: 'post',
-      url: `${process.env.REACT_APP_API_URL}`+`/api/getAHICounters`,
-      data: filters
-    })
-    .then(({ data }) => this.setState({ data, loadingChart: false }));
+  componentDidMount(){
+    this.props.updateNavColor(this.state.background);
   }
 
   render() {
-    const { filters, data, initialData, loading, loadingChart } = this.state;
-    const { facts, aids, demographics } = initialData;
+
+    const CustomRightArrow = ({ onClick }) => {
+      return <i className="custom-right-arrow" onClick={() => onClick()} />;
+    };
+
+    const CustomLeftArrow = ({ onClick }) => (
+      <i onClick={() => onClick()} className="custom-left-arrow" />
+    );
+
+    const CustomDot = ({ onClick, active, index, carouselState }) => {
+      const { currentSlide } = carouselState;
+      return (
+        <li style={{ background: active ? "grey" : "initial" }}>
+          <button
+            style={{ background: active ? "grey" : "initial" }}
+            onClick={() => onClick()}
+          />
+        </li>
+      );
+    };
 
     return (
       <StyledWork>
-        <div className="content box">
-          {loading ? "Cargando" :
-          <form id="filters" onSubmit={this.handleClick}>
-            <Filters onChange={this.handleFilterChange} data={initialData}
-              {...{ filters, minDate }} />
-            <center>
-              <button className={`button is-primary is-medium is-centered ${loadingChart? 'is-loading':''}`}
-                type="submit" form="filters">
-                <FontAwesomeIcon icon={faChartPie} />
-                Visualizar
-              </button>
-            </center>
-          </form>}
+       
+          <div className="banner columns is-centered">
 
-          {
-            data && initialData &&
-            <center>
-              <Graph id="graph" {...{ initialData, filters, data, loading: loadingChart }} />
-            </center>
-          }
-        </div>
+              <div className="column is-one-quarter lema">
+                        <p>Frase amigable servicios</p>
+              </div>
+
+              <div className="column is-one-fifth">
+                        <p>Frase amigable servicios</p>
+              </div>
+
+              <div className="column is-half">
+                        <p>Ayudamos a tu organización, a partir del conocimiento experto e interdisciplinar de la Universidad Nacional de Colombia, a encontrar soluciones innovadoras que transformen el entorno organizacional y/o social en las siguientes líneas: Experiencia de usuario, tecnologías emergentes, procesos de innovación y capacitación/formación.</p>
+              </div>
+                
+
+
+          </div>
+
+          <div className="gallery">
+
+              <div>
+                 <p className="titulo">Galería</p>
+              </div>
+
+              <Carousel className="columns" additionalTransfrom={0}
+                                        arrows
+                                        customLeftArrow={<CustomLeftArrow />}
+                                        customRightArrow={<CustomRightArrow />}
+                                        customDot={<CustomDot />}
+                                        autoPlaySpeed={3000}
+                                        centerMode={false}
+                                        infinite={true}
+                                        itemClass=""
+                                        keyBoardControl
+                                        renderButtonGroupOutside={false}
+                                        showDots={true}
+                                        renderDotsOutside
+                                        slidesToSlide={1}
+                                        responsive={this.responsive}>
+
+                <div className="column">
+
+                   <div className="columns is-multiline">                          
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>  
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                       </div>  
+
+                    </div>
+
+                    <div className="column">
+
+                        <div className="columns is-multiline">                          
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={blockch2} alt="imagen de bogota"/>
+                                </figure>
+                                <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>   
+                          </div>
+
+                        </div>
+                  
+                  </div>
+
+              </Carousel>
+
+              </div>
       </StyledWork>
     );
   }
 }
 
 const StyledWork = styled.div`
-  background-image: url(${background});
-  padding: 20px;
-  min-height: 100vh;
+width: 100%;
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
 
-  .content{
-    padding: 60px 40px;
-    min-height: 100%;
+.react-multi-carousel-list.columns, .contact, .partners, .sections {
+  margin-left: 5vw;
+}
+
+.banner{
+    width: 100%;
+    display: flex;
+    padding-top: 0vh;
+    margin-top: 0vh;
+    height: 40vh;
+    align-items: center;
+    background-color: white;
+
+    .is-one-fifth{
+      margin-left:auto;
+    }
+
+    .squares{
+      height: auto;
+      width: 30%;
+      margin-left:auto;
+    }
+
+    .lema{
+      font-family: 'Staatliches', cursive;
+      color: #18144D;
+      text-transform: uppercase;
+      font-size: 3em;
+      padding-left: 0;
+      padding-right: 5%;
+      line-height: 5.5vh;
+
+      
+    }
+
+    .text{
+      line-height: 2.8vh;
+      letter-spacing: 0.01em;
+      padding-left: 4%;
+      padding-right: 4%;
+      b{
+        border-bottom: 2px solid #86F26B;
+      }
+    
+    }
+}  
+
+.info{
+  position: relative;
+  height: 55%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.gallery{
+
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+
+    li.react-multi-carousel-item {
+      padding: 0 0.3%;
   }
-  .button {
-    margin: 30px 0 50px;
-    .fa-chart-pie {
-      margin-right: 15px !important;;
+
+  .column.box.infoCard {
+    height: 30vh;
+  }
+  
+  .react-multi-carousel-list{
+        padding: 0.1% 0 10vh 0;
+        width: 95%;
+        margin: 0;
+      }
+
+      .custom-right-arrow{
+        position: absolute !important;
+        bottom: 4.5vh;
+        right: 2.5%;
+        z-index: 1;
+        border: 1px solid #18144D;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 6px;
+        opacity: 0.8;
+        cursor: pointer;
+        -webkit-transform: rotate(-45deg);
+        transform: rotate(-45deg);
+      }
+
+      .custom-left-arrow{
+        position: absolute !important;
+        bottom: 4.5vh;
+        right: 5%;
+        z-index: 1;
+        border: 1px solid #18144D;
+        border-width: 0 3px 3px 0;
+        display: inline-block;
+        padding: 6px;
+        opacity: 0.8;
+        cursor: pointer;
+        -webkit-transform: rotate(135deg);
+        transform: rotate(135deg);
+      }
+      
+  }
+
+  .react-multi-carousel-dot-list {
+    position: relative;
+    bottom: 8vh;
+    display: flex;
+    left: 0;
+    right: 0;
+    justify-content: center;
+    margin: auto;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-align: center;
+
+    li{
+      background: transparent !important;
+    }
+
+    button {
+      background: rgba(24, 20, 77, 0.7);
+      display: inline-block;
+      width: 0.6em;
+      height: 0.6em;
+      border-radius: 50%;
+      opacity: 1;
+      padding: 5px 5px 5px 5px;
+      box-shadow: none;
+      transition: background .5s;
+      border-width: 2px;
+      border-style: solid;
+      border-color: grey;
+      padding: 0;
+      margin: 0;
+      margin-right: 6px;
+      outline: 0;
+      cursor: pointer;
     }
   }
-  #chart {
-    max-width: 700px;
-    margin-bottom: 30px;
-  }
-
-  @media (max-width: 600px) {
-    padding: 10px;
-    .content {
-      padding: 20px 10px;
-    }
-  }
+}
 `;
 
 export default Work;
