@@ -92,7 +92,7 @@ class Home extends Component {
 
                             <div className="column is-two-thirds lema">
                               
-                            <p className="icon-adn"><Icon name="adn"/>{this.props.background}Innovación, diseño y tecnología para las personas</p>
+                            <p>Innovación, diseño y tecnología para las personas</p>
                               
                             </div>
 
@@ -107,7 +107,7 @@ class Home extends Component {
                     </div>
 
                     <div className="column is-one-third text">
-                      <p>Somos un laboratorio de innovación de la Universidad Nacional de Colombia, con experiencia en la <b>construcción de soluciones tecnológicas</b> que permiten transformar de manera positiva la realidad de las personas y las organizaciones.</p>
+                      <p>Somos un laboratorio de la Universidad Nacional de Colombia que trabaja desde y para la innovación. Nuestra pasión es <b>crear soluciones tecnológicas</b> que permitan transformar de manera positiva la realidad de las personas y las organizaciones.</p>
                     </div>
 
                   </div>
@@ -422,12 +422,12 @@ const StyledHome = styled.div`
   .banner{
     width: 90%;
     display: flex;
-    margin-top: 10vh;
-    height: 27vh;
-    
+    margin-top: 5vh;
+    height: 35vh;
 
     .is-two-thirds{
       padding-top: 0;
+      padding-left: 0;
       .columns{
         padding-right: 0;
         margin: 0;
@@ -442,7 +442,7 @@ const StyledHome = styled.div`
 
     .squares{
       height: auto;
-      width: 30%;
+      width: 40%;
       margin-left:auto;
     }
 
@@ -461,10 +461,12 @@ const StyledHome = styled.div`
     }
 
     .text{
-      padding-left: 2%;
+      font-family: 'Fira Sans', sans-serif;
       padding-top: 0;
+      padding-left: 2.5%;
+      padding-right: 2%;
       font-size: 1.2em;
-    line-height: 1.7em;
+      line-height: 1.7em;
       letter-spacing: 0.01em;
       b{
         border-bottom: 2px solid #86F26B;
@@ -601,6 +603,7 @@ const StyledHome = styled.div`
   .logo{
     position: relative;
     height: 100%;
+    padding-left: 0;
     padding-right: 2vw;
     a {
       align-content: center;

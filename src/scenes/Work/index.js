@@ -5,7 +5,11 @@ import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+import puede_ser from 'assets/puede_ser.png';
+import blockch from 'assets/blockch.png';
 import blockch2 from 'assets/blockch2.png';
+
+import horizontaldots from 'assets/horizontaldots.png';
 
 require('dotenv').config()
 
@@ -70,16 +74,16 @@ class Work extends Component {
        
           <div className="banner columns is-centered">
 
-              <div className="column is-one-quarter lema">
-                        <p>Frase amigable servicios</p>
+              <div className="column lema">
+                        <p>Nuestro trabajo</p>
               </div>
 
               <div className="column is-one-fifth">
-                        <p>Frase amigable servicios</p>
+                   <img className="squares" src={horizontaldots} alt=""/>
               </div>
 
               <div className="column is-half">
-                        <p>Ayudamos a tu organización, a partir del conocimiento experto e interdisciplinar de la Universidad Nacional de Colombia, a encontrar soluciones innovadoras que transformen el entorno organizacional y/o social en las siguientes líneas: Experiencia de usuario, tecnologías emergentes, procesos de innovación y capacitación/formación.</p>
+                        <p>Innovación, investigación, tecnología y mucho más. Descubre los proyectos que nos hacen sentir orgullosos en LAB101.</p>
               </div>
                 
 
@@ -87,11 +91,7 @@ class Work extends Component {
           </div>
 
           <div className="gallery">
-
-              <div>
-                 <p className="titulo">Galería</p>
-              </div>
-
+             
               <Carousel className="columns" additionalTransfrom={0}
                                         arrows
                                         customLeftArrow={<CustomLeftArrow />}
@@ -114,19 +114,19 @@ class Work extends Component {
 
                           <div className="column infoCard is-one-third">
                             <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
+                              <figure className="image">
+                                  <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
+                              </figure>
+                              <p className="title">App: se puede ser</p>
                             </Link>  
                           </div>
 
                           <div className="column infoCard is-one-third">
                             <Link to="/statistics">
                                 <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
+                                  <img className="" src={blockch} alt="imagen de bogota"/>
+                              </figure>
+                              <p className="title">Blockchain para restitucion de tierras</p>
                             </Link>   
                           </div>
 
@@ -135,7 +135,25 @@ class Work extends Component {
                                 <figure className="image">
                                     <img className="" src={blockch2} alt="imagen de bogota"/>
                                 </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
+                                <p className="title">Sitio Web Colegio Villas del Progreso</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
+                                </figure>
+                                <p className="title">App: se puede ser</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                  <img className="" src={blockch} alt="imagen de bogota"/>
+                              </figure>
+                              <p className="title">Blockchain para restitucion de tierras</p>
                             </Link>   
                           </div>
 
@@ -144,7 +162,25 @@ class Work extends Component {
                                 <figure className="image">
                                     <img className="" src={blockch2} alt="imagen de bogota"/>
                                 </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
+                                <p className="title">Sitio Web Colegio Villas del Progreso</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
+                                </figure>
+                                <p className="title">App: se puede ser</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                  <img className="" src={blockch} alt="imagen de bogota"/>
+                              </figure>
+                              <p className="title">Blockchain para restitucion de tierras</p>
                             </Link>   
                           </div>
 
@@ -153,7 +189,25 @@ class Work extends Component {
                                 <figure className="image">
                                     <img className="" src={blockch2} alt="imagen de bogota"/>
                                 </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
+                                <p className="title">Sitio Web Colegio Villas del Progreso</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                    <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
+                                </figure>
+                                <p className="title">App: se puede ser</p>
+                            </Link>   
+                          </div>
+
+                          <div className="column infoCard is-one-third">
+                            <Link to="/statistics">
+                                <figure className="image">
+                                  <img className="" src={blockch} alt="imagen de bogota"/>
+                              </figure>
+                              <p className="title">Blockchain para restitucion de tierras</p>
                             </Link>   
                           </div>
 
@@ -162,61 +216,7 @@ class Work extends Component {
                                 <figure className="image">
                                     <img className="" src={blockch2} alt="imagen de bogota"/>
                                 </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
+                                <p className="title">Sitio Web Colegio Villas del Progreso</p>
                             </Link>   
                           </div>
 
@@ -292,17 +292,20 @@ align-items: center;
     display: flex;
     padding-top: 0vh;
     margin-top: 0vh;
-    height: 40vh;
+    height: 20vh;
     align-items: center;
     background-color: white;
 
+    
+
     .is-one-fifth{
-      margin-left:auto;
+      margin-right: auto;
+      display: flex;
     }
 
     .squares{
       height: auto;
-      width: 30%;
+      width: 25%;
       margin-left:auto;
     }
 
@@ -312,21 +315,21 @@ align-items: center;
       text-transform: uppercase;
       font-size: 3em;
       padding-left: 0;
-      padding-right: 5%;
+      margin-left: 5vw;
+      padding-right: 0;
       line-height: 5.5vh;
 
       
     }
 
-    .text{
-      line-height: 2.8vh;
+    .column.is-half {
+      font-family: 'Fira Sans', sans-serif;
+      color: #18144D;
+      font-size: 1.1em;
+      line-height: 1.7em;
       letter-spacing: 0.01em;
-      padding-left: 4%;
-      padding-right: 4%;
-      b{
-        border-bottom: 2px solid #86F26B;
-      }
-    
+      padding-right: 7%;
+      padding-left: 3.5%;
     }
 }  
 
@@ -348,15 +351,30 @@ align-items: center;
     margin: 0;
     padding: 0;
 
+    p.title {
+      width: 70%;
+      padding-top: 2vh;
+      color: #18144D;
+      font-family: 'Raleway', sans-serif;
+      font-weight: 800;
+      font-size: 1.3em;
+      line-height: 1.2em;
+      letter-spacing: 0.01em;
+    }
+
     li.react-multi-carousel-item {
       padding: 0 0.3%;
-  }
+    }
 
-  .column.box.infoCard {
-    height: 30vh;
-  }
+    .column.box.infoCard {
+      height: 30vh;
+    }
+
+    .column.infoCard.is-one-third {
+      padding: 0 3% 3% 0%;
+    }
   
-  .react-multi-carousel-list{
+    .react-multi-carousel-list{
         padding: 0.1% 0 10vh 0;
         width: 95%;
         margin: 0;
