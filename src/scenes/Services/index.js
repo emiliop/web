@@ -9,6 +9,11 @@ import user from 'assets/user.png';
 import technology from 'assets/technology.png';
 import innovation from 'assets/innovation.png';
 
+import horizontaldots from 'assets/horizontaldots.png';
+
+import retosback from 'assets/retosback.png';
+import slides2 from 'assets/slides2.png';
+
 
 require('dotenv').config()
 
@@ -71,33 +76,27 @@ class Services extends Component {
 
               <StyledServices>
 
-
-                
                     <div className="banner columns is-centered">
 
-                       
+                        <div className="column lema">
+                                  <p>Servicios</p>
+                        </div>
 
-                          <div className="column is-one-quarter lema">
-                                    <p>Frase amigable servicios</p>
-                          </div>
+                        <div className="column is-one-fifth">
+                            <img className="squares" src={horizontaldots} alt=""/>
+                        </div>
 
-                          <div className="column is-one-fifth">
-                                    <p>Frase amigable servicios</p>
-                          </div>
-
-                          <div className="column is-half">
-                                    <p>Ayudamos a tu organización, a partir del conocimiento experto e interdisciplinar de la Universidad Nacional de Colombia, a encontrar soluciones innovadoras que transformen el entorno organizacional y/o social en las siguientes líneas: Experiencia de usuario, tecnologías emergentes, procesos de innovación y capacitación/formación.</p>
-                          </div>
-                            
-                          
+                        <div className="column is-half">
+                                  <p>Ayudamos a tu organización, a partir del conocimiento experto e interdisciplinar de la Universidad Nacional de Colombia, a encontrar soluciones innovadoras que transformen el entorno organizacional y/o social en las siguientes líneas: Experiencia de usuario, tecnologías emergentes, procesos de innovación y capacitación/formación.</p>
+                        </div>
 
                     </div>
 
                     <div className="gallery">
 
-                     <div>
-                          <p className="titulo">Galería</p>
-                      </div>
+                   
+                      <p className="titulo">Entendemos tus retos</p>
+                     
 
                       <Carousel className="columns" additionalTransfrom={0}
                                                     arrows
@@ -117,60 +116,73 @@ class Services extends Component {
 
                         <div className="column box infoCard">
                           <Link to="/statistics">
-                                    <p>Queremos darle la posibilidad a los ciudadanos de acceder a nuestros servicios desde por medio electrónico</p>
-                                    <p>Cliente: Catastro Distrital</p>
-                                    <p>Servicio: Diseño y desarrollo de sitio web</p>
-                                    <p>Duración: 1 año</p>
+                                    <p className="header">Queremos darle la posibilidad a los ciudadanos de acceder a nuestros servicios desde por medio electrónico</p>
+                                    <div className="dataInfo">
+                                        <p className="client">Cliente: Catastro Distrital</p>
+                                        <p className="service">Servicio: Diseño y desarrollo de sitio web</p>
+                                        <p className="duration">Duración: 1 año</p>
+                                    </div>
+                                                                        
                                     <button>
-                                      Area
+                                      Información sobre el proyecto
+                                    </button>
+                          </Link>  
+                        </div>
+
+                        <div className="column box infoCard">
+                          <Link to="/statistics">
+                                    <p className="header">Nuestro objetivo es mejorar nuestros productos obteniendo información de los usuarios</p>
+                                    <div className="dataInfo">
+                                        <p className="client">Cliente: Catastro Distrital</p>
+                                        <p className="service">Servicio: Diseño y desarrollo de sitio web</p>
+                                        <p className="duration">Duración: 1 año</p>
+                                    </div>
+                                    <button>
+                                      Información sobre el proyecto
                                     </button>
                           </Link>  
                         </div>
                         
                         <div className="column box infoCard">
                           <Link to="/statistics">
-                                    <p>Buscamos incentivar la participación ciudadana mediante...</p>
-                                    <p>Cliente:</p>
-                                    <p>Servicio:</p>
-                                    <p>Duración:</p>
+                                    <p className="header">Buscamos incentivar la participación ciudadana mediante...</p>
+                                    <div className="dataInfo">
+                                        <p className="client">Cliente: Catastro Distrital</p>
+                                        <p className="service">Servicio: Diseño y desarrollo de sitio web</p>
+                                        <p className="duration">Duración: 1 año</p>
+                                    </div>
                                     <button>
-                                      Area
+                                      Información sobre el proyecto
                                     </button>
                           </Link>  
                         </div>
                       
+                        
+
                         <div className="column box infoCard">
                           <Link to="/statistics">
-                                    <p>Nuestro objetivo es mejorar nuestros productos obteniendo información de los usuarios</p>
-                                    <p>Cliente:</p>
-                                    <p>Servicio:</p>
-                                    <p>Duración:</p>
+                                    <p className="header"></p>
+                                    <div className="dataInfo">
+                                        <p className="client">Cliente: Catastro Distrital</p>
+                                        <p className="service">Servicio: Diseño y desarrollo de sitio web</p>
+                                        <p className="duration">Duración: 1 año</p>
+                                    </div>
                                     <button>
-                                      Area
+                                      Información sobre el proyecto
                                     </button>
                           </Link>  
                         </div>
 
                         <div className="column box infoCard">
                           <Link to="/statistics">
-                                    <p></p>
-                                    <p></p>
-                                    <p></p>
-                                    <p></p>
+                                    <p className="header"></p>
+                                    <div className="dataInfo">
+                                        <p className="client">Cliente: Catastro Distrital</p>
+                                        <p className="service">Servicio: Diseño y desarrollo de sitio web</p>
+                                        <p className="duration">Duración: 1 año</p>
+                                    </div>
                                     <button>
-                                      Area
-                                    </button>
-                          </Link>  
-                        </div>
-
-                        <div className="column box infoCard">
-                          <Link to="/statistics">
-                                    <p></p>
-                                    <p></p>
-                                    <p></p>
-                                    <p></p>
-                                    <button>
-                                      Area
+                                      Información sobre el proyecto
                                     </button>
                           </Link>  
                         </div>
@@ -184,53 +196,85 @@ class Services extends Component {
 
                         <div className="column is-full">
 
-                            <p className="title titulo">Tipos de servicios</p>
+                            <p className="title titulo">Nuestro portafolio de servicios</p>
 
                         </div>
                       
                         <div className="column logo is-half">
                         <Link to="/detail">
-                        <p className="title">Analítica de datos</p>
-                            <figure className="image">
-                                <img className="" src={user} alt="imagen de grafica de barras"/>
-                            </figure>
+                            <div className="columns">
                             
-                            <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                                <div className="column">
+                                    <p className="title"><span>1 –</span> Experiencia de usuario</p>
+                                    <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                                </div>
+                                <div className="column">
+                                    <figure className="image">
+                                        <img className="" src={user} alt="imagen de grafica de barras"/>
+                                    </figure>
+                                </div>
+                            
+                            </div>
+                            
                         </Link>  
                         </div>
                       
                         
                         <div className="column logo is-half">
                         <Link to="/detail">
-                            <p className="title">Diseño de experiencia</p>  
-                            <figure className="image">
-                                <img className="" src={innovation} alt="imagen de bogota"/>
-                            </figure>
+                            <div className="columns">
                             
-                            <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-                            </Link>
+                                <div className="column">
+                                    <p className="title"><span>2 –</span> Experiencia de usuario</p>
+                                    <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                                </div>
+                                <div className="column">
+                                    <figure className="image">
+                                        <img className="" src={user} alt="imagen de grafica de barras"/>
+                                    </figure>
+                                </div>
+                            
+                            </div>
+                            
+                        </Link>
                         </div>
 
                         <div className="column logo is-half">
-                        <Link to="/detail"> 
-                        <p className="title">Industrias creativas</p>
-                            <figure className="image">
-                                <img className="is-centered" src={technology} alt="imagen de bogota"/>
-                            </figure>
+                        <Link to="/detail">
+                            <div className="columns">
                             
-                            <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-                            </Link>
+                                <div className="column">
+                                    <p className="title"><span>3 –</span> Experiencia de usuario</p>
+                                    <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                                </div>
+                                <div className="column">
+                                    <figure className="image">
+                                        <img className="" src={user} alt="imagen de grafica de barras"/>
+                                    </figure>
+                                </div>
+                            
+                            </div>
+                            
+                        </Link>
                         </div>
 
                         <div className="column logo is-half">
-                        <Link to="/detail"> 
-                        <p className="title">Industrias creativas</p>
-                            <figure className="image">
-                                <img className="is-centered" src={user} alt="imagen de bogota"/>
-                            </figure>
+                        <Link to="/detail">
+                            <div className="columns">
                             
-                            <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-                            </Link>
+                                <div className="column">
+                                    <p className="title"><span>4 –</span> Experiencia de usuario</p>
+                                    <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                                </div>
+                                <div className="column">
+                                    <figure className="image">
+                                        <img className="" src={user} alt="imagen de grafica de barras"/>
+                                    </figure>
+                                </div>
+                            
+                            </div>
+                            
+                        </Link>
                         </div>
 
                         
@@ -243,13 +287,13 @@ class Services extends Component {
                         <p>Contáctanos</p>
                       </div>
 
-                      <div className="column is-one-third">
+                      <div className="column is-half">
                         <p>Cuéntanos qué necesitas, nosotros te asesoraremos para que obtengas la solución que tu empresa necesita</p>
                       </div>
 
                       <div className="column is-one-quarter">
                           <button>
-                            Area
+                            Trabajemos juntos
                           </button>
                       </div>
 
@@ -273,55 +317,56 @@ align-items: center;
 }
 
 .banner{
-    width: 100%;
-    display: flex;
-    padding-top: 0vh;
-    margin-top: 0vh;
-    height: 40vh;
-    align-items: center;
-    background-color: white;
-
-    .is-one-fifth{
-      margin-left:auto;
-    }
-
-    .squares{
-      height: auto;
-      width: 30%;
-      margin-left:auto;
-    }
-
-    .lema{
-      font-family: 'Staatliches', cursive;
-      color: #18144D;
-      text-transform: uppercase;
-      font-size: 3em;
-      padding-left: 0;
-      padding-right: 5%;
-      line-height: 5.5vh;
-
-      
-    }
-
-    .text{
-      line-height: 2.8vh;
-      letter-spacing: 0.01em;
-      padding-left: 4%;
-      padding-right: 4%;
-      b{
-        border-bottom: 2px solid #86F26B;
-      }
-    
-    }
-}  
-
-.info{
-  position: relative;
-  height: 55%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+  padding-top: 5vh;
+  margin-bottom: 6vh;
+  margin-top: 0vh;
+  height: 30vh;
+  align-items: flex-start;
+  background-color: white;
+
+  
+
+  .is-one-fifth{
+    margin-right: auto;
+    display: flex;
+  }
+
+  .squares{
+    height: auto;
+    width: 25%;
+    margin-left:auto;
+  }
+
+  .lema{
+    font-family: 'Staatliches', cursive;
+    color: #18144D;
+    text-transform: uppercase;
+    font-size: 3em;
+    padding-left: 0;
+    margin-left: 5vw;
+    padding-right: 0;
+    line-height: 5.5vh;
+
+    
+  }
+
+  .column.is-half {
+    font-family: 'Fira Sans', sans-serif;
+    color: #18144D;
+    font-size: 1.25em;
+    line-height: 1.7em;
+    letter-spacing: 0.01em;
+    padding-right: 5%;
+    padding-left: 1.5%;
+    p {
+      margin-top: -1.5vh;
+    }
+  }
+}   
+
+
 
 .gallery{
 
@@ -331,14 +376,56 @@ align-items: center;
     justify-content: center;
     align-items: center;
     margin: 0;
-    padding: 0;
+    padding: 5vh 0 0 0;
+
+    background-image: url(${retosback});
+    background-size: 100% 55%;
+    background-repeat: no-repeat;
+    background-position: left top;
+
+    .titulo{
+      margin-left: 5vw;
+      margin-bottom: 5vh;
+      align-self: flex-start;
+    }
 
     li.react-multi-carousel-item {
       padding: 0 0.3%;
   }
 
   .column.box.infoCard {
-    height: 30vh;
+    height: 35vh;
+    border: 2px solid #18144D;
+    font-family: 'Fira Sans', sans-serif;
+    color: #18144D;
+    font-size: 0.9em;
+    line-height: 1.7em;
+    letter-spacing: 0.01em;
+    padding: 7%;
+
+    a{
+      color: #18144D;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+
+      .dataInfo{
+        margin-top: auto;
+      }
+
+      button{
+        margin-top: 5%;
+        background: #18144D;
+        border: 2px solid #18144D;
+        color: white;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 800;
+        font-size: 1em;
+        line-height: 1.2em;
+        letter-spacing: 0.01em;
+        height: 20%;
+      }
+    }
   }
   
   .react-multi-carousel-list{
@@ -349,7 +436,7 @@ align-items: center;
 
       .custom-right-arrow{
         position: absolute !important;
-        bottom: 4.5vh;
+        bottom: 1.5vh;
         right: 2.5%;
         z-index: 1;
         border: 1px solid #18144D;
@@ -364,7 +451,7 @@ align-items: center;
 
       .custom-left-arrow{
         position: absolute !important;
-        bottom: 4.5vh;
+        bottom: 1.5vh;
         right: 5%;
         z-index: 1;
         border: 1px solid #18144D;
@@ -381,7 +468,7 @@ align-items: center;
 
   .react-multi-carousel-dot-list {
     position: relative;
-    bottom: 8vh;
+    bottom: 5vh;
     display: flex;
     left: 0;
     right: 0;
@@ -423,18 +510,35 @@ align-items: center;
   height: 45%;
   display: flex;
   justify-content: space-evenly;
-  margin-top: 10vh;
-  margin-right: 5vw;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+  margin-top: 0;
+  margin-right: 0;
+  margin-left: 0;
+  padding-left: 5vw;
+  background-image: url(${slides2});
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .column.is-full {
+    display: flex;
+  }
 
  .logo{
-  padding-top: 4vh
-  .title{
-    padding-top: 5vh;
+    padding-top: 4vh
+    .title{
+      padding-top: 0;
+      text-align: start;
+      color: #18144D;
+    }
+    .texto{
+      padding-top: 0vh;
+      color: #18144D;
+    }
+    span{
+      color: #FF4668;
+    }
   }
-  .texto{
-    padding-top: 0vh;
-  }
- }
 
   .titulo{
     font-family: 'Staatliches', cursive;
@@ -444,14 +548,49 @@ align-items: center;
     font-style: normal;
     font-weight: normal;
     text-align: center;
+    
   }
 
   figure{
     display: flex;
-  height: 20vh;
-  width: auto;
-  justify-content: center;
+    height: 20vh;
+    width: auto;
+    justify-content: center;
   }
+}
+
+.contact{
+  
+  width: 95%;
+  display: flex;
+  align-items: center;
+  height: 30vh;
+
+  .column.is-half {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 1em;
+    line-height: 1.8em;
+    letter-spacing: 0.01em;
+    color: #18144D;
+    p {
+      padding-right: 40%;
+    }
+  }
+
+  button{
+    height: 7vh;
+    width: 70%;
+    color: #18144D;
+    background: #FFF500;
+    border: 1px solid rgba(24, 20, 77, 0.16);
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    font-size: 1em;
+    line-height: 1.2em;
+    letter-spacing: 0.01em;
+  }  
 }
 
 .title{
@@ -516,7 +655,7 @@ figure{
   font-family: 'Staatliches', cursive;
   color: #18144D;
   text-transform: uppercase;
-  font-size: 1.8em;
+  font-size: 2.3em;
 }
 
 

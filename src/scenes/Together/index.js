@@ -4,7 +4,10 @@ import styled from 'styled-components';
 import map from 'assets/Map.png';
 
 import green_squares from 'assets/green_squares.png';
+import mapback from 'assets/mapback.png';
 import dots from 'assets/dots.png';
+
+import gray2 from 'assets/gray2.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
@@ -37,13 +40,25 @@ class Together extends Component {
 
       <StyledTogether>
 
-          <div className="columns contact">
+          <div className="columns contact is-multiline">
+
+          <div className="column is-three-fifths">
+          
+                <p className="title titulo">¿Quieres iniciar un proyecto con nosotros? ¡Conversemos!</p>
+             
+          </div>
+
+          <div>
+
+              <figure className="column is-narrow image">
+                          <img className="" src={gray2} alt="imagen de bogota"/>
+              </figure>
+
+          </div>
 
           <div className="column form is-half">
 
-              <div>
-                <p className="title titulo">¿Quieres iniciar un proyecto con nosotros? ¡Conversemos!</p>
-              </div>
+              
 
               <div className="fields">
 
@@ -148,22 +163,156 @@ class Together extends Component {
 }
 
 const StyledTogether = styled.div`
-  padding: 20px;
+  
   min-height: 100vh;
 
-  .content{
-    padding: 60px 40px;
-    min-height: 100%;
-  }
-  .button {
-    margin: 30px 0 50px;
-    .fa-chart-pie {
-      margin-right: 15px !important;;
+  .contact{
+    margin-left: 5vw;
+    padding-top: 6vh;
+    margin-bottom: 4vh;
+    
+    .title{
+      padding-right: 10%;
+      font-size: 4.4em;
+      line-height: 1em;
+      letter-spacing: 0.02em;
+      font-style: normal;
+      font-weight: normal;
+      font-family: 'Staatliches',cursive;
+      color: #18144D;
+      text-transform: uppercase;
     }
-  }
-  #chart {
-    max-width: 700px;
-    margin-bottom: 30px;
+
+    .form{
+      
+      padding-right: 7vw;
+      
+  
+      .fields{
+        padding-top: 0;
+        .field{
+          margin-bottom: 1.3rem;
+        }
+        .help{
+          padding-left: 0;
+        }
+        .control{
+          width: 100%;
+          input{
+              box-shadow: none;
+              border-radius: 0;
+              border: 0;
+              border-bottom: 1.5px solid #18144D;
+              padding-left: 0;
+              color: black;
+              font-size: 1em;
+              font-family: 'Source Sans Pro', sans-serif;
+              font-style: normal;
+              font-weight: normal;
+              height: 2em;
+          }
+          input::placeholder {
+            color: #7F7E91;
+            font-size: 1em;
+            font-family: 'Source Sans Pro', sans-serif;
+            font-style: normal;
+            font-weight: normal;
+          }
+  
+          .textarea {
+            font-family: 'Source Sans Pro', sans-serif;
+              font-style: normal;
+              font-weight: normal;
+            background-color: #fff;
+            border-color: #18144D;
+            border-radius: 0px;
+            color: black;
+        }
+          
+        }
+          
+          .label{
+            font-size: 0.8rem;
+            color: #7F7E91;
+            font-family: 'Source Sans Pro', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        margin-bottom: 0;
+          }
+          button{
+            padding-top: 0;
+            padding-bottom: 0;
+            height: 6vh;
+            width: 100%;
+            background: #18144D;
+            border: 0px solid #18144D;
+            box-sizing: border-box;
+            font-family: Raleway;
+            font-style: normal;
+            font-weight: bold;
+            line-height: 168%;
+            font-size: 0.8em;
+            border-radius: 0px;
+            text-align: center;
+            letter-spacing: 0.035em;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            align-self: center;
+            text-align: center;
+            vertical-align: middle;
+          }
+      }    
+  
+    }
+  
+  
+    .data{
+      padding: 1.55vh 0 5vh 0;
+      margin-left: -5vh;
+      .subtitle{
+        padding:0;
+        margin:0;
+        font-family: 'Raleway', sans-serif;
+        font-weight: 600;
+        font-size: 0.85em;
+        font-style: normal;
+        line-height: 2.5vh;
+        font-feature-settings: 'pnum' on, 'lnum' on;
+        letter-spacing: 0.01em;
+        color: #18144D;
+        .icon{
+          color:#B04BFF;
+        }
+      }
+  
+     .dots{ 
+      display: flex;
+      justify-content: center;
+     }
+  
+  
+      .map{
+        padding-top: 3vh;
+        position: relative;
+        width: 38.5vw;
+        figure{
+          background-image: url(${mapback});
+          padding-left: 1vw;
+          background-size: 90% 90%;
+          background-repeat: no-repeat;
+          background-position: right bottom;
+          padding-bottom: 3vh;
+          padding-right: 2vw;
+          img{
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+    }
   }
 
   @media (max-width: 600px) {

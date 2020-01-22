@@ -85,8 +85,6 @@ class Work extends Component {
               <div className="column is-half">
                         <p>Innovación, investigación, tecnología y mucho más. Descubre los proyectos que nos hacen sentir orgullosos en LAB101.</p>
               </div>
-                
-
 
           </div>
 
@@ -290,10 +288,10 @@ align-items: center;
 .banner{
     width: 100%;
     display: flex;
-    padding-top: 0vh;
+    padding-top: 5vh;
     margin-top: 0vh;
     height: 20vh;
-    align-items: center;
+    align-items: flex-start;
     background-color: white;
 
     
@@ -325,21 +323,17 @@ align-items: center;
     .column.is-half {
       font-family: 'Fira Sans', sans-serif;
       color: #18144D;
-      font-size: 1.1em;
+      font-size: 1.25em;
       line-height: 1.7em;
       letter-spacing: 0.01em;
-      padding-right: 7%;
-      padding-left: 3.5%;
+      padding-right: 5%;
+      padding-left: 1.5%;
+      p {
+        margin-top: -1.5vh;
+      }
     }
 }  
 
-.info{
-  position: relative;
-  height: 55%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
 
 .gallery{
 

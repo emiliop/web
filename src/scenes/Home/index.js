@@ -170,34 +170,44 @@ class Home extends Component {
 
                         </div>
                       
-                        <div className="column logo is-one-third">
+                        <div className="column logo is-half">
                         <Link to="/statistics">
                             <figure className="image">
                                 <img className="" src={user} alt="imagen de grafica de barras"/>
                             </figure>
                             <p className="title"><span>1 –</span> Experiencia de usuario</p>
-                            <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                            <p className="texto">Trabajamos para que la interacción de los clientes y/o usuarios con los productos o servicios diseñados sean eficaces, eficientes y satisfactorios.</p>
                         </Link>  
                         </div>
                       
                         
-                        <div className="column logo is-one-third">
+                        <div className="column logo is-half">
                          <Link to="/contrareference"> 
                             <figure className="image">
                                 <img className="" src={technology} alt="imagen de bogota"/>
                             </figure>
                             <p className="title"><span>2 –</span> Tecnologías emergentes</p>
-                            <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                            <p className="texto">Utilizamos herramientas y/o estrategias novedosas en la producción de software para potenciar los métodos de innovación digitales.</p>
                             </Link>
                         </div>
 
-                        <div className="column logo is-one-third">
+                        <div className="column logo is-half">
                          <Link to="/contrareference"> 
                             <figure className="image">
                                 <img className="is-centered" src={innovation} alt="imagen de bogota"/>
                             </figure>
                             <p className="title"><span>3 –</span> Procesos de innovación</p>
-                            <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                            <p className="texto">Orientamos las dinámicas de innovación para asegurar su materialización, sostenibilidad y formular sus alternativas a situaciones o problemas complejos.</p>
+                            </Link>
+                        </div>
+
+                        <div className="column logo is-half">
+                         <Link to="/contrareference"> 
+                            <figure className="image">
+                                <img className="is-centered" src={innovation} alt="imagen de bogota"/>
+                            </figure>
+                            <p className="title"><span>4 –</span> Formación a la medida</p>
+                            <p className="texto">Desarrollamos procesos de capacitación y/o formación para construir competencias en el diseño y desarrollo de soluciones efectivas.</p>
                             </Link>
                         </div>
                        
@@ -215,8 +225,8 @@ class Home extends Component {
                      <div className="column is-one-third">
 
                        
-                        <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p> 
-                        <p className="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                        <p className="subtitle">Nos interesa transformar la realidad social colectivamente. Por tal razón, trabajamos de manera colaborativa a través de “frameworks” como Design Thinking, Scrum y Lean UX, los cuales nos permiten ofrecer el mayor valor y satisfacción en las soluciones desarrolladas para nuestros aliados.</p> 
+                        
                     </div>
                   </div> 
 
@@ -463,11 +473,12 @@ const StyledHome = styled.div`
     .text{
       font-family: 'Fira Sans', sans-serif;
       padding-top: 0;
-      padding-left: 2.5%;
-      padding-right: 2%;
-      font-size: 1.2em;
+      padding-left: 2%;
+      padding-right: 1%;
+      font-size: 1.25em;
       line-height: 1.7em;
       letter-spacing: 0.01em;
+      font-size: 1.25em;
       b{
         border-bottom: 2px solid #86F26B;
         font-weight: normal;
@@ -560,6 +571,8 @@ const StyledHome = styled.div`
 
    .logo{
     padding-top: 4vh
+    padding-right: 6.5vw;
+    padding-left: 6.5vw;
     .title{
       padding-top: 5vh;
     }
@@ -765,7 +778,7 @@ const StyledHome = styled.div`
         button{
           padding-top: 0;
           padding-bottom: 0;
-          height: 4vh;
+          height: 6vh;
           width: 100%;
           background: #18144D;
           border: 0px solid #18144D;
