@@ -205,7 +205,7 @@ class Home extends Component {
                   </div>
 
                   <Carousel className="columns" responsive={this.responsive} partialVisible={true} centerMode={false} arrows={true} customLeftArrow={<CustomLeftArrow />}
-  customRightArrow={<CustomRightArrow />}>
+  customRightArrow={<CustomRightArrow />} showDots={true}>
                       {this.state.services.map( service => (<div className="column logo" key={service.id}>
                                                               <Link to={"/detail/"+service.id}>
                                                                   <figure className="image">
