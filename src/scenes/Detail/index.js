@@ -76,7 +76,7 @@ class Detail extends Component {
 
   componentDidMount(){
     console.log(this.props);
-    axios.get(`http://localhost:8000/api/services/${this.props.match.params.id}`)
+    axios.get(`http://newadmin5.vivelabbogota.com/api/services/${this.props.match.params.id}`)
        .then(response => {
          this.setState({ services: response.data });
          console.log(this.state.services);
