@@ -75,12 +75,13 @@ class Detail extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://newadmin4.vivelabbogota.com/api/services')
+    console.log(this.props);
+    axios.get(`http://localhost:8000/api/services/${this.props.match.params.id}`)
        .then(response => {
          this.setState({ services: response.data });
          console.log(this.state.services);
-         console.log(this.state.services[0].background);
-         this.props.updateNavColor(this.state.services[0].background);
+         console.log(this.state.services.background);
+         this.props.updateNavColor(this.state.services.background);
        })
        .catch(function (error) {
          console.log(error);

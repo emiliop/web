@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { BrowserRouter as Router, Link, Route } from "react-router-dom";
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
 import Typical from 'react-typical';
 import 'react-multi-carousel/lib/styles.css';
+
+import Detail from '../Detail';
 
 import map from 'assets/Map.png';
 
@@ -49,24 +51,34 @@ class Home extends Component {
     this.state = {
       background: 'white',
       color: ['red', 'green', 'blue'],
+      services: [],
       formName: '', formMail: '', formPhone: '', formComment: ''
     }
  
     this.responsive = {
       desktop: {
-        breakpoint: { max: 3000, min: 1024 },
+        breakpoint: {
+          max: 3000,
+          min: 1024
+        },
         items: 3,
-        partialVisibilityGutter: 35 // this is needed to tell the amount of px that should be visible.
-      },
-      tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 2,
-        partialVisibilityGutter: 5 // this is needed to tell the amount of px that should be visible.
+        partialVisibilityGutter: 40
       },
       mobile: {
-        breakpoint: { max: 464, min: 0 },
+        breakpoint: {
+          max: 464,
+          min: 0
+        },
         items: 1,
-        partialVisibilityGutter: 3 // this is needed to tell the amount of px that should be visible.
+        partialVisibilityGutter: 30
+      },
+      tablet: {
+        breakpoint: {
+          max: 1024,
+          min: 464
+        },
+        items: 2,
+        partialVisibilityGutter: 30
       }
     };
 
@@ -116,6 +128,15 @@ class Home extends Component {
 
   componentDidMount(){
     this.props.updateNavColor(this.state.background);
+
+    axios.get('http://localhost:8000/api/services')
+       .then(response => {
+         this.setState({ services: response.data });
+       })
+       .catch(function (error) {
+         console.log(error);
+       })
+
     if(localStorage.getItem("times") == null || localStorage.getItem("times") == "undefined"){
       localStorage.setItem("times", 0);
     }
@@ -135,28 +156,27 @@ class Home extends Component {
 
   render() {
 
-    const CustomRightArrow = ({ onClick }) => {
-      return <i className="custom-right-arrow" onClick={() => onClick()} />;
-    };
-
     const CustomLeftArrow = ({ onClick }) => (
       <i onClick={() => onClick()} className="custom-left-arrow" />
     );
+    const CustomRightArrow = ({ onClick }) => {
+      return <i className="custom-right-arrow" onClick={() => onClick()} />;
+    };
    
 
     return (
+
+            
+
             <StyledHome>
-              
+             
                   <div className="banner columns">
 
                     <div className="column is-two-thirds">
 
                         <div className=" columns left">
 
-                            <div className="column is-two-thirds lema">
-
-                            <p>{this.actualColor}</p>
-                            <p>{this.actualColor}</p>  
+                            <div className="column is-two-thirds lema"> 
 
                             <Typical
                                 steps={['Innovación, diseño y tecnología para las personas', 500]}
@@ -184,52 +204,16 @@ class Home extends Component {
 
                   </div>
 
-                  <Carousel className="columns" additionalTransfrom={0}
-                      arrows
-                      className=""
-                      customLeftArrow={<CustomLeftArrow />}
-                      customRightArrow={<CustomRightArrow />}
-                      partialVisible={true} responsive={this.responsive}>
-
-                      <div className="column logo">
-                        <Link to="/statistics">
-                            <figure className="image">
-                                <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
-                            </figure>
-                            <p className="title">App: se puede ser</p>
-                        </Link>  
-                      </div>
-                    
-                      
-                      <div className="column logo">
-                      <Link to="/contrareference"> 
-                          <figure className="image">
-                              <img className="" src={blockch} alt="imagen de bogota"/>
-                          </figure>
-                          <p className="title">Blockchain para restitucion de tierras</p>
-                          </Link>
-                      </div>
-
-                      <div className="column logo">
-                      <Link to="/contrareference"> 
-                          <figure className="image">
-                              <img className="" src={blockch2} alt="imagen de bogota"/>
-                          </figure>
-                          <p className="title">Blockchain para restitucion de tierras</p>
-                          </Link>
-                      </div>
-
-                      <div className="column logo">
-                      <Link to="/contrareference"> 
-                          <figure className="image">
-                              <img className="" src={puede_ser} alt="imagen de bogota"/>
-                          </figure>
-                          <p className="title">Contrareferencias</p>
-                          </Link>
-                      </div>
-
-                      
-
+                  <Carousel className="columns" responsive={this.responsive} partialVisible={true} centerMode={false} arrows={true} customLeftArrow={<CustomLeftArrow />}
+  customRightArrow={<CustomRightArrow />}>
+                      {this.state.services.map( service => (<div className="column logo" key={service.id}>
+                                                              <Link to={"/detail/"+service.id}>
+                                                                  <figure className="image">
+                                                                      <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                  </figure>
+                                                                  <p className="title">{service.title}</p>
+                                                              </Link>  
+                                                            </div>))} 
                   </Carousel>
               
                   <Link to="/contrareference"><button className="button ver-mas is-normal">Ver más proyectos</button></Link>

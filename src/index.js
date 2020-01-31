@@ -51,7 +51,7 @@ class App extends Component {
                       <Route exact path="/metodologies" render={(props) => <Metodologies {...props} background={this.state.background} updateNavColor={this.updateNavColor}/>}/>
                       <Route exact path="/activities" render={Activities} />
                       <Route exact path="/together" render={(props) => <Together {...props} background={this.state.background} updateNavColor={this.updateNavColor}/>}/>
-                      <Route exact path="/detail" render={(props) => <Detail {...props} background={this.state.background} updateNavColor={this.updateNavColor} />}/>
+                      <Route path="/detail/:id" render={(props) => <Detail {...props} background={this.state.background} updateNavColor={this.updateNavColor} />}/>
                     </Switch>
 
                     <Footer />
