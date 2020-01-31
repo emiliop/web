@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import { BrowserRouter as Router, Link, Route } from "react-router-dom";
 import Carousel from 'react-multi-carousel';
+import Typical from 'react-typical';
 import 'react-multi-carousel/lib/styles.css';
 
 import map from 'assets/Map.png';
@@ -34,6 +35,8 @@ import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
 import { faPhoneVolume } from '@fortawesome/free-solid-svg-icons'
 import { faAt } from '@fortawesome/free-solid-svg-icons'
 
+import axios from 'axios';
+
 import Icon from 'components/Icon';
 import 'fonts/icomoon.svg';
 
@@ -44,7 +47,9 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      background: 'white'
+      background: 'white',
+      color: ['red', 'green', 'blue'],
+      formName: '', formMail: '', formPhone: '', formComment: ''
     }
  
     this.responsive = {
@@ -64,10 +69,68 @@ class Home extends Component {
         partialVisibilityGutter: 3 // this is needed to tell the amount of px that should be visible.
       }
     };
+
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleMailChange = this.handleMailChange.bind(this);
+    this.handlePhoneChange = this.handlePhoneChange.bind(this);
+    this.handleCommentChange = this.handleCommentChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleNameChange(e){
+    this.setState({
+      formName: e.target.value
+    })
+  }
+  handleMailChange(e){
+    this.setState({
+      formMail: e.target.value
+    })
+  }
+  handlePhoneChange(e){
+    this.setState({
+      formPhone: e.target.value
+    })
+  }
+  handleCommentChange(e){
+    this.setState({
+      formComment: e.target.value
+    })
+  }
+
+  async handleSubmit (e) {
+                            
+    let info = await axios.post('http://localhost:8000/api/forms/add', 
+                  {
+                    name:this.state.formName,
+                    mail:this.state.formMail,
+                    phone:this.state.formPhone,
+                    comment:this.state.formComment
+                  })
+                  .then( response => {
+                                        console.log(response.data);
+                                      }).catch(err=> console.log(err));
+
+    
   }
 
   componentDidMount(){
     this.props.updateNavColor(this.state.background);
+    if(localStorage.getItem("times") == null || localStorage.getItem("times") == "undefined"){
+      localStorage.setItem("times", 0);
+    }
+    
+    if(localStorage.getItem("times") >= 2){
+      localStorage.setItem("times", 0);
+    }
+
+    else{
+      localStorage.getItem("times")
+      localStorage.setItem("times", parseInt(localStorage.getItem("times")) + 1);
+    }
+
+    console.log(this.state.color[localStorage.getItem("times")])
+    
   }
 
   render() {
@@ -91,8 +154,17 @@ class Home extends Component {
                         <div className=" columns left">
 
                             <div className="column is-two-thirds lema">
+
+                            <p>{this.actualColor}</p>
+                            <p>{this.actualColor}</p>  
+
+                            <Typical
+                                steps={['Innovación, diseño y tecnología para las personas', 500]}
+                                loop={1}
+                                wrapper="p"
+                            />
                               
-                            <p>Innovación, diseño y tecnología para las personas</p>
+                            <p></p>
                               
                             </div>
 
@@ -107,7 +179,7 @@ class Home extends Component {
                     </div>
 
                     <div className="column is-one-third text">
-                      <p>Somos un laboratorio de la Universidad Nacional de Colombia que trabaja desde y para la innovación. Nuestra pasión es <b>crear soluciones tecnológicas</b> que permitan transformar de manera positiva la realidad de las personas y las organizaciones.</p>
+                      <p>Somos un laboratorio de la Universidad Nacional de Colombia que trabaja desde y para la innovación. Nuestra pasión es <b style={{borderBottomColor: this.state.color[localStorage.getItem("times")]}}>crear soluciones tecnológicas</b> que permitan transformar de manera positiva la realidad de las personas y las organizaciones.</p>
                     </div>
 
                   </div>
@@ -321,14 +393,14 @@ class Home extends Component {
                             <div className="field">
                                 <label className="label">Nombre completo</label>
                                 <div className="control">
-                                  <input className="input" type="text" placeholder="Ej: Carlos Sanchez"/>
+                                  <input className="input" type="text" placeholder="Ej: Carlos Sanchez" onChange={this.handleNameChange}/>
                                 </div>
                             </div>
 
                             <div className="field">
                               <label className="label">Correo</label>
                               <div className="control has-icons-left has-icons-right">
-                                <input className="input is-danger" type="email" placeholder="Ej: ejemplo@unal.edu.co"/>
+                                <input className="input is-danger" type="email" placeholder="Ej: ejemplo@unal.edu.co"  onChange={this.handleMailChange}/>
                                 <span className="icon is-small is-left">
                                   <i className="fas fa-envelope"></i>
                                 </span>
@@ -342,7 +414,7 @@ class Home extends Component {
                             <div className="field">
                               <label className="label">Número de teléfono</label>
                               <div className="control has-icons-left has-icons-right">
-                                <input className="input is-danger" type="text" placeholder="Ej: 3308695879" />
+                                <input className="input is-danger" type="text" placeholder="Ej: 3308695879" onChange={this.handlePhoneChange}/>
                                 <span className="icon is-small is-left">
                                   <i className="fas fa-user"></i>
                                 </span>
@@ -356,12 +428,12 @@ class Home extends Component {
                             <div className="field">
                               <label className="label">Breve descripción de lo que te gustaría discutir con nosotros</label>
                               <div className="control">
-                                <textarea className="textarea" placeholder="Escriba aquí"></textarea>
+                                <textarea className="textarea" placeholder="Escriba aquí" onChange={this.handleCommentChange}></textarea>
                               </div>
                             </div>
 
                             
-                                <button className="button is-link">Enviar</button>
+                                <button className="button is-link" onClick={this.handleSubmit}>Enviar</button>
                             
 
                       </div>  

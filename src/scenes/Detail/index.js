@@ -21,6 +21,8 @@ import { faFacebookF } from '@fortawesome/free-brands-svg-icons'
 import { faTwitter } from '@fortawesome/free-brands-svg-icons'
 import { faWhatsapp } from '@fortawesome/free-brands-svg-icons'
 
+import axios from 'axios';
+
 
 require('dotenv').config()
 
@@ -30,7 +32,8 @@ class Detail extends Component {
         super(props);
 
         this.state = {
-          background: '#02CAF4'
+          background: '#02CAF4', 
+          services: []
         }
 
         this.responsive = {
@@ -72,7 +75,19 @@ class Detail extends Component {
   }
 
   componentDidMount(){
-    this.props.updateNavColor(this.state.background);
+    axios.get('http://newadmin4.vivelabbogota.com/api/services')
+       .then(response => {
+         this.setState({ services: response.data });
+         console.log(this.state.services);
+         console.log(this.state.services[0].background);
+         this.props.updateNavColor(this.state.services[0].background);
+       })
+       .catch(function (error) {
+         console.log(error);
+       })
+    
+    // this.props.updateNavColor(this.state.background);
+
   }
 
   
@@ -116,7 +131,7 @@ class Detail extends Component {
                                       Area
                                     </button> */}
                                 
-                                    <p className="column lema">{this.props.background}Sitio web villas del progreso</p>
+                                    <p className="column lema">Sitio web villas del progreso</p>
                                     
                                     <div className="column is-half">
                                       <p>PRODUCTO</p>
