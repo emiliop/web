@@ -11,6 +11,8 @@ import blockch2 from 'assets/blockch2.png';
 
 import horizontaldots from 'assets/horizontaldots.png';
 
+import axios from 'axios';
+
 require('dotenv').config()
 
 class Work extends Component {
@@ -18,34 +20,93 @@ class Work extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      background: 'white'
+      background: 'white',
+      services: [],
+      numberOfSlides: []
     }
 
     this.responsive = {
       desktop: {
-        breakpoint: { max: 3000, min: 1024 },
+        breakpoint: {
+          max: 3000,
+          min: 1024
+        },
         items: 1,
-        partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
-      },
-      tablet: {
-        breakpoint: { max: 1024, min: 464 },
-        items: 1,
-        partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
+        partialVisibilityGutter: 40
       },
       mobile: {
-        breakpoint: { max: 464, min: 0 },
+        breakpoint: {
+          max: 464,
+          min: 0
+        },
         items: 1,
-        partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
+        partialVisibilityGutter: 30
+      },
+      tablet: {
+        breakpoint: {
+          max: 1024,
+          min: 464
+        },
+        items: 1,
+        partialVisibilityGutter: 30
       }
     }; 
 
-   
+    this.sortByName = this.sortByName.bind(this);
+    this.createCarousel = this.createCarousel.bind(this);
     
   }
 
   componentDidMount(){
     this.props.updateNavColor(this.state.background);
+
+    axios.get('http://localhost:8000/api/services')
+       .then(response => {
+         this.setState({ services: response.data });
+         this.createCarousel();
+       })
+       .catch(function (error) {
+         console.log(error);
+       })
+    
+    
   }
+
+  createCarousel(){
+    console.log(Math.ceil(this.state.services.length/12));
+    var numberOfSlides = [...Array(Math.ceil(this.state.services.length/12)).keys()]
+    this.setState({numberOfSlides: numberOfSlides });
+  }
+
+  sortByName(){
+    console.log(this.state.services)
+    let byName;
+    byName = this.state.services.sort(function(a, b) {
+      return a.title.localeCompare(b.title);
+  });
+  console.log(byName)
+  this.setState({services: byName})
+}
+
+sortByDate(){
+  console.log(this.state.services)
+  let byName;
+  byName = this.state.services.sort(function(a, b) {
+    return a.title.localeCompare(b.title);
+  });
+    console.log(byName)
+    this.setState({services: byName}) 
+}
+
+sortByService(){
+  console.log(this.state.services)
+  let byName;
+  byName = this.state.services.sort(function(a, b) {
+    return a.title.localeCompare(b.title);
+  });
+    console.log(byName)
+    this.setState({services: byName})
+}
 
   render() {
 
@@ -69,202 +130,316 @@ class Work extends Component {
       );
     };
 
+    let slide2;
+    if (this.state.numberOfSlides.length > 1){
+        slide2 = <div className="column">
+                          <div className="columns is-multiline">                          
+                                {this.state.services.slice(12, 24).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                    <Link to={"/detail/"+service.id}>
+                                                                        <figure className="image">
+                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        </figure>
+                                                                        <p className="title">{service.title}</p>
+                                                                    </Link>  
+                                                                  </div>))} 
+                          </div>  
+        </div>;
+    }else{
+      slide2=null;
+    }
+
+    let slide3;
+    if (this.state.numberOfSlides.length > 2){
+        slide3 = <div className="column">
+                          <div className="columns is-multiline">                          
+                                {this.state.services.slice(24, 36).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                    <Link to={"/detail/"+service.id}>
+                                                                        <figure className="image">
+                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        </figure>
+                                                                        <p className="title">{service.title}</p>
+                                                                    </Link>  
+                                                                  </div>))} 
+                          </div>  
+        </div>;
+    }else{
+      slide3=null;
+    }
+
+    let slide4;
+    if (this.state.numberOfSlides.length > 3){
+        slide4 = <div className="column">
+                          <div className="columns is-multiline">                          
+                                {this.state.services.slice(36, 48).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                    <Link to={"/detail/"+service.id}>
+                                                                        <figure className="image">
+                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        </figure>
+                                                                        <p className="title">{service.title}</p>
+                                                                    </Link>  
+                                                                  </div>))} 
+                          </div>  
+        </div>;
+    }else{
+      slide4=null;
+    }
+
+    let slide5;
+    if (this.state.numberOfSlides.length > 4){
+        slide5 = <div className="column">
+                          <div className="columns is-multiline">                          
+                                {this.state.services.slice(48, 60).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                    <Link to={"/detail/"+service.id}>
+                                                                        <figure className="image">
+                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        </figure>
+                                                                        <p className="title">{service.title}</p>
+                                                                    </Link>  
+                                                                  </div>))} 
+                          </div>  
+        </div>;
+    }else{
+      slide5=null;
+    }
+
+    let slide6;
+    if (this.state.numberOfSlides.length > 5){
+        slide6 = <div className="column">
+                          <div className="columns is-multiline">                          
+                                {this.state.services.slice(60, 72).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                    <Link to={"/detail/"+service.id}>
+                                                                        <figure className="image">
+                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        </figure>
+                                                                        <p className="title">{service.title}</p>
+                                                                    </Link>  
+                                                                  </div>))} 
+                          </div>  
+        </div>;
+    }else{
+      slide6=null;
+    }
+
+    let slide7;
+    if (this.state.numberOfSlides.length > 6){
+        slide7 = <div className="column">
+                          <div className="columns is-multiline">                          
+                                {this.state.services.slice(72, 84).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                    <Link to={"/detail/"+service.id}>
+                                                                        <figure className="image">
+                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        </figure>
+                                                                        <p className="title">{service.title}</p>
+                                                                    </Link>  
+                                                                  </div>))} 
+                          </div>  
+        </div>;
+    }else{
+      slide7= null;
+    }
+
+    let slide8;
+    if (this.state.numberOfSlides.length > 7){
+        slide8 = <div className="column">
+                          <div className="columns is-multiline">                          
+                                {this.state.services.slice(84, 96).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                    <Link to={"/detail/"+service.id}>
+                                                                        <figure className="image">
+                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        </figure>
+                                                                        <p className="title">{service.title}</p>
+                                                                    </Link>  
+                                                                  </div>))} 
+                          </div>  
+        </div>;
+    }else{
+      slide8=null;
+    }
+
+    let slide9;
+    if (this.state.numberOfSlides.length > 8){
+        slide9 = <div className="column">
+                          <div className="columns is-multiline">                          
+                                {this.state.services.slice(96, 108).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                    <Link to={"/detail/"+service.id}>
+                                                                        <figure className="image">
+                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        </figure>
+                                                                        <p className="title">{service.title}</p>
+                                                                    </Link>  
+                                                                  </div>))} 
+                          </div>  
+        </div>;
+    }else{
+      slide9=null;
+    }
+
+    let slide10;
+    if (this.state.numberOfSlides.length > 9){
+        slide10 = <div className="column">
+                          <div className="columns is-multiline">                          
+                                {this.state.services.slice(108, 120).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                    <Link to={"/detail/"+service.id}>
+                                                                        <figure className="image">
+                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        </figure>
+                                                                        <p className="title">{service.title}</p>
+                                                                    </Link>  
+                                                                  </div>))} 
+                          </div>  
+        </div>;
+    }else{
+      slide10=null;
+    }
+
     return (
       <StyledWork>
-       
-          <div className="banner columns is-centered">
 
-              <div className="column lema">
+      <button className="button ver-mas is-normal"  onClick={this.sortByName}>Ver más proyectos</button>
+       
+          <div className="banner columns is-multiline is-centered">
+
+              <div className="column is-full-mobile lema">
                         <p>Nuestro trabajo</p>
               </div>
 
-              <div className="column is-one-fifth">
+              <div className="column is-hidden-mobile is-one-fifth">
                    <img className="squares" src={horizontaldots} alt=""/>
               </div>
 
-              <div className="column is-half">
+              <div className="column is-full-mobile is-half">
                         <p>Innovación, investigación, tecnología y mucho más. Descubre los proyectos que nos hacen sentir orgullosos en LAB101.</p>
               </div>
 
           </div>
 
           <div className="gallery">
-             
-              <Carousel className="columns" additionalTransfrom={0}
-                                        arrows
-                                        customLeftArrow={<CustomLeftArrow />}
-                                        customRightArrow={<CustomRightArrow />}
-                                        customDot={<CustomDot />}
-                                        autoPlaySpeed={3000}
-                                        centerMode={false}
-                                        infinite={true}
-                                        itemClass=""
-                                        keyBoardControl
-                                        renderButtonGroupOutside={false}
-                                        showDots={true}
-                                        renderDotsOutside
-                                        slidesToSlide={1}
-                                        responsive={this.responsive}>
-
-                <div className="column">
-
-                   <div className="columns is-multiline">                          
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                              <figure className="image">
-                                  <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
-                              </figure>
-                              <p className="title">App: se puede ser</p>
-                            </Link>  
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                  <img className="" src={blockch} alt="imagen de bogota"/>
-                              </figure>
-                              <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Sitio Web Colegio Villas del Progreso</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
-                                </figure>
-                                <p className="title">App: se puede ser</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                  <img className="" src={blockch} alt="imagen de bogota"/>
-                              </figure>
-                              <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Sitio Web Colegio Villas del Progreso</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
-                                </figure>
-                                <p className="title">App: se puede ser</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                  <img className="" src={blockch} alt="imagen de bogota"/>
-                              </figure>
-                              <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Sitio Web Colegio Villas del Progreso</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
-                                </figure>
-                                <p className="title">App: se puede ser</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                  <img className="" src={blockch} alt="imagen de bogota"/>
-                              </figure>
-                              <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Sitio Web Colegio Villas del Progreso</p>
-                            </Link>   
-                          </div>
-
-                       </div>  
-
-                    </div>
-
-                    <div className="column">
-
-                        <div className="columns is-multiline">                          
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                          <div className="column infoCard is-one-third">
-                            <Link to="/statistics">
-                                <figure className="image">
-                                    <img className="" src={blockch2} alt="imagen de bogota"/>
-                                </figure>
-                                <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>   
-                          </div>
-
-                        </div>
-                  
+                         
+              <Carousel className="columns"
+                        responsive={this.responsive}
+                        centerMode={false}
+                        arrows={true}
+                        customLeftArrow={<CustomLeftArrow />}
+                        customRightArrow={<CustomRightArrow />}
+                        customDot={<CustomDot />}
+                        infinite={true}
+                        renderButtonGroupOutside={false}
+                        showDots={true}
+                        renderDotsOutside={true}>
+                  <div className="column">
+                       <div className="columns is-multiline">                          
+                            {this.state.services.slice(0, 12).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                <Link to={"/detail/"+service.id}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                    </figure>
+                                                                    <p className="title">{service.title}</p>
+                                                                </Link>  
+                                                              </div>))} 
+                      </div>  
                   </div>
+
+                  <div className="column">
+                          <div className="columns is-multiline">                          
+                                {this.state.services.slice(12, 24).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                    <Link to={"/detail/"+service.id}>
+                                                                        <figure className="image">
+                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        </figure>
+                                                                        <p className="title">{service.title}</p>
+                                                                    </Link>  
+                                                                  </div>))} 
+                          </div>  
+                  </div>
+                  
+                  {this.state.numberOfSlides.length > 2  && 
+                  <div className="column">
+                       <div className="columns is-multiline">                          
+                            {this.state.services.slice(26, 38).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                <Link to={"/detail/"+service.id}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                    </figure>
+                                                                    <p className="title">{service.title}</p>
+                                                                </Link>  
+                                                              </div>))} 
+                      </div>  
+                  </div>}
+
+                  { this.state.numberOfSlides.length > 3 &&
+                  <div className="column">
+                       <div className="columns is-multiline">                          
+                            {this.state.services.slice(39, 51).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                <Link to={"/detail/"+service.id}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                    </figure>
+                                                                    <p className="title">{service.title}</p>
+                                                                </Link>  
+                                                              </div>))                            } 
+                      </div>  
+                  </div>
+                  }
+
+                  { this.state.numberOfSlides.length > 4 &&
+                  <div className="column">
+                       <div className="columns is-multiline">                          
+                            {this.state.services.slice(52, 64).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                <Link to={"/detail/"+service.id}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                    </figure>
+                                                                    <p className="title">{service.title}</p>
+                                                                </Link>  
+                                                              </div>))                            } 
+                      </div>  
+                  </div>
+                  }
+
+                  { this.state.numberOfSlides.length > 5 &&
+                  <div className="column">
+                       <div className="columns is-multiline">                          
+                            {this.state.services.slice(65, 77).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                <Link to={"/detail/"+service.id}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                    </figure>
+                                                                    <p className="title">{service.title}</p>
+                                                                </Link>  
+                                                              </div>))                            } 
+                      </div>  
+                  </div>
+                  }
+
+                  { this.state.numberOfSlides.length > 6 &&
+                  <div className="column">
+                       <div className="columns is-multiline">                          
+                            {this.state.services.slice(78, 90).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                <Link to={"/detail/"+service.id}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                    </figure>
+                                                                    <p className="title">{service.title}</p>
+                                                                </Link>  
+                                                              </div>))                            } 
+                      </div>  
+                  </div>
+                  }
+
+                  { this.state.numberOfSlides.length > 7 &&
+                  <div className="column">
+                       <div className="columns is-multiline">                          
+                            {this.state.services.slice(91, 103).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                                                <Link to={"/detail/"+service.id}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                    </figure>
+                                                                    <p className="title">{service.title}</p>
+                                                                </Link>  
+                                                              </div>))                            } 
+                      </div>  
+                  </div>
+                  } 
 
               </Carousel>
 
@@ -444,6 +619,23 @@ align-items: center;
     }
   }
 }
+
+@media screen and (max-width: 1023px){
+
+  .banner{
+    height: auto;
+    .lema{
+      margin-left: 0vw;
+      padding-left: 3vw;
+    }
+  }
+  .column.is-full-mobile.is-half{
+    font-size: 1em;
+    padding-left: 3.5%;
+  }
+}
+
+
 `;
 
 export default Work;

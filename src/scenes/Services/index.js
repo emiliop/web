@@ -76,17 +76,17 @@ class Services extends Component {
 
               <StyledServices>
 
-                    <div className="banner columns is-centered">
+                    <div className="banner columns is-multiline is-centered">
 
-                        <div className="column lema">
+                        <div className="column is-full-mobile lema">
                                   <p>Servicios</p>
                         </div>
 
-                        <div className="column is-one-fifth">
+                        <div className="column is-hidden-mobile is-one-fifth">
                             <img className="squares" src={horizontaldots} alt=""/>
                         </div>
 
-                        <div className="column is-half">
+                        <div className="column is-full-mobile is-half">
                                   <p>Ayudamos a tu organización, a partir del conocimiento experto e interdisciplinar de la Universidad Nacional de Colombia, a encontrar soluciones innovadoras que transformen el entorno organizacional y/o social en las siguientes líneas: Experiencia de usuario, tecnologías emergentes, procesos de innovación y capacitación/formación.</p>
                         </div>
 
@@ -192,109 +192,186 @@ class Services extends Component {
 
                   </div>
                             
-                    <div className="columns sections is-multiline is-hidden-mobile">
+                    <div className="columns sections is-multiline">
 
-                        <div className="column is-full">
+                        <div className="column is-full portafolio">
 
                             <p className="title titulo">Nuestro portafolio de servicios</p>
 
                         </div>
                       
-                        <div className="column logo is-half">
-                        <Link to="/detail">
-                            <div className="columns">
-                            
-                                <div className="column">
-                                    <p className="title"><span>1 –</span> Experiencia de usuario</p>
-                                    <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                        <div className="column logo is-full">
+                                <div className="columns">
+                                 
+                                    <div className="column is-one-fifth">
+                                        <figure className="image">
+                                            <img className="" src={user} alt="imagen de grafica de barras"/>
+                                        </figure>
+                                    </div>
+
+                                    <div className="column text">
+                                        <p className="title"><span>1 –</span> Experiencia de usuario</p>
+                                        <p className="texto">Trabajamos para que la interacción de los clientes y/o usuarios con los productos o servicios diseñados sean eficaces, eficientes y satisfactorios. Con nosotros podrás descubrir una forma innovadora de generar contenidos digitales y desarrollar estrategias de accesibilidad y/o usabilidad de tus productos y servicios.</p>
+                                        
+                                        <div className="columns options">
+                                          <div className="column">
+                                            <ul>
+                                              <li>Evaluación heurística (evaluación de expertos)</li>
+                                              <li>Test con usuarios</li>
+                                              <li>Arquitectura de información</li>
+                                              <li>Experiencia de cliente incógnito</li>
+                                              <li>Diseño de servicios</li>
+                                            </ul>
+                                          </div>
+
+                                          <div className="column">
+                                            <ul>
+                                              <li>Diseño de interfaces (UI)</li>
+                                              <li>Experiencia de cliente (CX)</li>
+                                              <li>Investigación de usuarios</li>
+                                              <li>Validación emocional de contenido</li>
+                                              <li>Accesibilidad para contenido digital</li>
+                                            </ul>
+                                          </div>
+                                        </div>
+
+                                        <p className="texto">Si deseas conocer en más detalle cada uno de estos servicios, puedes consultar nuestro portafolio de servicios haciendo clic aquí.</p>
+                                        
+
+                                    </div>
+                                
                                 </div>
-                                <div className="column">
-                                    <figure className="image">
-                                        <img className="" src={user} alt="imagen de grafica de barras"/>
-                                    </figure>
-                                </div>
-                            
-                            </div>
-                            
-                        </Link>  
+                                
                         </div>
                       
                         
-                        <div className="column logo is-half">
-                        <Link to="/detail">
-                            <div className="columns">
-                            
-                                <div className="column">
-                                    <p className="title"><span>2 –</span> Experiencia de usuario</p>
-                                    <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                        <div className="column logo is-full">
+                                <div className="columns">
+
+                                    <div className="column is-one-fifth">
+                                        <figure className="image">
+                                            <img className="" src={technology} alt="imagen de grafica de barras"/>
+                                        </figure>
+                                    </div>
+                                
+                                    <div className="column text">
+                                        <p className="title"><span>2 –</span> Tecnologías emergentes</p>
+                                        <p className="texto">Utilizamos herramientas y/o estrategias novedosas en la producción de software para potenciar los métodos de innovación digitales.</p>
+
+                                        <div className="columns options">
+                                          <div className="column">
+                                            <ul>
+                                              <li>Big Data</li>
+                                              <li>Datos abiertos</li>
+                                              <li>Machine learning</li>
+                                              <li>Internet de las cosas</li>
+                                            </ul>
+                                          </div>
+
+                                          <div className="column">
+                                            <ul>
+                                              <li>Blockchain</li>
+                                              <li>Analítica y visualización de datos</li>
+                                              <li>Realidad virtual y aumentada</li>
+                                            </ul>
+                                          </div>
+                                        </div>
+
+                                        <p className="texto">Si deseas conocer en más detalle cada uno de estos servicios, puedes consultar nuestro portafolio de servicios haciendo clic aquí.</p>
+                                    </div>
+                                    
+                                
                                 </div>
-                                <div className="column">
-                                    <figure className="image">
-                                        <img className="" src={user} alt="imagen de grafica de barras"/>
-                                    </figure>
-                                </div>
-                            
-                            </div>
-                            
-                        </Link>
+                                
                         </div>
 
-                        <div className="column logo is-half">
-                        <Link to="/detail">
-                            <div className="columns">
-                            
-                                <div className="column">
-                                    <p className="title"><span>3 –</span> Experiencia de usuario</p>
-                                    <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-                                </div>
-                                <div className="column">
-                                    <figure className="image">
-                                        <img className="" src={user} alt="imagen de grafica de barras"/>
-                                    </figure>
-                                </div>
-                            
-                            </div>
-                            
-                        </Link>
+                        <div className="column logo is-full">
+                              <div className="columns">
+
+                                  <div className="column is-one-fifth">
+                                      <figure className="image">
+                                          <img className="" src={user} alt="imagen de grafica de barras"/>
+                                      </figure>
+                                  </div>
+                              
+                                  <div className="column text">
+                                      <p className="title"><span>3 –</span> Procesos de innovación</p>
+                                      <p className="texto">Orientamos las dinámicas de innovación para asegurar su materialización, sostenibilidad y formular sus alternativas a situaciones o problemas complejos.</p>
+
+                                      <div className="columns options">
+                                          <div className="column">
+                                            <ul>
+                                              <li>Innovación social</li>
+                                              <li>Innovación abierta</li>
+                                              <li>Estudios y análisis</li>
+                                            </ul>
+                                          </div>
+
+                                          <div className="column">
+                                            <ul>
+                                            </ul>
+                                          </div>
+                                        </div>
+
+                                        <p className="texto">Si deseas conocer en más detalle cada uno de estos servicios, puedes consultar nuestro portafolio de servicios haciendo clic aquí.</p>
+                                  </div>
+                                  
+                              
+                              </div>
+                              
                         </div>
 
-                        <div className="column logo is-half">
-                        <Link to="/detail">
-                            <div className="columns">
-                            
-                                <div className="column">
-                                    <p className="title"><span>4 –</span> Experiencia de usuario</p>
-                                    <p className="texto">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
-                                </div>
-                                <div className="column">
-                                    <figure className="image">
-                                        <img className="" src={user} alt="imagen de grafica de barras"/>
-                                    </figure>
-                                </div>
-                            
-                            </div>
-                            
-                        </Link>
+                        <div className="column logo is-full">
+                              <div className="columns">
+
+                                  <div className="column is-one-fifth">
+                                      <figure className="image">
+                                          <img className="" src={technology} alt="imagen de grafica de barras"/>
+                                      </figure>
+                                  </div>
+                              
+                                  <div className="column text">
+                                      <p className="title"><span>4 –</span> Formación a la medida</p>
+                                      <p className="texto">Desarrollamos procesos de capacitación y/o formación para construir competencias en el diseño y desarrollo de soluciones efectivas.</p>
+                                      <div className="columns options">
+                                          <div className="column">
+                                            <ul>
+                                            </ul>
+                                          </div>
+
+                                          <div className="column">
+                                            <ul>
+                                            </ul>
+                                          </div>
+                                        </div>
+                                      <p className="texto">Si deseas conocer en más detalle cada uno de estos servicios, puedes consultar nuestro portafolio de servicios haciendo clic aquí.</p>
+                                  </div>
+                                  
+                              
+                              </div>
+                              
                         </div>
 
                         
                       
                     </div>
 
-                    <div className="columns contact">
+                    <div className="columns is-multiline contact">
 
-                      <div className="column is-one-quarter titulo">
+                      <div className="column is-full-mobile is-one-quarter titulo">
                         <p>Contáctanos</p>
                       </div>
 
-                      <div className="column is-half">
+                      <div className="column is-full-mobile is-half">
                         <p>Cuéntanos qué necesitas, nosotros te asesoraremos para que obtengas la solución que tu empresa necesita</p>
                       </div>
 
-                      <div className="column is-one-quarter">
+                      <div className="column is-full-mobile is-one-quarter">
+                        <Link to="/together">
                           <button>
                             Trabajemos juntos
                           </button>
+                        </Link>
                       </div>
 
                     </div>
@@ -516,16 +593,45 @@ align-items: center;
   margin-right: 0;
   margin-left: 0;
   padding-left: 5vw;
-  background-image: url(${slides2});
-  background-repeat: no-repeat;
-  background-size: cover;
+ 
 
   .column.is-full {
     display: flex;
   }
 
+  .portafolio{
+    background-image: url(${slides2});
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: -5vw;
+    width: 96vw;
+    height: 13vh;
+    display: flex;
+    align-items: center;
+
+    p{
+      margin-left: 3vw;
+    }
+  }
+
  .logo{
-    padding-top: 4vh
+    padding-top: 5vh
+    a{
+      width: 100%;
+    }
+    .text {
+      width: 90vw;
+      padding-right: 5vw;
+      .options {
+        margin-top: 1vh;
+        margin-left: 1vw;
+        ul{
+          list-style-type: disc;
+          color: #18144D;
+      }
+    }
+      
+    }
     .title{
       padding-top: 0;
       text-align: start;
@@ -538,6 +644,9 @@ align-items: center;
     span{
       color: #FF4668;
     }
+    .text {
+    padding-right: 5vw;
+}
   }
 
   .titulo{
@@ -564,7 +673,7 @@ align-items: center;
   width: 95%;
   display: flex;
   align-items: center;
-  height: 30vh;
+  height: 25vh;
 
   .column.is-half {
     font-family: 'Source Sans Pro', sans-serif;
@@ -575,21 +684,20 @@ align-items: center;
     letter-spacing: 0.01em;
     color: #18144D;
     p {
-      padding-right: 40%;
+      padding-right: 35%;
     }
   }
 
   button{
     height: 7vh;
     width: 70%;
-    color: #18144D;
-    background: #FFF500;
-    border: 1px solid rgba(24, 20, 77, 0.16);
+    color: white;
+    background: #18144D;
+    border: 1px solid;
     font-family: 'Raleway', sans-serif;
     font-weight: 800;
     font-size: 1em;
     line-height: 1.2em;
-    letter-spacing: 0.01em;
   }  
 }
 
@@ -661,7 +769,27 @@ figure{
 
 }
 
+@media screen and (max-width: 1023px){
+  .banner, .contact{
+    height: auto;
+  }
+  .column.is-full-mobile.is-half{
+    font-size: 1em;
+    padding-left: 3.5%;
+  }
 
+  .sections{
+    .titulo{
+      text-align: start;
+    }
+  }
+  .contact{
+    button{
+      width: 90%;
+      margin-bottom: 5vh;
+    }
+  }
+}
 
 @media screen and (max-height: 945px){
   p.title {
@@ -712,9 +840,7 @@ figure{
 }
 
 @media screen and (max-width: 799px) {
-    p.title {
-      font-size: 0.78em;
-  }
+ 
   p.subtitle {
     font-size: 0.7em;
   }

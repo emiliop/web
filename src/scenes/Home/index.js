@@ -52,7 +52,13 @@ class Home extends Component {
       background: 'white',
       color: ['#86F26B', '#FFF500', '#FFB800','#FF4668','#B04BFF','#4BA9FF'],
       services: [],
-      formName: '', formMail: '', formPhone: '', formComment: ''
+      addClass: false,
+      formName: '', formMail: '', formPhone: '', formComment: '',
+      emailValid: false,
+      nameValid: false,
+      phoneValid: false,
+      commentValid: false,
+      disableButton: true
     }
  
     this.responsive = {
@@ -82,48 +88,150 @@ class Home extends Component {
       }
     };
 
+    this.responsive2 = {
+      desktop: {
+        breakpoint: { max: 3000, min: 1024 },
+        items: 1,
+        partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
+      },
+      tablet: {
+        breakpoint: { max: 1024, min: 464 },
+        items: 1,
+        partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
+      },
+      mobile: {
+        breakpoint: { max: 464, min: 0 },
+        items: 1,
+        partialVisibilityGutter: 1 // this is needed to tell the amount of px that should be visible.
+      }
+    };
+
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleMailChange = this.handleMailChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.resetform = this.resetform.bind(this);
+    this.disableButton = this.disableButton.bind(this);
   }
 
   handleNameChange(e){
+
+    let nameValid;
+
+    nameValid = e.target.value.match(/^([a-z ñáéíóú]{2,60})$/i);
+
+    if(nameValid && e.target.value.length > 0){
+      this.setState({
+        nameValid: true
+      })
+    }
+    else{
+      this.setState({
+        nameValid: false
+      })
+    }
+
+    this.disableButton()
+
     this.setState({
       formName: e.target.value
     })
+
   }
+
   handleMailChange(e){
+    let emailValid;
+
+    emailValid = e.target.value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
+  
+    if(emailValid && e.target.value.length > 0){
+      this.setState({
+        emailValid: true
+      })
+    }
+    else{
+      this.setState({
+        emailValid: false
+      })
+    }
+
+    this.disableButton()
+
     this.setState({
       formMail: e.target.value
     })
+
   }
+
   handlePhoneChange(e){
+
+    let phoneValid;
+
+    phoneValid = e.target.value.match(/^\d+$/);
+
+    if(phoneValid && e.target.value.length > 0){
+      this.setState({
+        phoneValid: true
+      })
+    }
+    else{
+      this.setState({
+        phoneValid: false
+      })
+    }
+
+    this.disableButton()
+
     this.setState({
       formPhone: e.target.value
     })
+
   }
+
   handleCommentChange(e){
     this.setState({
       formComment: e.target.value
     })
   }
 
+  disableButton(){
+
+    if(!this.state.nameValid || !this.state.emailValid || !this.state.phoneValid){
+      this.setState({ disableButton: true });
+    }
+    else{
+                this.setState({ disableButton: false});
+        }
+  }
+
+
   async handleSubmit (e) {
-                            
-    let info = await axios.post('http://newadmin5.vivelabbogota.com/api/forms/add', 
+   let info = await axios.post('http://newadmin5.vivelabbogota.com/api/forms/add', 
                   {
                     name:this.state.formName,
                     mail:this.state.formMail,
                     phone:this.state.formPhone,
                     comment:this.state.formComment
                   })
-                  .then( response => {
+                  .then( response => { this.toggle();
                                         console.log(response.data);
-                                      }).catch(err=> console.log(err));
+                                        this.resetform();
+                                     }).catch(err=> console.log(err));
+  }
 
-    
+  resetform(){
+    this.setState({ formName: '',
+                    formMail: '',
+                    formPhone: '',
+                    formComment: '',
+   });
+
+  }
+
+  toggle() {
+    this.setState({addClass: !this.state.addClass});
   }
 
   componentDidMount(){
@@ -151,9 +259,11 @@ class Home extends Component {
     }
 
     console.log(this.state.color[localStorage.getItem("times")])
+    console.log(this.state.addClass)
     
   }
 
+  
   render() {
 
     const CustomLeftArrow = ({ onClick }) => (
@@ -162,21 +272,23 @@ class Home extends Component {
     const CustomRightArrow = ({ onClick }) => {
       return <i className="custom-right-arrow" onClick={() => onClick()} />;
     };
+      
+    let modalClass = ["modal"];
+    if(this.state.addClass) {
+      modalClass.push(' is-active');
+    }
    
-
     return (
-
-            
-
+      
             <StyledHome>
-             
-                  <div className="banner columns">
 
-                    <div className="column is-two-thirds">
+                  <div className="banner columns is-multiline">
+
+                    <div className="column is-full-mobile is-two-thirds-desktop">
 
                         <div className=" columns left">
 
-                            <div className="column is-two-thirds lema"> 
+                            <div className="column is-full-mobile is-two-thirds lema"> 
 
                             <Typical
                                 steps={['Innovación, diseño y tecnología para las personas', 500]}
@@ -188,7 +300,7 @@ class Home extends Component {
                               
                             </div>
 
-                            <div className="column is-one-fifth">
+                            <div className="column is-hidden-mobile is-one-fifth">
                               <figure className="image">
                                   <img className="squares" src={green_squares} alt=""/>
                               </figure>  
@@ -198,27 +310,35 @@ class Home extends Component {
 
                     </div>
 
-                    <div className="column is-one-third text">
+                    <div className="column is-full-mobile is-one-third-desktop text">
                       <p>Somos un laboratorio de la Universidad Nacional de Colombia que trabaja desde y para la innovación. Nuestra pasión es <b style={{borderBottomColor: this.state.color[localStorage.getItem("times")]}}>crear soluciones tecnológicas</b> que permitan transformar de manera positiva la realidad de las personas y las organizaciones.</p>
                     </div>
 
                   </div>
 
-                  <Carousel className="columns" responsive={this.responsive} partialVisible={true} centerMode={false} arrows={true} customLeftArrow={<CustomLeftArrow />}
-  customRightArrow={<CustomRightArrow />} showDots={true}>
-                      {this.state.services.map( service => (<div className="column logo" key={service.id}>
+                  <Carousel className="columns" 
+                            responsive={this.responsive} 
+                            partialVisible={true} 
+                            centerMode={false} 
+                            arrows={true} 
+                            customLeftArrow={<CustomLeftArrow />}
+                            customRightArrow={<CustomRightArrow />} 
+                            showDots={true}>
+                            {
+                                this.state.services.map( service => (<div className="column logo" key={service.id}>
                                                               <Link to={"/detail/"+service.id}>
                                                                   <figure className="image">
                                                                       <img className="" src={"http://newadmin5.vivelabbogota.com/images/" + service.image} />
                                                                   </figure>
                                                                   <p className="title">{service.title}</p>
                                                               </Link>  
-                                                            </div>))} 
+                                                            </div>))
+                            } 
                   </Carousel>
               
-                  <Link to="/contrareference"><button className="button ver-mas is-normal">Ver más proyectos</button></Link>
+                  <Link to="/work"><button className="button ver-mas is-normal">Ver más proyectos</button></Link>
                             
-                  <div className="columns sections is-multiline is-hidden-mobile">
+                  <div className="columns sections is-multiline">
 
                         <div className="column is-full">
 
@@ -226,8 +346,8 @@ class Home extends Component {
 
                         </div>
                       
-                        <div className="column logo is-half">
-                        <Link to="/statistics">
+                        <div className="column logo is-full-mobile is-half">
+                        <Link to="/services">
                             <figure className="image">
                                 <img className="" src={user} alt="imagen de grafica de barras"/>
                             </figure>
@@ -237,8 +357,8 @@ class Home extends Component {
                         </div>
                       
                         
-                        <div className="column logo is-half">
-                         <Link to="/contrareference"> 
+                        <div className="column logo is-full-mobile is-half">
+                         <Link to="/services"> 
                             <figure className="image">
                                 <img className="" src={technology} alt="imagen de bogota"/>
                             </figure>
@@ -247,8 +367,8 @@ class Home extends Component {
                             </Link>
                         </div>
 
-                        <div className="column logo is-half">
-                         <Link to="/contrareference"> 
+                        <div className="column logo is-full-mobile is-half">
+                         <Link to="/services"> 
                             <figure className="image">
                                 <img className="is-centered" src={innovation} alt="imagen de bogota"/>
                             </figure>
@@ -257,8 +377,8 @@ class Home extends Component {
                             </Link>
                         </div>
 
-                        <div className="column logo is-half">
-                         <Link to="/contrareference"> 
+                        <div className="column logo is-full-mobile is-half">
+                         <Link to="/services"> 
                             <figure className="image">
                                 <img className="is-centered" src={innovation} alt="imagen de bogota"/>
                             </figure>
@@ -294,73 +414,151 @@ class Home extends Component {
 
                      </div>
 
-                     <div className="column is-full">
+                     <Carousel  partialVisible={true} 
+                                centerMode={false} 
+                                arrows={true} 
+                                customLeftArrow={<CustomLeftArrow />}
+                                customRightArrow={<CustomRightArrow />} 
+                                showDots={true}
+                                responsive={this.responsive2}>
 
-                      <div  className="columns clients">
+                     <div>
 
-                          <div className="column is-narrow">
+                        <div className="column is-full">
 
-                              <figure className="image">
-                                  <img className="" src={alcaldia} alt="imagen de bogota"/>
-                              </figure>
+                          <div  className="columns clients">
 
-                          </div>
+                              <div className="column is-narrow">
 
-                          <div className="column is-narrow">
+                                  <figure className="image">
+                                      <img className="" src={alcaldia} alt="imagen de bogota"/>
+                                  </figure>
 
-                              <figure className="image">
-                                  <img className="" src={espectador} alt="imagen de bogota"/>
-                              </figure>
+                              </div>
 
-                          </div>
+                              <div className="column is-narrow">
 
-                          <div className="column is-narrow">
+                                  <figure className="image">
+                                      <img className="" src={espectador} alt="imagen de bogota"/>
+                                  </figure>
 
-                              <figure className="image">
-                                  <img className="" src={mintic} alt="imagen de bogota"/>
-                              </figure>
+                              </div>
 
-                          </div>
+                              <div className="column is-narrow">
 
-                        </div>
+                                  <figure className="image">
+                                      <img className="" src={mintic} alt="imagen de bogota"/>
+                                  </figure>
 
-                     </div>
-
-                     <div className="column is-full">
-
-                       <div  className="columns clients">
-
-                            <div className="column is-narrow">
-
-                              <figure className="image">
-                                  <img className="" src={javeriana} alt="imagen de bogota"/>
-                              </figure>
-
-                            </div>
-
-                            <div className="column is-narrow">
-
-                              <figure className="image">
-                                  <img className="" src={dane} alt="imagen de bogota"/>
-                              </figure>
-
-                            </div>
-
-                            <div className="column is-narrow">
-
-                              <figure className="image">
-                                  <img className="" src={sanitas} alt="imagen de bogota"/>
-                              </figure>
+                              </div>
 
                             </div>
 
                         </div>
 
+                        <div className="column is-full">
+
+                          <div  className="columns clients">
+
+                                <div className="column is-narrow">
+
+                                  <figure className="image">
+                                      <img className="" src={javeriana} alt="imagen de bogota"/>
+                                  </figure>
+
+                                </div>
+
+                                <div className="column is-narrow">
+
+                                  <figure className="image">
+                                      <img className="" src={dane} alt="imagen de bogota"/>
+                                  </figure>
+
+                                </div>
+
+                                <div className="column is-narrow">
+
+                                  <figure className="image">
+                                      <img className="" src={sanitas} alt="imagen de bogota"/>
+                                  </figure>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
                      </div>
 
-                      
+                     <div>
 
-                      
+                        <div className="column is-full">
+
+                          <div  className="columns clients">
+
+                              <div className="column is-narrow">
+
+                                  <figure className="image">
+                                      <img className="" src={alcaldia} alt="imagen de bogota"/>
+                                  </figure>
+
+                              </div>
+
+                              <div className="column is-narrow">
+
+                                  <figure className="image">
+                                      <img className="" src={espectador} alt="imagen de bogota"/>
+                                  </figure>
+
+                              </div>
+
+                              <div className="column is-narrow">
+
+                                  <figure className="image">
+                                      <img className="" src={mintic} alt="imagen de bogota"/>
+                                  </figure>
+
+                              </div>
+
+                            </div>
+
+                        </div>
+
+                        <div className="column is-full">
+
+                          <div  className="columns clients">
+
+                                <div className="column is-narrow">
+
+                                  <figure className="image">
+                                      <img className="" src={javeriana} alt="imagen de bogota"/>
+                                  </figure>
+
+                                </div>
+
+                                <div className="column is-narrow">
+
+                                  <figure className="image">
+                                      <img className="" src={dane} alt="imagen de bogota"/>
+                                  </figure>
+
+                                </div>
+
+                                <div className="column is-narrow">
+
+                                  <figure className="image">
+                                      <img className="" src={sanitas} alt="imagen de bogota"/>
+                                  </figure>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                     </div>
+
+                     </Carousel>     
 
                   </div>
 
@@ -377,14 +575,15 @@ class Home extends Component {
                             <div className="field">
                                 <label className="label">Nombre completo</label>
                                 <div className="control">
-                                  <input className="input" type="text" placeholder="Ej: Carlos Sanchez" onChange={this.handleNameChange}/>
+                                  <input className="input" value={this.state.formName} type="text" placeholder="Ej: Carlos Sanchez" onChange={this.handleNameChange}/>
                                 </div>
+                                {!this.state.nameValid && <p className="help is-danger">Formato incorrecto</p> }
                             </div>
 
                             <div className="field">
                               <label className="label">Correo</label>
                               <div className="control has-icons-left has-icons-right">
-                                <input className="input is-danger" type="email" placeholder="Ej: ejemplo@unal.edu.co"  onChange={this.handleMailChange}/>
+                                <input className="input is-danger" value={this.state.formMail} type="email" placeholder="Ej: ejemplo@unal.edu.co"  onChange={this.handleMailChange}/>
                                 <span className="icon is-small is-left">
                                   <i className="fas fa-envelope"></i>
                                 </span>
@@ -392,13 +591,13 @@ class Home extends Component {
                                   <i className="fas fa-exclamation-triangle"></i>
                                 </span>
                               </div>
-                              {/* <p className="help is-danger">El correo es inválido</p> */}
+                               {!this.state.emailValid && <p className="help is-danger">El correo es inválido</p> }
                             </div>
 
                             <div className="field">
                               <label className="label">Número de teléfono</label>
                               <div className="control has-icons-left has-icons-right">
-                                <input className="input is-danger" type="text" placeholder="Ej: 3308695879" onChange={this.handlePhoneChange}/>
+                                <input className="input is-danger" value={this.state.formPhone} type="text" placeholder="Ej: 3308695879" onChange={this.handlePhoneChange}/>
                                 <span className="icon is-small is-left">
                                   <i className="fas fa-user"></i>
                                 </span>
@@ -406,19 +605,20 @@ class Home extends Component {
                                   <i className="fas fa-check"></i>
                                 </span>
                               </div>
-                              {/* <p className="help is-danger">Formato incorrecto</p> */}
+                              {!this.state.phoneValid && <p className="help is-danger">Formato incorrecto</p> }
                             </div>
 
                             <div className="field">
                               <label className="label">Breve descripción de lo que te gustaría discutir con nosotros</label>
                               <div className="control">
-                                <textarea className="textarea" placeholder="Escriba aquí" onChange={this.handleCommentChange}></textarea>
+                                <textarea className="textarea" value={this.state.formComment} placeholder="Escriba aquí" onChange={this.handleCommentChange}></textarea>
                               </div>
                             </div>
 
-                            
-                                <button className="button is-link" onClick={this.handleSubmit}>Enviar</button>
-                            
+                            { this.state.disableButton && <button style={{backgroundColor: 'gray', cursor: 'not-allowed', pointerEvents: 'none' }} className="button is-link" >Enviar</button>}
+
+                            { this.state.nameValid && this.state.emailValid && this.state.phoneValid && <button className="button is-link" onClick={this.handleSubmit}>Enviar</button>}
+
 
                       </div>  
 
@@ -445,7 +645,7 @@ class Home extends Component {
 
                         </div>
 
-                        <div className="column dots">
+                        <div className="column dots is-hidden-mobile">
                               <img className="" src={dots} alt="imagen de bogota"/>
                         </div> 
 
@@ -453,7 +653,7 @@ class Home extends Component {
 
                         <div className="columns">
                        
-                          <div className="column map is-half">
+                          <div className="column map is-full-mobile is-half">
 
                             <figure className="image">
                                 <img className="" src={map} alt="imagen de bogota"/>
@@ -467,7 +667,19 @@ class Home extends Component {
 
                 </div>
 
-              </div>    
+              </div> 
+
+              <div className={modalClass.join(' ')} >
+                  <div className="modal-background"></div>
+                  <div className="modal-card">
+                      <header className="modal-card-head">
+                        <button className="delete" aria-label="close" onClick={this.toggle}></button>
+                      </header>
+                      <section className="modal-card-body">
+                          <div>Datos enviados</div>
+                      </section>
+                    </div>
+              </div>   
                
             </StyledHome>    
     );
@@ -558,7 +770,7 @@ const StyledHome = styled.div`
 
     .custom-right-arrow{
       position: absolute !important;
-      bottom: 6vh;
+      bottom: 5vh;
     right: 6vw;
     z-index: 1;
     border: 1px solid #18144D;
@@ -573,7 +785,7 @@ const StyledHome = styled.div`
 
     .custom-left-arrow{
       position: absolute !important;
-      bottom: 6vh;
+      bottom: 5vh;
     right: 8vw;
     z-index: 1;
     border: 1px solid #18144D;
@@ -585,6 +797,11 @@ const StyledHome = styled.div`
     -webkit-transform: rotate(135deg);
     transform: rotate(135deg);
     }
+
+    .react-multi-carousel-dot-list{
+      margin-bottom: 5vh;
+    }
+
     figure{
       height: auto;
       width: 100%;
@@ -599,7 +816,7 @@ const StyledHome = styled.div`
   }
 
   .ver-mas{
-    width: 11vw;
+    width: 14vw;
     height: 5vh;
     margin-left: 5vw;
     margin-top: -5.5vw;
@@ -607,7 +824,7 @@ const StyledHome = styled.div`
     color: #18144D;
     padding-left: 1em;
     padding-right: 1em;
-    font-size: 0.82em;
+    font-size: 0.95em;
     background-color: transparent;
     border-color: #18144D;
     border-width: 1px;
@@ -751,6 +968,12 @@ const StyledHome = styled.div`
 .partners{
   padding-top: 10vh;
   margin-right: 5vw;
+  .react-multi-carousel-list{
+    background-image: none;
+  }
+  .react-multi-carousel-dot-list {
+   
+  }
   .partner {
       display: flex;
       justify-content: center;
@@ -907,7 +1130,36 @@ const StyledHome = styled.div`
   }
 }
 
+@media screen and (max-width: 1023px){
+  .banner{
+    height: auto;
+    .lema{
+      font-size: 3em;
+    }
+    .text{
+      font-size: 1em;
+    }
+  }
 
+  .react-multi-carousel-dot-list{
+    display:none;
+  }
+
+  .ver-mas{
+    width: 40vw;
+    margin-top: -18.5vw;
+  }
+
+  .contact{
+    .data{
+      .map {
+        width: 90vw;
+      }
+    }
+    
+  }
+  
+}
 
   @media screen and (max-height: 945px){
     p.title {
@@ -958,9 +1210,7 @@ const StyledHome = styled.div`
   }
 
   @media screen and (max-width: 799px) {
-      p.title {
-        font-size: 0.78em;
-    }
+      
     p.subtitle {
       font-size: 0.7em;
     }

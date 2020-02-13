@@ -482,7 +482,7 @@ flex-direction: column;
 
 .svg-inline--fa{
   color: white;
-  padding: 20%;
+  padding: 23%;
   border-radius: 50%;
   display: block;
   width: 2.5vw;
@@ -536,7 +536,7 @@ color: #18144D;
     text-decoration: underline;
 
     .svg-inline--fa{
-      padding: 1%;
+      padding: 4%;
       margin-bottom: 0;
       margin-right: 1vw;
     }
@@ -863,7 +863,29 @@ padding-top: 6vh;
 }
 }
 
-
+@media screen and (max-width: 1023px){
+  .banner{
+    .column.is-1.is-half-mobile{
+      img.squares {
+        padding-right: 5vw;
+      }
+    }
+  }
+  .contenido{
+    .texto{
+      .contenidoDos, .contenidoUno{
+        font-size: 1em;
+      }
+    }
+  }
+  .proyects{
+    a{
+      button{
+        font-size: 1em !important;
+      }
+    }
+  }
+}
 
 @media screen and (max-height: 945px){
   p.title {
@@ -966,11 +988,11 @@ ul.react-multi-carousel-dot-list {
 
   .ver-mas{
     width: 75vw !important;
+    button{
+      font-size: 1em;
+    }
   }
 
-  p.title {
-      font-size: 0.78em;
-  }
   p.subtitle {
     font-size: 0.7em;
   }
