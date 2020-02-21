@@ -76,7 +76,7 @@ class Detail extends Component {
 
   componentDidMount(){
     console.log(this.props);
-    axios.get(`http://newadmin5.vivelabbogota.com/api/services/${this.props.match.params.id}`)
+    axios.get(`http://localhost:8000/api/services/${this.props.match.params.id}`)
        .then(response => {
          this.setState({ services: response.data });
          console.log(this.state.services);
@@ -120,7 +120,7 @@ class Detail extends Component {
             <StyledDetail>
 
                 
-                    <div className="banner columns is-centered">
+                    <div className="banner columns is-centered" style={{backgroundColor: this.state.services.background}}>
 
                         <div className=" columns is-multiline">
 
@@ -132,16 +132,16 @@ class Detail extends Component {
                                       Area
                                     </button> */}
                                 
-                                    <p className="column lema">Sitio web villas del progreso</p>
+                                    <p className="column lema">{this.state.services.title}</p>
                                     
                                     <div className="column is-half">
                                       <p>PRODUCTO</p>
-                                      <p>Tipo de producto</p>
+                                      <p>{this.state.services.product}</p>
                                     </div>
                                     
                                     <div className="column is-half">
                                       <p>CLIENTE</p>
-                                      <p>Nombre del cliente</p>
+                                      <p>{this.state.services.client}</p>
                                     </div>
                                 
                                 </div>
@@ -157,7 +157,7 @@ class Detail extends Component {
                             <div className="column is-half is-full-mobile">
 
                                 <div className="column is-two-thirds ">
-                                    <img className="is-centered" src={detail} alt="imagen de bogota"/>
+                                    <img className="is-centered" src={"http://localhost:8000/images/" + this.state.services.image} alt="imagen de bogota"/>
                                 </div>
 
                             </div>
@@ -209,15 +209,13 @@ class Detail extends Component {
                         </div>
                         
                         <div className="contenidoUno">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
-                            <p>Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                            <p>{this.state.services.body}</p>
                         </div>
                         
-                        <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
+                        <img className="" src={"http://localhost:8000/images/" + this.state.services.midimage} alt="imagen de grafica de barras"/>
                         
                         <div className="contenidoDos">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar sic tempor. Sociis natoque et magnis dis parturient montes, nascetur ridiculus mus. Nam fermentum, nulla luctus pharetra vulputate.</p>
-                            <p>Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis. Descripción. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ullamcorper hendrerit dolor, at rhoncus libero pretium vitae. Nullam eleifend euismod nulla dignissim tempus. Sed fermentum est vitae tellus laoreet convallis.</p>
+                            <p>{this.state.services.body}</p>
                         </div>
                              
                     </div>
@@ -249,7 +247,7 @@ class Detail extends Component {
                         <div className="column logo">
                           <Link to="/statistics">
                               <figure className="image">
-                                  <img className="" src={biblioteca0} alt="imagen de grafica de barras"/>
+                                  <img className="" src={"http://localhost:8000/images/" + this.state.services.imagegallery1} alt="imagen de grafica de barras"/>
                               </figure>
                               <p className="title">App: se puede ser</p>
                           </Link>  
@@ -259,7 +257,7 @@ class Detail extends Component {
                         <div className="column logo">
                         <Link to="/contrareference"> 
                             <figure className="image">
-                                <img className="" src={biblioteca} alt="imagen de bogota"/>
+                                <img className="" src={"http://localhost:8000/images/" + this.state.services.imagegallery2} alt="imagen de bogota"/>
                             </figure>
                             <p className="title">Blockchain para restitucion de tierras</p>
                             </Link>
@@ -268,7 +266,25 @@ class Detail extends Component {
                         <div className="column logo">
                         <Link to="/contrareference"> 
                             <figure className="image">
-                                <img className="" src={biblioteca2} alt="imagen de bogota"/>
+                                <img className="" src={"http://localhost:8000/images/" + this.state.services.imagegallery3} alt="imagen de bogota"/>
+                            </figure>
+                            <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>
+                        </div>
+
+                        <div className="column logo">
+                        <Link to="/contrareference"> 
+                            <figure className="image">
+                                <img className="" src={"http://localhost:8000/images/" + this.state.services.imagegallery4} alt="imagen de bogota"/>
+                            </figure>
+                            <p className="title">Blockchain para restitucion de tierras</p>
+                            </Link>
+                        </div>
+
+                        <div className="column logo">
+                        <Link to="/contrareference"> 
+                            <figure className="image">
+                                <img className="" src={"http://localhost:8000/images/" + this.state.services.imagegallery5} alt="imagen de bogota"/>
                             </figure>
                             <p className="title">Blockchain para restitucion de tierras</p>
                             </Link>
@@ -360,7 +376,6 @@ flex-direction: column;
     height: 40vh;
     align-items: center;
     background-image: url(${detailback});
-    background-color: #02CAF4;
     background-blend-mode: multiply;
     background-position:
     bottom left,

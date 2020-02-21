@@ -14,6 +14,8 @@ import horizontaldots from 'assets/horizontaldots.png';
 import retosback from 'assets/retosback.png';
 import slides2 from 'assets/slides2.png';
 
+import axios from 'axios';
+
 
 require('dotenv').config()
 
@@ -23,7 +25,8 @@ class Services extends Component {
         super(props);
 
         this.state = {
-          background: 'white'
+          background: 'white',
+          services: []
         }
 
         this.responsive = {
@@ -48,6 +51,13 @@ class Services extends Component {
 
   componentDidMount(){
     this.props.updateNavColor(this.state.background);
+    axios.get('http://localhost:8000/api/services')
+       .then(response => {
+         this.setState({ services: response.data });
+       })
+       .catch(function (error) {
+         console.log(error);
+       })
   }
 
   render() {
@@ -99,96 +109,36 @@ class Services extends Component {
                      
 
                       <Carousel className="columns" additionalTransfrom={0}
-                                                    arrows
+                                                    arrows={true}
                                                     customLeftArrow={<CustomLeftArrow />}
                                                     customRightArrow={<CustomRightArrow />}
                                                     customDot={<CustomDot />}
                                                     autoPlaySpeed={3000}
                                                     centerMode={false}
                                                     infinite={true}
-                                                    itemClass=""
-                                                    keyBoardControl
+                                                    keyBoardControl={true}
                                                     renderButtonGroupOutside={false}
                                                     showDots={true}
-                                                    renderDotsOutside
+                                                    renderDotsOutside={true}
                                                     slidesToSlide={1}
                                                     responsive={this.responsive}>
-
-                        <div className="column box infoCard">
-                          <Link to="/statistics">
-                                    <p className="header">Queremos darle la posibilidad a los ciudadanos de acceder a nuestros servicios desde por medio electrónico</p>
-                                    <div className="dataInfo">
-                                        <p className="client">Cliente: Catastro Distrital</p>
-                                        <p className="service">Servicio: Diseño y desarrollo de sitio web</p>
-                                        <p className="duration">Duración: 1 año</p>
-                                    </div>
-                                                                        
-                                    <button>
-                                      Información sobre el proyecto
-                                    </button>
-                          </Link>  
-                        </div>
-
-                        <div className="column box infoCard">
-                          <Link to="/statistics">
-                                    <p className="header">Nuestro objetivo es mejorar nuestros productos obteniendo información de los usuarios</p>
-                                    <div className="dataInfo">
-                                        <p className="client">Cliente: Catastro Distrital</p>
-                                        <p className="service">Servicio: Diseño y desarrollo de sitio web</p>
-                                        <p className="duration">Duración: 1 año</p>
-                                    </div>
-                                    <button>
-                                      Información sobre el proyecto
-                                    </button>
-                          </Link>  
-                        </div>
-                        
-                        <div className="column box infoCard">
-                          <Link to="/statistics">
-                                    <p className="header">Buscamos incentivar la participación ciudadana mediante...</p>
-                                    <div className="dataInfo">
-                                        <p className="client">Cliente: Catastro Distrital</p>
-                                        <p className="service">Servicio: Diseño y desarrollo de sitio web</p>
-                                        <p className="duration">Duración: 1 año</p>
-                                    </div>
-                                    <button>
-                                      Información sobre el proyecto
-                                    </button>
-                          </Link>  
-                        </div>
-                      
-                        
-
-                        <div className="column box infoCard">
-                          <Link to="/statistics">
-                                    <p className="header"></p>
-                                    <div className="dataInfo">
-                                        <p className="client">Cliente: Catastro Distrital</p>
-                                        <p className="service">Servicio: Diseño y desarrollo de sitio web</p>
-                                        <p className="duration">Duración: 1 año</p>
-                                    </div>
-                                    <button>
-                                      Información sobre el proyecto
-                                    </button>
-                          </Link>  
-                        </div>
-
-                        <div className="column box infoCard">
-                          <Link to="/statistics">
-                                    <p className="header"></p>
-                                    <div className="dataInfo">
-                                        <p className="client">Cliente: Catastro Distrital</p>
-                                        <p className="service">Servicio: Diseño y desarrollo de sitio web</p>
-                                        <p className="duration">Duración: 1 año</p>
-                                    </div>
-                                    <button>
-                                      Información sobre el proyecto
-                                    </button>
-                          </Link>  
-                        </div>
-                     
-
-                    </Carousel>
+                                                    {
+                                                      this.state.services.map( service => (<div className="column box infoCard" key={service.id}>
+                                                                                    <Link to={"/detail/"+service.id}>
+                                                                                              <p className="header">{service.description}</p>
+                                                                                              <div className="dataInfo">
+                                                                                                  <p className="client">Cliente: {service.client}</p>
+                                                                                                  <p className="service">Servicio: {service.service1}</p>
+                                                                                                  <p className="duration">Duración: {service.duration}</p>
+                                                                                              </div>
+                                                                                                                                  
+                                                                                              <button>
+                                                                                                Información sobre el proyecto
+                                                                                              </button>
+                                                                                    </Link>  
+                                                                                  </div>))
+                                                  } 
+                      </Carousel>
 
                   </div>
                             

@@ -208,7 +208,7 @@ class Home extends Component {
 
 
   async handleSubmit (e) {
-   let info = await axios.post('http://newadmin5.vivelabbogota.com/api/forms/add', 
+   let info = await axios.post('http://localhost:8000/api/forms/add', 
                   {
                     name:this.state.formName,
                     mail:this.state.formMail,
@@ -237,7 +237,7 @@ class Home extends Component {
   componentDidMount(){
     this.props.updateNavColor(this.state.background);
 
-    axios.get('http://newadmin5.vivelabbogota.com/api/services')
+    axios.get('http://localhost:8000/api/services')
        .then(response => {
          this.setState({ services: response.data });
        })
@@ -328,7 +328,7 @@ class Home extends Component {
                                 this.state.services.map( service => (<div className="column logo" key={service.id}>
                                                               <Link to={"/detail/"+service.id}>
                                                                   <figure className="image">
-                                                                      <img className="" src={"http://newadmin5.vivelabbogota.com/images/" + service.image} />
+                                                                      <img className="" src={"http://localhost:8000/images/" + service.image} />
                                                                   </figure>
                                                                   <p className="title">{service.title}</p>
                                                               </Link>  
