@@ -23,7 +23,7 @@ class Navbar extends Component {
   
   return (
 
-            <StyledNavbar style={{background: this.props.background}}>
+            <StyledNavbar id="nav" style={{background: this.props.background}}>
                 <div className="columns is-multiline">
 
                   <div className="column is-one-fifth">

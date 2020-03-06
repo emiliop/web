@@ -10,6 +10,7 @@ import Detail from '../Detail';
 import map from 'assets/Map.png';
 
 import green_squares from 'assets/green_squares.png';
+import pink_squares from 'assets/pink_squares.png';
 import dots from 'assets/dots.png';
 
 import slides from 'assets/slides.png';
@@ -31,6 +32,15 @@ import mintic from 'assets/mintic.png';
 import javeriana from 'assets/javeriana.png';
 import dane from 'assets/dane.png';
 import sanitas from 'assets/sanitas.png';
+import antv from 'assets/antv.png';
+import bbva from 'assets/bbva.png';
+import biblored from 'assets/biblored.png';
+import merani from 'assets/merani.png';
+import inci from 'assets/inci.png';
+import orquesta from 'assets/orquesta.png';
+import victimas from 'assets/victimas.png';
+import minener from 'assets/minener.png';
+import consejeria from 'assets/consejeria.png';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt } from '@fortawesome/free-solid-svg-icons'
@@ -50,7 +60,8 @@ class Home extends Component {
 
     this.state = {
       background: 'white',
-      color: ['#86F26B', '#FFF500', '#FFB800','#FF4668','#B04BFF','#4BA9FF'],
+      color: ['#86F26B','#FFF500','#FFB800','#FF4668','#B04BFF','#4BA9FF'],
+      partners: [alcaldia,espectador,mintic,javeriana,dane,sanitas,antv,bbva,biblored,merani,inci,orquesta,victimas,minener,consejeria],
       services: [],
       addClass: false,
       formName: '', formMail: '', formPhone: '', formComment: '',
@@ -112,6 +123,7 @@ class Home extends Component {
     this.handleCommentChange = this.handleCommentChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggle = this.toggle.bind(this);
+    this.shuffle = this.shuffle.bind(this);
     this.resetform = this.resetform.bind(this);
     this.disableButton = this.disableButton.bind(this);
   }
@@ -208,7 +220,7 @@ class Home extends Component {
 
 
   async handleSubmit (e) {
-   let info = await axios.post('http://localhost:8000/api/forms/add', 
+   let info = await axios.post('http://newadmin7.vivelabbogota.com/api/forms/add', 
                   {
                     name:this.state.formName,
                     mail:this.state.formMail,
@@ -234,12 +246,27 @@ class Home extends Component {
     this.setState({addClass: !this.state.addClass});
   }
 
+  shuffle(array) {
+    let currentIndex = array.length, temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+  this.setState({partners: array})
+  console.log(this.state.partners)
+}
+
   componentDidMount(){
     this.props.updateNavColor(this.state.background);
 
-    axios.get('http://localhost:8000/api/services')
+    axios.get('http://newadmin7.vivelabbogota.com/api/services')
        .then(response => {
-         this.setState({ services: response.data });
+         this.setState({ services: response.data.filter(service => service.highlighted == 'true') });
        })
        .catch(function (error) {
          console.log(error);
@@ -260,6 +287,10 @@ class Home extends Component {
 
     console.log(this.state.color[localStorage.getItem("times")])
     console.log(this.state.addClass)
+
+    console.log(this.state.partners)
+
+    this.shuffle(this.state.partners);
     
   }
 
@@ -328,7 +359,7 @@ class Home extends Component {
                                 this.state.services.map( service => (<div className="column logo" key={service.id}>
                                                               <Link to={"/detail/"+service.id}>
                                                                   <figure className="image">
-                                                                      <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                      <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                   </figure>
                                                                   <p className="title">{service.title}</p>
                                                               </Link>  
@@ -422,142 +453,95 @@ class Home extends Component {
                                 showDots={true}
                                 responsive={this.responsive2}>
 
-                     <div>
+                                <div>
+                                  <div className="column is-full">
 
-                        <div className="column is-full">
+                                    <div  className="columns clients">
+                                      {
+                                        this.state.partners.slice(0, 3).map( partner => (<div className="column is-narrow" key={partner}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={partner} />
+                                                                    </figure>
+                                                              </div>))
+                                      }
+                                    </div>
 
-                          <div  className="columns clients">
+                                    </div>
 
-                              <div className="column is-narrow">
+                                    <div className="column is-full">
 
-                                  <figure className="image">
-                                      <img className="" src={alcaldia} alt="imagen de bogota"/>
-                                  </figure>
+                                      <div  className="columns clients">
+                                        {
+                                          this.state.partners.slice(3, 6).map( partner => (<div className="column is-narrow" key={partner}>
+                                                                      <figure className="image">
+                                                                          <img className="" src={partner} />
+                                                                      </figure>
+                                                                </div>))
+                                        }
+                                      </div>
 
-                              </div>
-
-                              <div className="column is-narrow">
-
-                                  <figure className="image">
-                                      <img className="" src={espectador} alt="imagen de bogota"/>
-                                  </figure>
-
-                              </div>
-
-                              <div className="column is-narrow">
-
-                                  <figure className="image">
-                                      <img className="" src={mintic} alt="imagen de bogota"/>
-                                  </figure>
-
-                              </div>
-
-                            </div>
-
-                        </div>
-
-                        <div className="column is-full">
-
-                          <div  className="columns clients">
-
-                                <div className="column is-narrow">
-
-                                  <figure className="image">
-                                      <img className="" src={javeriana} alt="imagen de bogota"/>
-                                  </figure>
-
+                                  </div>
                                 </div>
 
-                                <div className="column is-narrow">
+                                <div>
+                                  <div className="column is-full">
 
-                                  <figure className="image">
-                                      <img className="" src={dane} alt="imagen de bogota"/>
-                                  </figure>
+                                    <div  className="columns clients">
+                                      {
+                                        this.state.partners.slice(6, 9).map( partner => (<div className="column is-narrow" key={partner}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={partner} />
+                                                                    </figure>
+                                                              </div>))
+                                      }
+                                    </div>
 
+                                  </div>
+
+                                  <div className="column is-full">
+
+                                    <div  className="columns clients">
+                                      {
+                                        this.state.partners.slice(9, 12).map( partner => (<div className="column is-narrow" key={partner}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={partner} />
+                                                                    </figure>
+                                                              </div>))
+                                      }
+                                    </div>
+
+                                  </div>
                                 </div>
 
-                                <div className="column is-narrow">
+                                <div>     
+                                  <div className="column is-full">
 
-                                  <figure className="image">
-                                      <img className="" src={sanitas} alt="imagen de bogota"/>
-                                  </figure>
+                                    <div  className="columns clients">
+                                      {
+                                        this.state.partners.slice(12, 15).map( partner => (<div className="column is-narrow" key={partner}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={partner} />
+                                                                    </figure>
+                                                              </div>))
+                                      }
+                                    </div>
 
-                                </div>
+                                  </div>
+                                  <div className="column is-full">
 
-                            </div>
+                                    <div  className="columns clients">
+                                      {
+                                        this.state.partners.slice(15, 18).map( partner => (<div className="column is-narrow" key={partner}>
+                                                                    <figure className="image">
+                                                                        <img className="" src={partner} />
+                                                                    </figure>
+                                                              </div>))
+                                      }
+                                    </div>
 
-                        </div>
-
-                     </div>
-
-                     <div>
-
-                        <div className="column is-full">
-
-                          <div  className="columns clients">
-
-                              <div className="column is-narrow">
-
-                                  <figure className="image">
-                                      <img className="" src={alcaldia} alt="imagen de bogota"/>
-                                  </figure>
-
-                              </div>
-
-                              <div className="column is-narrow">
-
-                                  <figure className="image">
-                                      <img className="" src={espectador} alt="imagen de bogota"/>
-                                  </figure>
-
-                              </div>
-
-                              <div className="column is-narrow">
-
-                                  <figure className="image">
-                                      <img className="" src={mintic} alt="imagen de bogota"/>
-                                  </figure>
-
-                              </div>
-
-                            </div>
-
-                        </div>
-
-                        <div className="column is-full">
-
-                          <div  className="columns clients">
-
-                                <div className="column is-narrow">
-
-                                  <figure className="image">
-                                      <img className="" src={javeriana} alt="imagen de bogota"/>
-                                  </figure>
-
-                                </div>
-
-                                <div className="column is-narrow">
-
-                                  <figure className="image">
-                                      <img className="" src={dane} alt="imagen de bogota"/>
-                                  </figure>
-
-                                </div>
-
-                                <div className="column is-narrow">
-
-                                  <figure className="image">
-                                      <img className="" src={sanitas} alt="imagen de bogota"/>
-                                  </figure>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                     </div>
-
+                                  </div>
+                                </div>  
+                 
                      </Carousel>     
 
                   </div>
@@ -759,11 +743,10 @@ const StyledHome = styled.div`
   .react-multi-carousel-list{
     background-image: url(${slides});
     margin-right: 0;
-    padding-left: 5vw;
+    padding-left: 0;
     padding-right: 5vw;
     padding-bottom: 9vh;
     margin-left: 0px;
-    /* padding-left: calc(5vw - 20px); */
     background-size: 100% 70%;
     background-repeat: no-repeat;
     background-position: left bottom;

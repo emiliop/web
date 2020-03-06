@@ -33,7 +33,8 @@ class Detail extends Component {
 
         this.state = {
           background: '#02CAF4', 
-          services: []
+          services: [],
+          relatedProducts: []
         }
 
         this.responsive = {
@@ -72,11 +73,14 @@ class Detail extends Component {
           }
         };
       
+        this.getData = this.getData.bind(this);
   }
 
-  componentDidMount(){
-    console.log(this.props);
-    axios.get(`http://localhost:8000/api/services/${this.props.match.params.id}`)
+  
+  
+
+  async getData(){
+    let dataService = await axios.get(`http://newadmin7.vivelabbogota.com/api/services/${this.props.match.params.id}`)
        .then(response => {
          this.setState({ services: response.data });
          console.log(this.state.services);
@@ -86,9 +90,33 @@ class Detail extends Component {
        .catch(function (error) {
          console.log(error);
        })
-    
-    // this.props.updateNavColor(this.state.background);
 
+    let dataRelated = await axios.get('http://newadmin7.vivelabbogota.com/api/services')
+       .then(response => {
+         let related = response.data.filter(product => product.product == this.state.services.product);
+         related = related.filter(relatedproduct => relatedproduct.id !=  this.state.services.id);
+         this.setState({ relatedProducts: related });
+       })
+       .catch(function (error) {
+         console.log(error);
+       })
+  }
+
+  componentDidMount(){
+    console.log(this.props);
+    this.getData();
+    
+  }
+
+  componentDidUpdate(prevProps){
+    if (this.props.match.params.id !== prevProps.match.params.id) {
+      this.getData();
+      setTimeout(function(){
+        let objControl=document.getElementById("nav");
+        objControl.scrollIntoView();
+     },500)
+    }
+    
   }
 
   
@@ -118,9 +146,8 @@ class Detail extends Component {
 
       
             <StyledDetail>
-
                 
-                    <div className="banner columns is-centered" style={{backgroundColor: this.state.services.background}}>
+                  <div className="banner columns is-centered" style={{backgroundColor: this.state.services.background}}>
 
                         <div className=" columns is-multiline">
 
@@ -157,7 +184,7 @@ class Detail extends Component {
                             <div className="column is-half is-full-mobile">
 
                                 <div className="column is-two-thirds ">
-                                    <img className="is-centered" src={"http://localhost:8000/images/" + this.state.services.image} alt="imagen de bogota"/>
+                                    <img className="is-centered" src={"http://newadmin7.vivelabbogota.com/images/" + this.state.services.image} alt="imagen de bogota"/>
                                 </div>
 
                             </div>
@@ -167,8 +194,6 @@ class Detail extends Component {
                          
 
                   </div>
-
-
         
                   <div className="columns contenido">
 
@@ -212,7 +237,7 @@ class Detail extends Component {
                             <p>{this.state.services.body}</p>
                         </div>
                         
-                        <img className="" src={"http://localhost:8000/images/" + this.state.services.midimage} alt="imagen de grafica de barras"/>
+                        <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + this.state.services.midimage} alt="imagen de grafica de barras"/>
                         
                         <div className="contenidoDos">
                             <p>{this.state.services.body}</p>
@@ -245,49 +270,48 @@ class Detail extends Component {
                                                     responsive={this.responsive}>
 
                         <div className="column logo">
-                          <Link to="/statistics">
+                         
                               <figure className="image">
-                                  <img className="" src={"http://localhost:8000/images/" + this.state.services.imagegallery1} alt="imagen de grafica de barras"/>
+                                  <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + this.state.services.imagegallery1} alt="imagen de grafica de barras"/>
                               </figure>
                               <p className="title">App: se puede ser</p>
-                          </Link>  
+                           
                         </div>
                       
                         
                         <div className="column logo">
-                        <Link to="/contrareference"> 
+                       
                             <figure className="image">
-                                <img className="" src={"http://localhost:8000/images/" + this.state.services.imagegallery2} alt="imagen de bogota"/>
+                                <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + this.state.services.imagegallery2} alt="imagen de bogota"/>
                             </figure>
                             <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>
+                            
                         </div>
 
                         <div className="column logo">
-                        <Link to="/contrareference"> 
+                        
                             <figure className="image">
-                                <img className="" src={"http://localhost:8000/images/" + this.state.services.imagegallery3} alt="imagen de bogota"/>
+                                <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + this.state.services.imagegallery3} alt="imagen de bogota"/>
                             </figure>
                             <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>
+                            
                         </div>
 
                         <div className="column logo">
-                        <Link to="/contrareference"> 
+                        
                             <figure className="image">
-                                <img className="" src={"http://localhost:8000/images/" + this.state.services.imagegallery4} alt="imagen de bogota"/>
+                                <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + this.state.services.imagegallery4} alt="imagen de bogota"/>
                             </figure>
                             <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>
+                           
                         </div>
 
-                        <div className="column logo">
-                        <Link to="/contrareference"> 
+                        <div className="column logo"> 
                             <figure className="image">
-                                <img className="" src={"http://localhost:8000/images/" + this.state.services.imagegallery5} alt="imagen de bogota"/>
+                                <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + this.state.services.imagegallery5} alt="imagen de bogota"/>
                             </figure>
                             <p className="title">Blockchain para restitucion de tierras</p>
-                            </Link>
+                           
                         </div>
                      
 
@@ -297,63 +321,30 @@ class Detail extends Component {
 
                   <div className="proyects">
                   
-                  
-                      <div>
-                          <p className="titulo column is-offset-one-fifth">Proyectos relacionados</p>
+                    <div>
+                      <p className="titulo column is-offset-one-fifth">Proyectos relacionados</p>
                     </div>
 
-                      <Carousel className="columns" additionalTransfrom={0}
-                                                    arrows={false}
-                                                    autoPlaySpeed={3000}
-                                                    centerMode={false}
-                                                    infinite={false}
-                                                    itemClass=""
-                                                    keyBoardControl
-                                                    renderButtonGroupOutside={false}
-                                                    showDots={false}
-                                                    renderDotsOutside={false}
-                                                    slidesToSlide={1}
-                                                    responsive={this.responsiveStatic}>
+                    <Carousel className="columns"
+                              responsive={this.responsiveStatic}>
+                              {
+                                  this.state.relatedProducts.map( service => (<div className="column logo" key={service.id}>
+                                                                     <Link to={"/detail/"+service.id} >
+                                                                          <figure className="image">
+                                                                              <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
+                                                                          </figure>
+                                                                          <p className="title">{service.title}</p>
+                                                                      </Link>  
+                                                                    </div>))
+                              }                                  
+                    </Carousel>
 
-                      <div className="column logo">
-                        <Link to="/statistics">
-                            <figure className="image">
-                                <img className="" src={puede_ser} alt="imagen de grafica de barras"/>
-                            </figure>
-                            <p className="title">App: se puede ser</p>
-                        </Link>  
-                      </div>
-                    
-                      
-                      <div className="column logo">
-                      <Link to="/contrareference"> 
-                          <figure className="image">
-                              <img className="" src={blockch} alt="imagen de bogota"/>
-                          </figure>
-                          <p className="title">Blockchain para restitucion de tierras</p>
-                          </Link>
-                      </div>
-
-                      <div className="column logo">
-                      <Link to="/contrareference"> 
-                          <figure className="image">
-                              <img className="" src={blockch2} alt="imagen de bogota"/>
-                          </figure>
-                          <p className="title">Blockchain para restitucion de tierras</p>
-                          </Link>
-                      </div>
-                    
-
-                  </Carousel>
-
-                  <Link to="/contrareference"><button className="button ver-mas is-normal">Ver más proyectos</button></Link>
+                    <Link to="/work"><button className="button ver-mas is-normal">Ver más proyectos</button></Link>
 
                   </div>
 
             </StyledDetail>
-         
-      
-                
+            
     );
   }
 }

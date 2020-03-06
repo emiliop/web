@@ -22,6 +22,9 @@ class Work extends Component {
     this.state = {
       background: 'white',
       services: [],
+      carrouselServices: [],
+      serviceService: 'Servicio Uno',
+      serviceProduct: 'web',
       numberOfSlides: []
     }
 
@@ -53,25 +56,25 @@ class Work extends Component {
     }; 
 
     this.sortByName = this.sortByName.bind(this);
+    this.sortByService = this.sortByService.bind(this);
+    this.sortByProduct = this.sortByProduct.bind(this);
     this.createCarousel = this.createCarousel.bind(this);
     
   }
 
   componentDidMount(){
     this.props.updateNavColor(this.state.background);
-
-    axios.get('http://localhost:8000/api/services')
+    axios.get('http://newadmin7.vivelabbogota.com/api/services')
        .then(response => {
-         this.setState({ services: response.data });
+         this.setState({ services: response.data,
+                         carrouselServices: response.data });
          this.createCarousel();
        })
        .catch(function (error) {
          console.log(error);
        })
-    
-    
   }
-
+ 
   createCarousel(){
     console.log(Math.ceil(this.state.services.length/12));
     var numberOfSlides = [...Array(Math.ceil(this.state.services.length/12)).keys()]
@@ -79,34 +82,40 @@ class Work extends Component {
   }
 
   sortByName(){
-    console.log(this.state.services)
+
     let byName;
     byName = this.state.services.sort(function(a, b) {
       return a.title.localeCompare(b.title);
   });
   console.log(byName)
-  this.setState({services: byName})
+  this.setState({carrouselServices: byName})
 }
 
-sortByDate(){
-  console.log(this.state.services)
-  let byName;
-  byName = this.state.services.sort(function(a, b) {
-    return a.title.localeCompare(b.title);
-  });
-    console.log(byName)
-    this.setState({services: byName}) 
+
+sortByService(e){  
+
+  this.setState({
+    serviceService: e.target.value
+  })
+
+  let ByService = this.state.services.filter(service => service.service1 == e.target.value || service.service2 == e.target.value || service.service3 == e.target.value);
+
+  console.log(ByService);
+  this.setState({carrouselServices: ByService})
+  
 }
 
-sortByService(){
-  console.log(this.state.services)
-  let byName;
-  byName = this.state.services.sort(function(a, b) {
-    return a.title.localeCompare(b.title);
-  });
-    console.log(byName)
-    this.setState({services: byName})
+sortByProduct(e){
+  this.setState({
+    serviceProduct: e.target.value
+  })
+
+  let ByProduct = this.state.services.filter(product => product.product == e.target.value);
+
+  console.log(ByProduct);
+  this.setState({carrouselServices: ByProduct})
 }
+
 
   render() {
 
@@ -137,7 +146,7 @@ sortByService(){
                                 {this.state.services.slice(12, 24).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                     <Link to={"/detail/"+service.id}>
                                                                         <figure className="image">
-                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                            <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                         </figure>
                                                                         <p className="title">{service.title}</p>
                                                                     </Link>  
@@ -155,7 +164,7 @@ sortByService(){
                                 {this.state.services.slice(24, 36).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                     <Link to={"/detail/"+service.id}>
                                                                         <figure className="image">
-                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                            <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                         </figure>
                                                                         <p className="title">{service.title}</p>
                                                                     </Link>  
@@ -173,7 +182,7 @@ sortByService(){
                                 {this.state.services.slice(36, 48).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                     <Link to={"/detail/"+service.id}>
                                                                         <figure className="image">
-                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                            <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                         </figure>
                                                                         <p className="title">{service.title}</p>
                                                                     </Link>  
@@ -191,7 +200,7 @@ sortByService(){
                                 {this.state.services.slice(48, 60).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                     <Link to={"/detail/"+service.id}>
                                                                         <figure className="image">
-                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                            <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                         </figure>
                                                                         <p className="title">{service.title}</p>
                                                                     </Link>  
@@ -209,7 +218,7 @@ sortByService(){
                                 {this.state.services.slice(60, 72).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                     <Link to={"/detail/"+service.id}>
                                                                         <figure className="image">
-                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                            <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                         </figure>
                                                                         <p className="title">{service.title}</p>
                                                                     </Link>  
@@ -227,7 +236,7 @@ sortByService(){
                                 {this.state.services.slice(72, 84).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                     <Link to={"/detail/"+service.id}>
                                                                         <figure className="image">
-                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                            <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                         </figure>
                                                                         <p className="title">{service.title}</p>
                                                                     </Link>  
@@ -245,7 +254,7 @@ sortByService(){
                                 {this.state.services.slice(84, 96).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                     <Link to={"/detail/"+service.id}>
                                                                         <figure className="image">
-                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                            <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                         </figure>
                                                                         <p className="title">{service.title}</p>
                                                                     </Link>  
@@ -263,7 +272,7 @@ sortByService(){
                                 {this.state.services.slice(96, 108).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                     <Link to={"/detail/"+service.id}>
                                                                         <figure className="image">
-                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                            <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                         </figure>
                                                                         <p className="title">{service.title}</p>
                                                                     </Link>  
@@ -281,7 +290,7 @@ sortByService(){
                                 {this.state.services.slice(108, 120).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                     <Link to={"/detail/"+service.id}>
                                                                         <figure className="image">
-                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                            <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                         </figure>
                                                                         <p className="title">{service.title}</p>
                                                                     </Link>  
@@ -295,7 +304,7 @@ sortByService(){
     return (
       <StyledWork>
 
-      <button className="button ver-mas is-normal"  onClick={this.sortByName}>Ver más proyectos</button>
+        
        
           <div className="banner columns is-multiline is-centered">
 
@@ -309,6 +318,42 @@ sortByService(){
 
               <div className="column is-full-mobile is-half">
                         <p>Innovación, investigación, tecnología y mucho más. Descubre los proyectos que nos hacen sentir orgullosos en LAB101.</p>
+              </div>
+
+          </div>
+
+          <div className="filter columns is-multiline">
+
+             <div className="column is-narrow">
+             <label>Filtrar por:</label>
+              </div>
+
+              <div className="column is-narrow">
+                  <button className="button ver-mas"  onClick={this.sortByName}>Orden alfabético</button>
+              </div>
+              
+              <div className="column form-group is-narrow">
+                      <label>Tipo de servicio:</label>
+                            <div>
+                              <select value={this.state.serviceService} 
+                              onChange={this.sortByService}>
+                                  <option value="Servicio Uno">Servicio Uno</option>
+                                  <option value="Servicio Dos">Servicio Dos</option>
+                                  <option value="Servicio Tres">Servicio Tres</option>
+                                </select>
+                          </div>
+              </div>
+
+              <div className="column form-group is-narrow">
+                      <label>Tipo de producto:</label>
+                            <div>
+                              <select value={this.state.serviceProduct} 
+                              onChange={this.sortByProduct}>
+                                  <option value="web">Desarrollo Web</option>
+                                  <option value="app">App</option>
+                                  <option value="other">Otro</option>
+                              </select>
+                          </div>
               </div>
 
           </div>
@@ -328,10 +373,10 @@ sortByService(){
                         renderDotsOutside={true}>
                   <div className="column">
                        <div className="columns is-multiline">                          
-                            {this.state.services.slice(0, 12).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                            {this.state.carrouselServices.slice(0, 12).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                 <Link to={"/detail/"+service.id}>
                                                                     <figure className="image">
-                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                     </figure>
                                                                     <p className="title">{service.title}</p>
                                                                 </Link>  
@@ -341,10 +386,10 @@ sortByService(){
 
                   <div className="column">
                           <div className="columns is-multiline">                          
-                                {this.state.services.slice(12, 24).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                                {this.state.carrouselServices.slice(12, 24).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                     <Link to={"/detail/"+service.id}>
                                                                         <figure className="image">
-                                                                            <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                            <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                         </figure>
                                                                         <p className="title">{service.title}</p>
                                                                     </Link>  
@@ -355,10 +400,10 @@ sortByService(){
                   {this.state.numberOfSlides.length > 2  && 
                   <div className="column">
                        <div className="columns is-multiline">                          
-                            {this.state.services.slice(26, 38).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                            {this.state.carrouselServices.slice(26, 38).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                 <Link to={"/detail/"+service.id}>
                                                                     <figure className="image">
-                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                     </figure>
                                                                     <p className="title">{service.title}</p>
                                                                 </Link>  
@@ -369,10 +414,10 @@ sortByService(){
                   { this.state.numberOfSlides.length > 3 &&
                   <div className="column">
                        <div className="columns is-multiline">                          
-                            {this.state.services.slice(39, 51).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                            {this.state.carrouselServices.slice(39, 51).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                 <Link to={"/detail/"+service.id}>
                                                                     <figure className="image">
-                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                     </figure>
                                                                     <p className="title">{service.title}</p>
                                                                 </Link>  
@@ -384,10 +429,10 @@ sortByService(){
                   { this.state.numberOfSlides.length > 4 &&
                   <div className="column">
                        <div className="columns is-multiline">                          
-                            {this.state.services.slice(52, 64).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                            {this.state.carrouselServices.slice(52, 64).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                 <Link to={"/detail/"+service.id}>
                                                                     <figure className="image">
-                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                     </figure>
                                                                     <p className="title">{service.title}</p>
                                                                 </Link>  
@@ -399,10 +444,10 @@ sortByService(){
                   { this.state.numberOfSlides.length > 5 &&
                   <div className="column">
                        <div className="columns is-multiline">                          
-                            {this.state.services.slice(65, 77).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                            {this.state.carrouselServices.slice(65, 77).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                 <Link to={"/detail/"+service.id}>
                                                                     <figure className="image">
-                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                     </figure>
                                                                     <p className="title">{service.title}</p>
                                                                 </Link>  
@@ -414,10 +459,10 @@ sortByService(){
                   { this.state.numberOfSlides.length > 6 &&
                   <div className="column">
                        <div className="columns is-multiline">                          
-                            {this.state.services.slice(78, 90).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                            {this.state.carrouselServices.slice(78, 90).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                 <Link to={"/detail/"+service.id}>
                                                                     <figure className="image">
-                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                     </figure>
                                                                     <p className="title">{service.title}</p>
                                                                 </Link>  
@@ -429,10 +474,10 @@ sortByService(){
                   { this.state.numberOfSlides.length > 7 &&
                   <div className="column">
                        <div className="columns is-multiline">                          
-                            {this.state.services.slice(91, 103).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
+                            {this.state.carrouselServices.slice(91, 103).map( service => ( <div className="column infoCard is-one-third" key={service.id}>
                                                                 <Link to={"/detail/"+service.id}>
                                                                     <figure className="image">
-                                                                        <img className="" src={"http://localhost:8000/images/" + service.image} />
+                                                                        <img className="" src={"http://newadmin7.vivelabbogota.com/images/" + service.image} />
                                                                     </figure>
                                                                     <p className="title">{service.title}</p>
                                                                 </Link>  
@@ -465,7 +510,7 @@ align-items: center;
     display: flex;
     padding-top: 5vh;
     margin-top: 0vh;
-    height: 20vh;
+    height: 15vh;
     align-items: flex-start;
     background-color: white;
 
@@ -509,6 +554,16 @@ align-items: center;
     }
 }  
 
+.filter{
+  width: 100%;
+  padding-right: 6%;
+    display: flex;
+    padding-top: 0vh;
+    margin-top: 0vh;
+    height: auto;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
 
 .gallery{
 

@@ -51,7 +51,7 @@ class Services extends Component {
 
   componentDidMount(){
     this.props.updateNavColor(this.state.background);
-    axios.get('http://localhost:8000/api/services')
+    axios.get('http://newadmin7.vivelabbogota.com/api/services')
        .then(response => {
          this.setState({ services: response.data });
        })

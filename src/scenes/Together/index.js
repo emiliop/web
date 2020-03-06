@@ -139,7 +139,7 @@ class Together extends Component {
 
 
   async handleSubmit (e) {
-   let info = await axios.post('http://newadmin5.vivelabbogota.com/api/forms/add', 
+   let info = await axios.post('http://newadmin7.vivelabbogota.com/api/forms/add', 
                   {
                     name:this.state.formName,
                     mail:this.state.formMail,
