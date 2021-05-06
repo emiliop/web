@@ -14,7 +14,7 @@
     "axios": "^0.19.2",
     "bulma": "^0.7.5",
     "c3-react": "^0.1.13",
-    "highcharts": "^7.1.2",
+    "highcharts": "^9.0.0",
     "highcharts-react-official": "^2.2.2",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
